@@ -1,4 +1,12 @@
-export default `<div class='error-page'>
-        <span class="error-page__title">{{errorTitle}}</span>
-        <span class="error-page__subtitle">{{errorSubtitle}}</span>
-</div>`;
+export default
+    `<div class="error-page">
+        <div class="error__code">
+            <span>{{code}}</span>
+        </div>
+        <div class="error__text">
+            <span>{{title}}</span>
+        </div>
+        <a href="/notSelectedChat" class="return-button">
+            <span class="error-page__link-title">{{linkTitle}}</span>
+        </a>
+    </div>`;

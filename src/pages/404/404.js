@@ -1,8 +1,15 @@
-import {pageNotFound} from "./404.tmpl"
+import * as Handlebars from "handlebars";
+import pageNotFoundTemplate from "./404.tmpl";
+import "./404.scss";
 
-let source = pageNotFound;
-let template = Handlebars.compile(source);
-let context = { errorTitle: "404", errorSubtitle: "СТРАНИЦА НЕ НАЙДЕНА" };
-let html = template(context);
+export function pageNotFound() {
+    const template = Handlebars.compile(pageNotFoundTemplate);
+    
+    const context = {
+        code: "404",
+        title: "Страница отсутствует",
+        linkTitle: "Вернуться назад"
+    };
 
-export default html;
+    return template(context);
+}
