@@ -8,7 +8,7 @@
 .current-chat__header {
     height: 70px;
     display: flex;
-    border-bottom: 1px solid var(--dark-gray-color);
+    border-bottom: 1px solid #eee;
     width: 100%;
     align-items: center;
 }
@@ -21,13 +21,16 @@
     height: 72px;
 }
 
-.current-chat__header-icon,
-.chat-settings__icon,
-.add-file-button__icon,
-.send-button__icon{
+.current-chat__header-icon{
     border-radius: 50%;
     width: 48px;
     height: 48px;
+}
+.chat-settings__icon,
+.add-file-button__icon,
+.send-button__icon{
+    width: 28px;
+    height: 28px;
 }
 
 
@@ -48,7 +51,7 @@
 .current-chat__footer {
     display: flex;
     height: 54px;
-    border-top: 1px solid var(--dark-gray-color);
+    border-top: 1px solid #eee;
     padding: 10px;
     align-items: center;
     justify-content: space-between;

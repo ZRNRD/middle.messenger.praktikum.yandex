@@ -8,17 +8,20 @@
 
 .input {
     border: 1px solid transparent;
-    border-bottom-color: var(--blue-color);
     width: 100%;
-    outline: transparent;
+    outline: none;
 }
+
+
 
 .input__error-message {
     color: var(--warning-color);
     font-size: 8px;
     line-height: 8px;
     margin-top: 8px;
+    background: grey;
 }
+
 
 .input__search {
     width: 290px;
@@ -46,3 +49,4 @@
     height: 32px;
     padding: 10px;
 }
+

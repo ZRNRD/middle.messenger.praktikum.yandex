@@ -6,25 +6,39 @@
 }
 
 
-.chat-list-area {
+.chat-list-container {
+    position: relative;
     width: 310px;
     min-height: 300px;
-    background-color: var(--bg-chat-color);
-    border-right: 1px solid var(--dark-gray-color);
+    background-color: white;
+    border-right: 1px solid #ddd;
 }
 
 .profile {
-    margin-top: 20px;
-    margin-left: 234px;
+    position: absolute;
+    margin-top: 15px;
+    right: 25px;
+    
 }
 
 .profile__link-title {
-    color: var(--gray-text-color);
+    color: grey;
 }
 
 .search-input {
     text-align: center;
-    margin: 20px 0;
+    margin: 15px;
+    margin-top: 50px;
+    
+}
+
+.search-input input{
+    background: #eee;
+    border-radius: 5px;
+    padding: 10px;
+}
+.search-input input::placeholder{
+    text-align: center;
 }
 
 .chat-list {
@@ -34,8 +48,8 @@
 
 .chat-list__item {
     height: 72px;
-    border-top: 1px solid var(--dark-gray-color);
-    border-bottom: 1px solid var(--dark-gray-color);
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     display: flex;
 }
 
@@ -55,11 +69,12 @@
 
 .chat-list__item-name {
     font-weight: bold;
-    padding: 10px;
+    color: black;
+    padding: 5px;
 }
 
 .chat-list__item-message {
-    padding: 10px;
+    padding: 5px;
 }   
 
 .message-input {

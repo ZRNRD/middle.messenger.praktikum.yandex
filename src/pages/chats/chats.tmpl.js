@@ -1,9 +1,9 @@
 export default
     `<div class="chat-page">
         <div class="chat-page__container">
-            <div class="chat-list-area">
+            <div class="chat-list-container">
                 <div class="profile">
-                    <a class="profile__link" href="/viewProfile">
+                    <a class="profile__link" href="/profile">
                         <span class="profile__link-title">{{profileTitle}}</span>
                     </a>
                 </div>
@@ -12,7 +12,7 @@ export default
                 </div>
                 <ul class="chat-list">
                     {{#each dialogs}}
-                        <a class="profile__link" href="/chatSelected">
+                        <a class="profile__link" href="/selectedChat">
                             <li class="chat-list__item">
                                 <div class="chat-list__item-image">
                                     <img src="{{userAvatar}}" class="chat-list__item-icon">
