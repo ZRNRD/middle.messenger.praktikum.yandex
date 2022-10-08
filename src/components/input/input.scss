@@ -2,9 +2,6 @@
     padding: 8px 0 20px 0;
 }
 
-.input__container-gray {
-    padding: 0;
-}
 
 .input {
     border: 1px solid transparent;
@@ -14,8 +11,8 @@
 
 
 
-.input__error-message {
-    color: var(--warning-color);
+.error-message {
+    color: red;
     font-size: 8px;
     line-height: 8px;
     margin-top: 8px;
@@ -26,9 +23,9 @@
 .input__search {
     width: 290px;
     height: 32px;
-    background: var(--light-gray-color);
+    background: #eee;
     border-radius: 5px;
-    border: 1px solid var(--light-gray-color);
+    border: 1px solid #eee;
     padding: 5px;
 
     &::-webkit-input-placeholder {
@@ -43,8 +40,8 @@
 }
 
 .input__message {
-    background: var(--light-gray-color);
-    border: 1px solid var(--light-gray-color);
+    background: #eee;
+    border: 1px solid #eee;
     border-radius: 30px;
     height: 32px;
     padding: 10px;

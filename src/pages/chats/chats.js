@@ -20,7 +20,6 @@ export function chatPage(route) {
             inputClassName: "search__input",
             name: "search",
             type: "text",
-            inputContainerClassName: "input__container-gray"
         }),
         dialogs: [
             {name: "Андрей", message: "Изображение", id: "1", userAvatar} , 
