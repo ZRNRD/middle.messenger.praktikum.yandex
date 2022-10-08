@@ -12,5 +12,5 @@ const content = {
 }
 
 
-root.innerHTML = content.selectedChat;
+root.innerHTML = content.notSelectedChat;
 
