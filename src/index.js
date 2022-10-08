@@ -19,3 +19,22 @@ const content = {
 
 root.innerHTML = content.login;
 
+switch (window.location.pathname) {
+    case "/":
+    case `/${routes.login}`:
+        root.innerHTML = content.login;
+        break;
+    case `/${routes.selectedChat}`:
+        root.innerHTML = content.selectedChat;
+        break;
+    case `/${routes.notSelectedChat}`:
+        root.innerHTML = content.notSelectedChat;
+        break;
+    case `/${routes.serverError}`:
+        root.innerHTML = content.serverError;
+        break;
+    case `/${routes.notFound}`:
+    default:
+        root.innerHTML = content.notFound;
+        break;
+}
