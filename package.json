@@ -5,19 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html",
+    "start": "parcel index.html --port 3000 --open",
+    "dev": "parcel index.html --port 3000 --no-cache --open",
     "build": "parcel build index.html"
   },
   "keywords": [],
-  "author": "",
+  "author": "Filimonenko Vladimir",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "express": "^4.18.1",
+    "handlebars": "^4.7.7",
+    "parcel-bundler": "^1.12.5",
+    "saas": "^1.0.0",
+    "sass": "^1.55.0"
   },
   "engines": {
     "node": ">=16.2.0"
-  },
-  "dependencies": {
-    "handlebars": "^4.7.7"
   }
 }
