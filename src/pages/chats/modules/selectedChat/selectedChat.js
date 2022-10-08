@@ -1,33 +1,27 @@
 import * as Handlebars from "handlebars";
-import chatsPageTemplate from "./chat.tmpl";
+import selectedTemplate from "./selectedChat.tmpl";
+import { Input } from "./../../../../components/input/input.js";
+import chatSettingsIcon from "./../../../../../static/assets/icons/chat-settings.png";
+import sendMessageIcon from "./../../../../../static/assets/icons/send-message.png";
+import addFileIcon from "./../../../../../static/assets/icons/add-file.png";
+import userAvatar from "./../../../../../static/assets/icons/user-avatar.png";
+import "./selectedChat.scss";
 
-import { notSelectedChat } from "./modules/notSelectedChat";
-import { chatSelected } from "./modules/chatSelected";
-import { routes } from "../../utils";
-import { Input } from "../../components/input";
-import avatarIcon from "../../../static/assets/avatar-icon.svg";
-import "./chat.scss";
-
-export function chatPage(route) {
-    const template = Handlebars.compile(chatPageTemplate);
-    const currentChatArea = route == routes.chatSelected ? chatSelected : notSelectedChat;
+export function selectedChat() {
+    const template = Handlebars.compile(selectedTemplate);
 
     const context = {
-        currentChatArea, 
-        profileTitle: "Профиль",
-        emptyChatTitle: "Выберите чат чтобы отправить сообщение",
-        searchInput: Input({
-            label: "Поиск",
-            inputClassName: "input__search",
-            name: "search",
-            type: "text",
-            inputContainerClassName: "input__container-gray"
+        userAvatar,
+        sendMessageIcon, 
+        chatSettingsIcon,
+        addFileIcon,
+        chatTitle: "Выбранный чат",
+        message: Input({
+            label: "Сообщение",
+            inputClassName: "message__input",
+            name: "message",
+            type: "text"
         }),
-        contacts: [
-            {name: "Ann", message: "Hi! I lost my ...", id: "1952", avatarIcon} , 
-            {name: "Dan", message: "Have you seen...", id: "1953", avatarIcon} , 
-            {name: "Mary", message: "Good night!", id: "1954", avatarIcon}
-        ],
     };
 
     return template(context);

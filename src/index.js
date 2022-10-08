@@ -6,10 +6,11 @@ const root = document.getElementById("root");
 
 const content = {
 
+    selectedChat: chatPage(routes.selectedChat),
     notSelectedChat: chatPage(routes.notSelectedChat),
 
 }
 
 
-root.innerHTML = content.notSelectedChat;
+root.innerHTML = content.selectedChat;
 

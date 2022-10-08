@@ -11,11 +11,11 @@ export default
                     {{{searchInput}}}
                 </div>
                 <ul class="chat-list">
-                    {{#each contacts}}
+                    {{#each dialogs}}
                         <a class="profile__link" href="/chatSelected">
                             <li class="chat-list__item">
                                 <div class="chat-list__item-image">
-                                    <img src="{{avatarIcon}}" class="chat-list__item-icon">
+                                    <img src="{{userAvatar}}" class="chat-list__item-icon">
                                 </div>
                                 <div class="chat-list__item-data">
                                     <div class="chat-list__item-name">{{this.name}}</div>
@@ -26,6 +26,6 @@ export default
                     {{/each}}
                 </ul>
             </div>
-            {{{currentChatArea}}}
+            {{{currentChat}}}
         </div>
     </div>`;

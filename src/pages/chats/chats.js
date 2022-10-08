@@ -1,11 +1,10 @@
 import * as Handlebars from "handlebars";
 import chats from "./chats.tmpl";
 import { selectedChat } from "./modules/selectedChat";
-import { notSelectedChat } from "./modules/noteSelectedChat";
+import { notSelectedChat } from "./modules/notSelectedChat";
 import { routes } from "../../utils";
-
 import { Input } from "../../components/input";
-//import avatarIcon from "../../../static/assets/avatar-icon.svg";
+import userAvatar from "../../../static/assets/icons/user-avatar.png";
 import "./chats.scss";
 
 export function chatPage(route) {
@@ -24,12 +23,12 @@ export function chatPage(route) {
             inputContainerClassName: "input__container-gray"
         }),
         dialogs: [
-            {name: "Андрей", message: "Изображение", id: "1"} , 
-            {name: "Киноклуб", message: "Вы: стикер", id: "2"} , 
-            {name: "Илья", message: "Друзья, у меня для вас особенный выпуск новостей!...", id: "3"},
-            {name: "Вадим", message: "Вы: Круто!", id: "4"},
-            {name: "тет-а-теты", message: "И Human Interface Guidelines и Material Design рекомендуют...", id: "5"},
-        ],
+            {name: "Андрей", message: "Изображение", id: "1", userAvatar} , 
+            {name: "Киноклуб", message: "Вы: стикер", id: "2", userAvatar} , 
+            {name: "Илья", message: "Друзья, у меня для вас особенный выпуск новостей!...", id: "3", userAvatar},
+            {name: "Вадим", message: "Вы: Круто!", id: "4", userAvatar},
+            {name: "тет-а-теты", message: "И Human Interface Guidelines и Material Design рекомендуют...", id: "5", userAvatar},
+        ]
     };
 
     return template(context);

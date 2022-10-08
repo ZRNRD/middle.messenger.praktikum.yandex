@@ -1,31 +1,24 @@
 export default
-    `<div class="chat-page">
-        <div class="chat-page__container">
-            <div class="chat-list-area">
-                <div class="profile">
-                    <a class="profile__link" href="/viewProfile">
-                        <span class="profile__link-title">{{profileTitle}}</span>
-                    </a>
-                </div>
-                <div class="search-input">
-                    {{{searchInput}}}
-                </div>
-                <ul class="chat-list">
-                    {{#each contacts}}
-                        <a class="profile__link" href="/chatSelected">
-                            <li class="chat-list__item">
-                                <div class="chat-list__item-image">
-                                    <img src="{{avatarIcon}}" class="chat-list__item-icon">
-                                </div>
-                                <div class="chat-list__item-data">
-                                    <div class="chat-list__item-name">{{this.name}}</div>
-                                    <div class="chat-list__item-message">{{this.message}}</div>
-                                </div>
-                            </li>
-                        </a>
-                    {{/each}}
-                </ul>
+    `<div class="current-chat__selected">
+        <header class="current-chat__header">
+            <div class="current-chat__header-image">
+                <img src="{{userAvatar}}" class="current-chat__header-icon">
             </div>
-            {{{currentChatArea}}}
-        </div>
+            <div class="current-chat-name">{{chatTitle}}</div>
+            <div class="chat-settings">
+                <img src="{{chatSettingsIcon}}" class="chat-settings__icon">
+            </div>
+        </header>
+        <div class="current-chat__main"></div>
+        <footer class="current-chat__footer">
+            <div class="add-file-button">
+                <img src="{{addFileIcon}}" class="add-file-button__icon">
+            </div>
+            <div class="message-input">
+                {{{message}}}
+            </div>
+            <div class="send-message">
+                <img src="{{sendMessageIcon}}" class="send-button__icon">
+            </div>
+        </footer>
     </div>`;
