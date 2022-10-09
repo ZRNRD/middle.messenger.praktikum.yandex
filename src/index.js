@@ -3,6 +3,7 @@ import { login } from "./pages/login";
 import { signin } from "./pages/signin";
 import { profile } from "./pages/profile";
 import { changeProfileData } from "./pages/profile/modules/changeProfileData";
+import { changeProfilePassword } from "./pages/profile/modules/changeProfilePassword";
 import { pageNotFound } from "./pages/404";
 import { serverError } from "./pages/500";
 import { routes } from "./utils";
@@ -17,6 +18,7 @@ const content = {
     notSelectedChat: chatPage(routes.notSelectedChat),
     profile: profile(),
     changeProfileData: changeProfileData(),
+    changeProfilePassword: changeProfilePassword(),
     pageNotFound: pageNotFound(),
     serverError: serverError(),
 
@@ -44,6 +46,9 @@ switch (window.location.pathname) {
         break;
     case `/${routes.changeProfileData}`:
         root.innerHTML = content.changeProfileData;
+        break;
+    case `/${routes.changeProfilePassword}`:
+        root.innerHTML = content.changeProfilePassword;
         break;
     case `/${routes.serverError}`:
         root.innerHTML = content.serverError;
