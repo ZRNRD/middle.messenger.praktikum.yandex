@@ -1,0 +1,56 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile__name{
+    font-size: 25px;
+    margin: 25px 0;
+}
+
+.profile__form {
+    //display: flex;
+    //flex-direction: column;
+   // align-items: center;
+   // justify-content: space-between;
+    font-size: 15px;
+    line-height: 15px;
+    margin: 15px 0;
+    width: 500px;
+}
+.profile__input-container{
+    border-bottom: 1px solid rgb(109, 167, 255);
+}
+.profile__input{
+    text-align: right;
+    
+}
+
+.profile__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+.profile__change-data,
+.profile__change-password,
+.profile__back{ 
+    margin: 5px 0;
+}
+
+.profile__change-data span,
+.profile__change-password span
+{
+    color: blue;
+}
+.profile__back span{
+    color: red;
+}
+
+

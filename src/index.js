@@ -1,6 +1,7 @@
 import { chatPage } from "./pages/chats";
 import { login } from "./pages/login";
 import { signin } from "./pages/signin";
+import { profile } from "./pages/profile";
 import { pageNotFound } from "./pages/404";
 import { serverError } from "./pages/500";
 import { routes } from "./utils";
@@ -13,6 +14,7 @@ const content = {
     signin: signin(),
     selectedChat: chatPage(routes.selectedChat),
     notSelectedChat: chatPage(routes.notSelectedChat),
+    profile: profile(),
     pageNotFound: pageNotFound(),
     serverError: serverError(),
 
@@ -34,6 +36,9 @@ switch (window.location.pathname) {
         break;
     case `/${routes.notSelectedChat}`:
         root.innerHTML = content.notSelectedChat;
+        break;
+    case `/${routes.profile}`:
+        root.innerHTML = content.profile;
         break;
     case `/${routes.serverError}`:
         root.innerHTML = content.serverError;
