@@ -4,8 +4,8 @@ export const routes = Object.freeze({
     selectedChat: "selectedChat",
     notSelectedChat: "notSelectedChat",
     profile: "profile",
-    changeProfileData: "editProfileData",
-    changeProfilePassword: "editProfilePassword",
+    changeProfileData: "changeProfileData",
+    changeProfilePassword: "changeProfileData",
     pageNotFound: "pageNotFound",
     serverError: "serverError"
 });

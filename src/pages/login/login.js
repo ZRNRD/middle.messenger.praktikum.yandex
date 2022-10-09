@@ -13,14 +13,18 @@ export function login() {
             placeholder: "Логин",
             type: "text",
             required: true,
-            errorMessage: "Неверный логин"
+            errorMessage: "Неверный логин",
+            inputContainerClassName: "lognin__input-container",
+            inputClassName: "lognin__input"
         }),
         passwordInput: Input({
             name: "password",
             placeholder: "Пароль",
             type: "password",
             required: true,
-            errorMessage: "Неверный пароль"
+            errorMessage: "Неверный пароль",
+            inputContainerClassName: "lognin__input-container",
+            inputClassName: "lognin__input"
         }),
         button: Button({
             title: "Войти",

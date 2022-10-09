@@ -13,36 +13,48 @@ export function signin() {
                 name: "mail",
                 placeholder: "Почта",
                 type: "text",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: true,
             }),
             Input({
                 name: "login",
                 placeholder: "Логин",
                 type: "text",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: true,
             }),
             Input({
                 name: "name",
                 placeholder: "Имя",
                 type: "text",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: false,
             }),
             Input({
                 name: "lastName",
                 placeholder: "Фамилия",
                 type: "text",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: false,
             }),
             Input({
                 name: "phone",
                 placeholder: "Телефон",
                 type: "text",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: false,
             }),
             Input({
                 name: "password",
                 placeholder: "Пароль",
                 type: "password",
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 required: true
             }),
             Input({
@@ -50,6 +62,8 @@ export function signin() {
                 placeholder: "Пароль (ещё раз)",
                 type: "password",
                 required: true,
+                inputContainerClassName: "signin__input-container",
+                inputClassName: "signin__input",
                 errorMessage: "Неверный пароль"
             })
         ],

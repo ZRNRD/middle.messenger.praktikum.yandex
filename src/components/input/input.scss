@@ -1,5 +1,7 @@
 .input__container {
-    padding: 8px 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 20px 0;
 }
 
 
@@ -13,9 +15,9 @@
 
 .error-message {
     color: red;
-    font-size: 8px;
-    line-height: 8px;
-    margin-top: 8px;
+    font-size: 10px;
+    line-height: 10px;
+    margin-top: 10px;
     background: grey;
 }
 
@@ -45,5 +47,10 @@
     border-radius: 30px;
     height: 32px;
     padding: 10px;
+}
+
+label {
+    float: left;
+    width: 10em;
 }
 
