@@ -1,4 +1,4 @@
-.profile-container{
+.change-profile-data-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,12 +6,8 @@
     height: 100vh;
 }
 
-.profile__name{
-    font-size: 25px;
-    margin: 25px 0;
-}
 
-.profile__form {
+.change-profile-data__form {
     //display: flex;
     //flex-direction: column;
    // align-items: center;
@@ -21,36 +17,27 @@
     margin: 15px 0;
     width: 500px;
 }
-.profile__input-container{
+.change-profile-data__input-container{
     border-bottom: 1px solid #eee;
 }
-.profile__input{
+.change-profile-data__input{
     text-align: right;
     
 }
 
-.profile__buttons {
+.change-profile-data__buttons {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    align-items: center;
     margin-top: 15px;
     width: 100%;
 }
 
 
-.profile__change-data,
-.profile__change-password,
-.profile__back{ 
+.change-profile-data__save,
+.change-profile-data__return{ 
     margin: 5px 0;
 }
 
-.profile__change-data span,
-.profile__change-password span
-{
-    color: blue;
-}
-.profile__back span{
-    color: red;
-}
 
 
