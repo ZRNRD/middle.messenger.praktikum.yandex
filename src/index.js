@@ -1,5 +1,6 @@
 import { chatPage } from "./pages/chats";
 import { login } from "./pages/login";
+import { signin } from "./pages/signin";
 import { pageNotFound } from "./pages/404";
 import { serverError } from "./pages/500";
 import { routes } from "./utils";
@@ -9,6 +10,7 @@ const root = document.getElementById("root");
 
 const content = {
     login: login(),
+    signin: signin(),
     selectedChat: chatPage(routes.selectedChat),
     notSelectedChat: chatPage(routes.notSelectedChat),
     pageNotFound: pageNotFound(),
@@ -24,6 +26,9 @@ switch (window.location.pathname) {
     case `/${routes.login}`:
         root.innerHTML = content.login;
         break;
+    case `/${routes.signin}`:
+        root.innerHTML = content.signin;
+        break;
     case `/${routes.selectedChat}`:
         root.innerHTML = content.selectedChat;
         break;
@@ -33,8 +38,8 @@ switch (window.location.pathname) {
     case `/${routes.serverError}`:
         root.innerHTML = content.serverError;
         break;
-    case `/${routes.notFound}`:
+    case `/${routes.pageNotFound}`:
     default:
-        root.innerHTML = content.notFound;
+        root.innerHTML = content.pageNotFound;
         break;
 }
