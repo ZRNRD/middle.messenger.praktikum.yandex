@@ -17,7 +17,7 @@ export function selectedChat() {
         addFileIcon,
         chatTitle: "Выбранный чат",
         message: Input({
-            label: "Сообщение",
+            placeholder: "Сообщение",
             inputClassName: "message__input",
             name: "message",
             type: "text"

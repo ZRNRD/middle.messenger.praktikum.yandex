@@ -10,14 +10,14 @@ export function login() {
     const context = {
         loginInput: Input({
             name: "login",
-            label: "Логин",
+            placeholder: "Логин",
             type: "text",
             required: true,
             errorMessage: "Неверный логин"
         }),
         passwordInput: Input({
             name: "password",
-            label: "Пароль",
+            placeholder: "Пароль",
             type: "password",
             required: true,
             errorMessage: "Неверный пароль"

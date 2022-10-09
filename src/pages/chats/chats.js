@@ -16,7 +16,7 @@ export function chatPage(route) {
         profileTitle: "Профиль",
         emptyChatTitle: "Выберите чат чтобы отправить сообщение",
         searchInput: Input({
-            label: "Поиск",
+            placeholder: "Поиск",
             inputClassName: "search__input",
             name: "search",
             type: "text",

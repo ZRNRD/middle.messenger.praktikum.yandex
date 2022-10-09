@@ -11,43 +11,43 @@ export function signin() {
         inputs: [
             Input({
                 name: "mail",
-                label: "Почта",
+                placeholder: "Почта",
                 type: "text",
                 required: true,
             }),
             Input({
                 name: "login",
-                label: "Логин",
+                placeholder: "Логин",
                 type: "text",
                 required: true,
             }),
             Input({
                 name: "name",
-                label: "Имя",
+                placeholder: "Имя",
                 type: "text",
                 required: false,
             }),
             Input({
                 name: "lastName",
-                label: "Фамилия",
+                placeholder: "Фамилия",
                 type: "text",
                 required: false,
             }),
             Input({
                 name: "phone",
-                label: "Телефон",
+                placeholder: "Телефон",
                 type: "text",
                 required: false,
             }),
             Input({
                 name: "password",
-                label: "Пароль",
+                placeholder: "Пароль",
                 type: "password",
                 required: true
             }),
             Input({
                 name: "secondPassword",
-                label: "Пароль (ещё раз)",
+                placeholder: "Пароль (ещё раз)",
                 type: "password",
                 required: true,
                 errorMessage: "Неверный пароль"
