@@ -1,0 +1,1 @@
+export { changeProfileData } from "./changeProfileData";

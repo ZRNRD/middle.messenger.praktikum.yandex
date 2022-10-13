@@ -1,0 +1,43 @@
+.change-profile-data-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.change-profile-data__form {
+    //display: flex;
+    //flex-direction: column;
+   // align-items: center;
+   // justify-content: space-between;
+    font-size: 15px;
+    line-height: 15px;
+    margin: 15px 0;
+    width: 500px;
+}
+.change-profile-data__input-container{
+    border-bottom: 1px solid #eee;
+}
+.change-profile-data__input{
+    text-align: right;
+    
+}
+
+.change-profile-data__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+.change-profile-data__save,
+.change-profile-data__return{ 
+    margin: 5px 0;
+}
+
+
+
