@@ -9,3 +9,4 @@ export const routes = Object.freeze({
   pageNotFound: 'pageNotFound',
   serverError: 'serverError',
 });
+
