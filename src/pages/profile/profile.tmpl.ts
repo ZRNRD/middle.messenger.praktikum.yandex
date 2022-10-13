@@ -1,5 +1,5 @@
-export default 
-    `<div class="profile-container">
+export default
+`<div class="profile-container">
         <div class="user-avatar">
             <img src="{{userAvatar}}" class="user-avatar__icon">
         </div>

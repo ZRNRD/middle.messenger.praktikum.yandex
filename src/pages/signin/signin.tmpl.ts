@@ -1,5 +1,5 @@
 export default
-    `<div class="signin-container">
+`<div class="signin-container">
         <div class="signin">
             <div class="signin__header">
                 <span class="signin__header-title">Создание профиля</span>

@@ -1,5 +1,5 @@
 export default
-    `<div class="{{inputContainerClassName}}">
+`<div class="{{inputContainerClassName}}">
         {{#if label}}
             <label for="{{name}}" class="input__label">{{label}}</label>
         {{/if}}

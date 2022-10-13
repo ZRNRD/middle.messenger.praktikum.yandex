@@ -1,1 +1,1 @@
-export { changeProfilePassword } from "./changeProfilePassword";
+export { changeProfilePassword } from './changeProfilePassword';

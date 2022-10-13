@@ -1,5 +1,5 @@
 export default
-    `<div class="login-container">
+`<div class="login-container">
         <div class="login">
             <div class="login__header">
                 <span class="login__header-title">Вход</span>

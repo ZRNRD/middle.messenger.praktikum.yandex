@@ -1,1 +1,1 @@
-export { pageNotFound } from "./404";
+export { pageNotFound } from './404';

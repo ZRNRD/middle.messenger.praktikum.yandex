@@ -1,1 +1,1 @@
-export { serverError } from "./500";
+export { serverError } from './500';
