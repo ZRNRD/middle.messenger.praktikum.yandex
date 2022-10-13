@@ -1,7 +1,7 @@
 import * as Handlebars from "handlebars";
-import changeProfileDataTemplate from "./changeProfileData.tmpl.js";
+import changeProfileDataTemplate from "./changeProfileData.tmpl";
 import { Input } from "../../../../components/input";
-import { Button } from "../../../../components/button/button.js";
+import { Button } from "../../../../components/button/button";
 import userAvatar from "../../../../../static/assets/icons/user-avatar.png";
 import "./changeProfileData.scss";
 

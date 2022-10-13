@@ -1,5 +1,5 @@
 import * as Handlebars from "handlebars";
-import profileTemplate from "./profile.tmpl.js";
+import profileTemplate from "./profile.tmpl";
 import { Input } from "../../components/input";
 import userAvatar from "../../../static/assets/icons/user-avatar.png";
 import "./profile.scss";

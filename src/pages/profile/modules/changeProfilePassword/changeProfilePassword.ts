@@ -1,7 +1,7 @@
 import * as Handlebars from "handlebars";
-import changeProfilePasswordTemplate from "./changeProfilePassword.tmpl.js";
+import changeProfilePasswordTemplate from "./changeProfilePassword.tmpl";
 import { Input } from "../../../../components/input";
-import { Button } from "../../../../components/button/button.js";
+import { Button } from "../../../../components/button/button";
 import userAvatar from "../../../../../static/assets/icons/user-avatar.png";
 import "./changeProfilePassword.scss";
 

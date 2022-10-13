@@ -1,5 +1,5 @@
 import * as Handlebars from "handlebars";
-import signinTemplate from "./signin.tmpl.js";
+import signinTemplate from "./signin.tmpl";
 import { Input } from "../../components/input";
 import { Button } from "../../components/button";
 import "./signin.scss";

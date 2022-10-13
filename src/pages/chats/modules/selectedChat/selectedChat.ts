@@ -1,6 +1,6 @@
 import * as Handlebars from "handlebars";
 import selectedTemplate from "./selectedChat.tmpl";
-import { Input } from "./../../../../components/input/input.js";
+import { Input } from "../../../../components/input/input";
 import chatSettingsIcon from "./../../../../../static/assets/icons/chat-settings.png";
 import sendMessageIcon from "./../../../../../static/assets/icons/send-message.png";
 import addFileIcon from "./../../../../../static/assets/icons/add-file.png";

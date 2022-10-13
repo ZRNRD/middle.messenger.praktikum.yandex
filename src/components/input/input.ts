@@ -1,5 +1,5 @@
 import Handlebars from "handlebars";
-import inputTemplate from "./input.tmpl.js";
+import inputTemplate from "./input.tmpl";
 import "./input.scss";
 
 export function Input(props) {
