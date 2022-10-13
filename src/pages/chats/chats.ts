@@ -9,7 +9,7 @@ import './chats.scss';
 
 export function chatPage(route) {
   const template = Handlebars.compile(chats);
-  const currentChat = route == routes.selectedChat ? selectedChat : notSelectedChat;
+  const currentChat = route === routes.selectedChat ? selectedChat : notSelectedChat;
 
   const context = {
     currentChat,
