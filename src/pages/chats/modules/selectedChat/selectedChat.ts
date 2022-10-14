@@ -5,9 +5,10 @@ import chatSettingsIcon from '../../../../../static/assets/icons/chat-settings.p
 import sendMessageIcon from '../../../../../static/assets/icons/send-message.png';
 import addFileIcon from '../../../../../static/assets/icons/add-file.png';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { Block } from '../../../../utils/Block';
 import './selectedChat.scss';
 
-export function selectedChat() {
+const getTemplate = () => {
   const template = Handlebars.compile(selectedTemplate);
 
   const context = {
@@ -25,4 +26,17 @@ export function selectedChat() {
   };
 
   return template(context);
+};
+
+export class SelectedChat extends Block {
+  constructor(context = {}, events = {}) {
+    super('div', {
+      context: {
+        ...context,
+      },
+      template: getTemplate(),
+      events,
+    },
+    'current-chat-container');
+  }
 }
