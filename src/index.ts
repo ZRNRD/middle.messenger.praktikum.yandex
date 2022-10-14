@@ -4,12 +4,12 @@ import { signin } from './pages/signin';
 import { profile } from './pages/profile';
 import { changeProfileData } from './pages/profile/modules/changeProfileData';
 import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
-import { pageNotFound } from './pages/404';
+import { PageNotFound } from './pages/404/404';
 import { serverError } from './pages/500';
 import { routes } from './utils';
 import './main.scss';
 
-const root = document.getElementById('root');
+const root: HTMLElement | null = document.getElementById('root');
 
 const content = {
   login: login(),
@@ -19,7 +19,7 @@ const content = {
   profile: profile(),
   changeProfileData: changeProfileData(),
   changeProfilePassword: changeProfilePassword(),
-  pageNotFound: pageNotFound(),
+  pageNotFound: new PageNotFound(),
   serverError: serverError(),
 
 };
@@ -54,6 +54,6 @@ switch (window.location.pathname) {
     break;
   case `/${routes.pageNotFound}`:
   default:
-    root.innerHTML = content.pageNotFound;
+    root.innerHTML = content.pageNotFound.transformToString();
     break;
 }
