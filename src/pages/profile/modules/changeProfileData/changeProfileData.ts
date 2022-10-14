@@ -11,7 +11,7 @@ export function changeProfileData() {
   const context = {
     userAvatar,
     inputs: [
-      Input({
+      new Input({
         value: 'mail@yandex.ru',
         name: 'mail',
         label: 'Почта',
@@ -21,8 +21,8 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'login',
         name: 'login',
         label: 'Логин',
@@ -32,8 +32,8 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'name',
         name: 'name',
         label: 'Имя',
@@ -43,8 +43,8 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'surname',
         name: 'surname',
         label: 'Фамилия',
@@ -54,8 +54,8 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'nickname',
         name: 'nickname',
         label: 'Имя в чате',
@@ -64,8 +64,8 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: '8 (800) 555-35-35',
         name: 'phone',
         label: 'Телефон',
@@ -75,7 +75,7 @@ export function changeProfileData() {
         isProfileInput: true,
         inputContainerClassName: 'change-profile-data__input-container',
         inputClassName: 'change-profile-data__input',
-      }),
+      }).transformToString(),
 
     ],
     saveChanges: new Button({

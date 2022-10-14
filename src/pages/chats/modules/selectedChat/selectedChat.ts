@@ -16,12 +16,12 @@ export function selectedChat() {
     chatSettingsIcon,
     addFileIcon,
     chatTitle: 'Выбранный чат',
-    message: Input({
+    message: new Input({
       placeholder: 'Сообщение',
       inputClassName: 'message__input',
       name: 'message',
       type: 'text',
-    }),
+    }).transformToString(),
   };
 
   return template(context);

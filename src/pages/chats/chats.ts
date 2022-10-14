@@ -15,12 +15,12 @@ export function chatPage(route) {
     currentChat,
     profileTitle: 'Профиль',
     emptyChatTitle: 'Выберите чат чтобы отправить сообщение',
-    searchInput: Input({
+    searchInput: new Input({
       placeholder: 'Поиск',
       inputClassName: 'search__input',
       name: 'search',
       type: 'text',
-    }),
+    }).transformToString(),
     dialogs: [
       {
         name: 'Андрей', message: 'Изображение', id: '1', userAvatar,

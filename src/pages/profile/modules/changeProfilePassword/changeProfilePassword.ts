@@ -11,7 +11,7 @@ export function changeProfilePassword() {
   const context = {
     userAvatar,
     inputs: [
-      Input({
+      new Input({
         value: 'PAROL12345',
         name: 'oldPassword',
         label: 'Старый пароль',
@@ -21,8 +21,8 @@ export function changeProfilePassword() {
         isProfileInput: true,
         inputContainerClassName: 'password__input-container',
         inputClassName: 'password__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: '',
         name: 'newPassword',
         label: 'Новый пароль',
@@ -32,8 +32,8 @@ export function changeProfilePassword() {
         isProfileInput: true,
         inputContainerClassName: 'password__input-container',
         inputClassName: 'password__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: '',
         name: 'newPasswordAgain',
         label: 'Повторите новый пароль',
@@ -43,7 +43,7 @@ export function changeProfilePassword() {
         isProfileInput: true,
         inputContainerClassName: 'password__input-container',
         inputClassName: 'password__input',
-      }),
+      }).transformToString(),
     ],
     saveChanges: new Button({
       title: 'Сохранить',

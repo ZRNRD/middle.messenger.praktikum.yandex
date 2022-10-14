@@ -9,55 +9,55 @@ export function signin() {
 
   const context = {
     inputs: [
-      Input({
+      new Input({
         name: 'mail',
         placeholder: 'Почта',
         type: 'text',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: true,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'login',
         placeholder: 'Логин',
         type: 'text',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: true,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'name',
         placeholder: 'Имя',
         type: 'text',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: false,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'lastName',
         placeholder: 'Фамилия',
         type: 'text',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: false,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'phone',
         placeholder: 'Телефон',
         type: 'text',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: false,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'password',
         placeholder: 'Пароль',
         type: 'password',
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         required: true,
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         name: 'secondPassword',
         placeholder: 'Пароль (ещё раз)',
         type: 'password',
@@ -65,7 +65,7 @@ export function signin() {
         inputContainerClassName: 'signin__input-container',
         inputClassName: 'signin__input',
         errorMessage: 'Неверный пароль',
-      }),
+      }).transformToString(),
     ],
     button: new Button({
       title: 'Создать профиль',

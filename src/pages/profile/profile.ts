@@ -11,7 +11,7 @@ export function profile() {
     profileName: 'Name',
     userAvatar,
     inputs: [
-      Input({
+      new Input({
         value: 'mail@yandex.ru',
         name: 'mail',
         label: 'Почта',
@@ -21,8 +21,8 @@ export function profile() {
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'login',
         name: 'login',
         label: 'Логин',
@@ -32,8 +32,8 @@ export function profile() {
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'name',
         name: 'name',
         label: 'Имя',
@@ -43,8 +43,8 @@ export function profile() {
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'surname',
         name: 'surname',
         label: 'Фамилия',
@@ -54,18 +54,19 @@ export function profile() {
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: 'nickname',
         name: 'nickname',
         label: 'Имя в чате',
         type: 'text',
         disabled: true,
+        required: false,
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
-      Input({
+      }).transformToString(),
+      new Input({
         value: '8 (800) 555-35-35',
         name: 'phone',
         label: 'Телефон',
@@ -75,7 +76,7 @@ export function profile() {
         isProfileInput: true,
         inputContainerClassName: 'profile__input-container',
         inputClassName: 'profile__input',
-      }),
+      }).transformToString(),
 
     ],
     changeData: 'Изменить данные',

@@ -8,7 +8,7 @@ export function login() {
   const template = Handlebars.compile(loginTemplate);
 
   const context = {
-    loginInput: Input({
+    loginInput: new Input({
       name: 'login',
       placeholder: 'Логин',
       type: 'text',
@@ -16,8 +16,8 @@ export function login() {
       errorMessage: 'Неверный логин',
       inputContainerClassName: 'lognin__input-container',
       inputClassName: 'lognin__input',
-    }),
-    passwordInput: Input({
+    }).transformToString(),
+    passwordInput: new Input({
       name: 'password',
       placeholder: 'Пароль',
       type: 'password',
@@ -25,7 +25,7 @@ export function login() {
       errorMessage: 'Неверный пароль',
       inputContainerClassName: 'lognin__input-container',
       inputClassName: 'lognin__input',
-    }),
+    }).transformToString(),
     button: new Button({
       title: 'Войти',
     }).transformToString(),

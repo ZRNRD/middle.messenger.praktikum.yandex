@@ -15,3 +15,18 @@ export type TButton = {
   title: string;
   className?: string;
 }
+
+export type TInput = {
+  isProfileInput?: boolean;
+  type: string;
+  errorMessage?: string;
+  label?: string;
+  name: string;
+  required?: boolean;
+  value?: string | number;
+  placeholder?: string;
+  disabled?: boolean;
+  inputContainerClassName?: string;
+  inputClassName?: string;
+  dataType?: string;
+}
