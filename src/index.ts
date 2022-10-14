@@ -1,4 +1,4 @@
-import { chatPage } from './pages/chats';
+import { ChatPage } from './pages/chats/chats';
 import { login } from './pages/login';
 import { signin } from './pages/signin';
 import { profile } from './pages/profile';
@@ -14,8 +14,12 @@ const root: HTMLElement | null = document.getElementById('root');
 const content = {
   login: login(),
   signin: signin(),
-  selectedChat: chatPage(routes.selectedChat),
-  notSelectedChat: chatPage(routes.notSelectedChat),
+  selectedChat: new ChatPage({
+    isChatSelected: true,
+  }),
+  notSelectedChat: new ChatPage({
+    isChatSelected: false,
+  }),
   profile: profile(),
   changeProfileData: changeProfileData(),
   changeProfilePassword: changeProfilePassword(),
@@ -35,10 +39,10 @@ switch (window.location.pathname) {
     root.innerHTML = content.signin;
     break;
   case `/${routes.selectedChat}`:
-    root.innerHTML = content.selectedChat;
+    root.innerHTML = content.selectedChat.transformToString();
     break;
   case `/${routes.notSelectedChat}`:
-    root.innerHTML = content.notSelectedChat;
+    root.innerHTML = content.notSelectedChat.transformToString();
     break;
   case `/${routes.profile}`:
     root.innerHTML = content.profile;

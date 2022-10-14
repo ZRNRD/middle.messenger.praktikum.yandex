@@ -38,3 +38,8 @@ export type TForm = {
   },
   content?: string,
 }
+
+export type TChatPage = {
+  isChatSelected?: boolean;
+  content?: string;
+}
