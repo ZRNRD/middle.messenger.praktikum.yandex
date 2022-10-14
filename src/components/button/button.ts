@@ -1,14 +1,17 @@
-import * as Handlebars from 'handlebars';
 import buttonTemplate from './button.tmpl';
+import { Block } from '../../utils/Block';
+import { TButton } from '../../utils/types';
 import './button.scss';
 
-const template = Handlebars.compile(buttonTemplate);
-
-export function Button({ title, className }) {
-  const context = {
-    title,
-    className: `button ${className}`,
-  };
-
-  return template(context);
+export class Button extends Block {
+  constructor(context: TButton, events = {}) {
+    super('div', {
+      context: {
+        ...context,
+        className: `button ${context.className}`,
+      },
+      template: buttonTemplate,
+      events,
+    });
+  }
 }

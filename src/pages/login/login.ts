@@ -26,9 +26,9 @@ export function login() {
       inputContainerClassName: 'lognin__input-container',
       inputClassName: 'lognin__input',
     }),
-    button: Button({
+    button: new Button({
       title: 'Войти',
-    }),
+    }).transformToString(),
     linkTitle: 'Нет профиля?',
   };
 

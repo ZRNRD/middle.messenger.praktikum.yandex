@@ -67,9 +67,9 @@ export function signin() {
         errorMessage: 'Неверный пароль',
       }),
     ],
-    button: Button({
+    button: new Button({
       title: 'Создать профиль',
-    }),
+    }).transformToString(),
     linkTitle: 'Войти',
   };
 

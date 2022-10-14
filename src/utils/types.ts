@@ -10,3 +10,8 @@ export type TMetaBlock = {
   tagName: string;
   props: Dictionary;
 }
+
+export type TButton = {
+  title: string;
+  className?: string;
+}

@@ -78,12 +78,12 @@ export function changeProfileData() {
       }),
 
     ],
-    saveChanges: Button({
+    saveChanges: new Button({
       title: 'Сохранить',
-    }),
-    return: Button({
+    }).transformToString(),
+    return: new Button({
       title: 'Назад',
-    }),
+    }).transformToString(),
   };
 
   return template(context);
