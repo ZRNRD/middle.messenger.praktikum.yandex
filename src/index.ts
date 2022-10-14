@@ -5,7 +5,7 @@ import { profile } from './pages/profile';
 import { changeProfileData } from './pages/profile/modules/changeProfileData';
 import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
 import { PageNotFound } from './pages/404/404';
-import { serverError } from './pages/500';
+import { ServerError } from './pages/500/500';
 import { routes } from './utils';
 import './main.scss';
 
@@ -20,7 +20,7 @@ const content = {
   changeProfileData: changeProfileData(),
   changeProfilePassword: changeProfilePassword(),
   pageNotFound: new PageNotFound(),
-  serverError: serverError(),
+  serverError: new ServerError(),
 
 };
 
@@ -50,7 +50,7 @@ switch (window.location.pathname) {
     root.innerHTML = content.changeProfilePassword;
     break;
   case `/${routes.serverError}`:
-    root.innerHTML = content.serverError;
+    root.innerHTML = content.serverError.transformToString();
     break;
   case `/${routes.pageNotFound}`:
   default:
