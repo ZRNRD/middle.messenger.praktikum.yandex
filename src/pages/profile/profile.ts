@@ -81,7 +81,7 @@ export function profile() {
     ],
     changeData: 'Изменить данные',
     changePassword: 'Изменить пароль',
-    back: 'Выйти',
+    exit: 'Выйти',
   };
 
   return template(context);

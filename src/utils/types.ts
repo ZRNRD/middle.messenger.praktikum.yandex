@@ -32,10 +32,8 @@ export type TInput = {
 }
 
 export type TForm = {
-  children?: {
-      inputs?: Dictionary[],
-      button?: Dictionary,
-  },
+  inputs?: Dictionary[],
+  button?: Dictionary,
   content?: string,
 }
 

@@ -30,13 +30,16 @@ const getTemplate = () => {
 
 export class SelectedChat extends Block {
   constructor(context = {}, events = {}) {
-    super('div', {
-      context: {
-        ...context,
+    super(
+      'div',
+      {
+        context: {
+          ...context,
+        },
+        template: getTemplate(),
+        events,
       },
-      template: getTemplate(),
-      events,
-    },
-    'current-chat-container');
+      'current-chat-container',
+    );
   }
 }

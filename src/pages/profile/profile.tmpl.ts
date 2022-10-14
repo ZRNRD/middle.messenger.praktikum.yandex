@@ -17,8 +17,8 @@ export default
                 <a class="profile__change-password" href="/changeProfilePassword">
                     <span>{{changePassword}}</span>
                 </a> 
-                <a class="profile__back" href="/notSelectedChat">
-                    <span>{{back}}</span>
+                <a class="profile__exit" href="/login">
+                    <span>{{exit}}</span>
                 </a> 
             </div>
         </div>
