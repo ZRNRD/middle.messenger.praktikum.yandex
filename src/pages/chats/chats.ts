@@ -1,7 +1,7 @@
 import * as Handlebars from 'handlebars';
 import chatsTemplate from './chats.tmpl';
 import { SelectedChat } from './modules/selectedChat/selectedChat';
-import { notSelectedChat } from './modules/notSelectedChat';
+import { NotSelectedChat } from './modules/notSelectedChat/notSelectedChat';
 import { Input } from '../../components/input';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
@@ -11,7 +11,7 @@ import './chats.scss';
 const getTemplate = (isChatSelected?: boolean) => {
   const template = Handlebars.compile(chatsTemplate);
 
-  const currentChat = isChatSelected ? new SelectedChat().transformToString() : notSelectedChat;
+  const currentChat = isChatSelected ? new SelectedChat().transformToString() : new NotSelectedChat().transformToString();
 
   const context = {
     currentChat,
