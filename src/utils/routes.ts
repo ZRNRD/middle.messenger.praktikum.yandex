@@ -1,4 +1,6 @@
-export const routes = Object.freeze({
+import { Dictionary } from './types';
+
+export const routes: Dictionary = Object.freeze({
   login: 'login',
   signin: 'signin',
   selectedChat: 'selectedChat',
