@@ -49,10 +49,10 @@ const getTemplate = () => {
     {
       submit: (e: CustomEvent) => {
         window.location = routes.notSelectedChat;
-        const form = new FormData(e.target);
+        const formData = new FormData(e.target);
         console.log({
-          login: form.get('login'),
-          password: form.get('password'),
+          login: formData.get('login'),
+          password: formData.get('password'),
         });
       },
     },

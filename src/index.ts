@@ -1,6 +1,6 @@
 import { ChatPage } from './pages/chats/chats';
 import { Login } from './pages/login/login';
-import { signin } from './pages/signin';
+import { Signin } from './pages/signin/signin';
 import { profile } from './pages/profile';
 import { changeProfileData } from './pages/profile/modules/changeProfileData';
 import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
@@ -13,7 +13,7 @@ const root: HTMLElement | null = document.getElementById('root');
 
 const content = {
   login: new Login(),
-  signin: signin(),
+  signin: new Signin(),
   selectedChat: new ChatPage({
     isChatSelected: true,
   }),
@@ -36,7 +36,7 @@ switch (window.location.pathname) {
     root.innerHTML = content.login.transformToString();
     break;
   case `/${routes.signin}`:
-    root.innerHTML = content.signin;
+    root.innerHTML = content.signin.transformToString();
     break;
   case `/${routes.selectedChat}`:
     root.innerHTML = content.selectedChat.transformToString();
