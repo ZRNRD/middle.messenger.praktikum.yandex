@@ -12,8 +12,6 @@ export class Block {
 
   private _element: HTMLElement;
 
-  private _elementId: string;
-
   private _meta: TMetaBlock;
 
   protected props: TBlockProps;
@@ -26,7 +24,7 @@ export class Block {
     this._meta = {
       tagName,
       props,
-      className
+      className,
     };
 
     this.props = this._makePropsProxy(props);
@@ -138,13 +136,8 @@ export class Block {
   }
 
   _triggerEvent(event: Event, func: Function) {
-    const target = event.target as HTMLElement;
-    const id = target.getAttribute('data-id');
-
-    if (target && (this._elementId === id)) {
-      event.preventDefault();
-      func.call(this, event);
-    }
+    event.preventDefault();
+    func.call(this, event);
   }
 
   _addEventListeners() {

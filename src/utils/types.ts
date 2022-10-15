@@ -9,6 +9,7 @@ export type TBlockProps = {
 export type TMetaBlock = {
   tagName: string;
   props: Dictionary;
+  className?: string;
 }
 
 export type TButton = {

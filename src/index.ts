@@ -28,7 +28,7 @@ const content = {
 
 };
 
-root.innerHTML = content.login;
+root.innerHTML = content.login.transformToString();
 
 switch (window.location.pathname) {
   case '/':

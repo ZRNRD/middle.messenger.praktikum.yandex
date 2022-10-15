@@ -3,6 +3,7 @@ import loginTemplate from './login.tmpl';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
+import { Form } from '../../components/form/form';
 import './login.scss';
 
 const getTemplate = () => {
@@ -38,17 +39,30 @@ const getTemplate = () => {
     linkTitle: 'Нет профиля?',
   };
 
-  return template(context);
+  const form = new Form(
+    {
+      inputs: [loginInput, passwordInput],
+      button,
+      content: template(context),
+    },
+    {
+      submit: (e: CustomEvent) => {
+        console.log(e);
+      },
+    },
+  );
+
+  return form.transformToString();
 };
 
 export class Login extends Block {
   constructor(context = {}, events = {}) {
-    super('form', {
+    super('div', {
       context: {
         ...context,
       },
       template: getTemplate(),
       events,
-    },
+    });
   }
 }
