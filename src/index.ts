@@ -1,7 +1,7 @@
 import { ChatPage } from './pages/chats/chats';
 import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
-import { profile } from './pages/profile';
+import { Profile } from './pages/profile/profile';
 import { changeProfileData } from './pages/profile/modules/changeProfileData';
 import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
 import { PageNotFound } from './pages/404/404';
@@ -20,7 +20,7 @@ const content = {
   notSelectedChat: new ChatPage({
     isChatSelected: false,
   }),
-  profile: profile(),
+  profile: new Profile(),
   changeProfileData: changeProfileData(),
   changeProfilePassword: changeProfilePassword(),
   pageNotFound: new PageNotFound(),
@@ -45,7 +45,7 @@ switch (window.location.pathname) {
     root.innerHTML = content.notSelectedChat.transformToString();
     break;
   case `/${routes.profile}`:
-    root.innerHTML = content.profile;
+    root.innerHTML = content.profile.transformToString();
     break;
   case `/${routes.changeProfileData}`:
     root.innerHTML = content.changeProfileData;
