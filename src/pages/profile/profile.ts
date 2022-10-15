@@ -165,6 +165,8 @@ const getTemplate = () => {
   });
 
   const context = {
+    profileName: 'Name',
+    userAvatar,
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),
