@@ -10,12 +10,8 @@ export default
                 {{{this}}}
             {{/each}}
             <div class="change-profile-data__buttons">
-                <a class="change-profile-data__save" href="/profile">
                 {{{saveChanges}}}
-                 </a> 
-                <a class="change-profile-data__return" href="/profile">
                 {{{return}}}
-                </a> 
             </div>
         </div>
         

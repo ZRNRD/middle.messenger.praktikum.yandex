@@ -2,7 +2,7 @@ import { ChatPage } from './pages/chats/chats';
 import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
 import { Profile } from './pages/profile/profile';
-import { changeProfileData } from './pages/profile/modules/changeProfileData';
+import { ChangeProfileData } from './pages/profile/modules/changeProfileData/changeProfileData';
 import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
 import { PageNotFound } from './pages/404/404';
 import { ServerError } from './pages/500/500';
@@ -21,7 +21,7 @@ const content = {
     isChatSelected: false,
   }),
   profile: new Profile(),
-  changeProfileData: changeProfileData(),
+  changeProfileData: new ChangeProfileData(),
   changeProfilePassword: changeProfilePassword(),
   pageNotFound: new PageNotFound(),
   serverError: new ServerError(),
@@ -48,7 +48,7 @@ switch (window.location.pathname) {
     root.innerHTML = content.profile.transformToString();
     break;
   case `/${routes.changeProfileData}`:
-    root.innerHTML = content.changeProfileData;
+    root.innerHTML = content.changeProfileData.transformToString();
     break;
   case `/${routes.changeProfilePassword}`:
     root.innerHTML = content.changeProfilePassword;
