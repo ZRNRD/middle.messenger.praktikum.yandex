@@ -1,5 +1,6 @@
 import * as Handlebars from 'handlebars';
 import loginTemplate from './login.tmpl';
+import { routes } from '../../utils';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
@@ -47,7 +48,12 @@ const getTemplate = () => {
     },
     {
       submit: (e: CustomEvent) => {
-        console.log(e);
+        window.location = routes.notSelectedChat;
+        const form = new FormData(e.target);
+        console.log({
+          login: form.get('login'),
+          password: form.get('password'),
+        });
       },
     },
   );
