@@ -3,7 +3,7 @@ import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
 import { Profile } from './pages/profile/profile';
 import { ChangeProfileData } from './pages/profile/modules/changeProfileData/changeProfileData';
-import { changeProfilePassword } from './pages/profile/modules/changeProfilePassword';
+import { ChangeProfilePassword } from './pages/profile/modules/changeProfilePassword/changeProfilePassword';
 import { PageNotFound } from './pages/404/404';
 import { ServerError } from './pages/500/500';
 import { routes } from './utils';
@@ -22,7 +22,7 @@ const content = {
   }),
   profile: new Profile(),
   changeProfileData: new ChangeProfileData(),
-  changeProfilePassword: changeProfilePassword(),
+  changeProfilePassword: new ChangeProfilePassword(),
   pageNotFound: new PageNotFound(),
   serverError: new ServerError(),
 
@@ -51,7 +51,7 @@ switch (window.location.pathname) {
     root.innerHTML = content.changeProfileData.transformToString();
     break;
   case `/${routes.changeProfilePassword}`:
-    root.innerHTML = content.changeProfilePassword;
+    root.innerHTML = content.changeProfilePassword.transformToString();
     break;
   case `/${routes.serverError}`:
     root.innerHTML = content.serverError.transformToString();

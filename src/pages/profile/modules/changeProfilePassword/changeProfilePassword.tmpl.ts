@@ -10,12 +10,8 @@ export default
                 {{{this}}}
             {{/each}}
             <div class="password__buttons">
-                <a class="password__save" href="/profile">
                 {{{saveChanges}}}
-                 </a> 
-                <a class="password__return" href="/profile">
                 {{{return}}}
-                </a> 
             </div>
         </div>
         
