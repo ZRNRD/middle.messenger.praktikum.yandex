@@ -124,7 +124,7 @@ const getTemplate = () => {
     },
     {
       submit: (e: CustomEvent) => {
-        window.location = routes.notSelectedChat;
+        window.location = routes.profile;
         const formData = new FormData(e.target);
         console.log({
           mailInput: formData.get('profileMail'),

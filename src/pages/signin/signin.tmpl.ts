@@ -10,9 +10,7 @@ export default
                 {{/each}}
             </div>
             <div class="signin__buttons">
-                <a href="/notSelectedChat">
                     {{{button}}}
-                </a>
                 <a class="signin__login-link" href="/login">
                     <span class="signin__login-link-title">{{linkTitle}}</span>
                 </a>
