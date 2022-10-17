@@ -5,30 +5,53 @@ import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
 import { Form } from '../../components/form/form';
+import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import './login.scss';
 
 const getTemplate = () => {
   const template = Handlebars.compile(loginTemplate);
 
-  const loginInput = new Input({
-    name: 'login',
-    placeholder: 'Логин',
-    type: 'text',
-    required: true,
-    errorMessage: 'Неверный логин',
-    inputContainerClassName: 'login__input-container',
-    inputClassName: 'login__input',
-  });
+  const loginInput = new Input(
+    {
+      name: 'login',
+      placeholder: 'Логин',
+      type: 'text',
+      required: true,
+      errorMessage: 'Неверный логин',
+      inputContainerClassName: 'login__input-container',
+      inputClassName: 'login__input',
+      dataType: 'login',
+    },
+    {
+      focus: (event: Event) => {
+        checkValidation({ event });
+      },
+      blur: (event: Event) => {
+        checkValidation({ event });
+      },
+    },
+  );
 
-  const passwordInput = new Input({
-    name: 'password',
-    placeholder: 'Пароль',
-    type: 'password',
-    required: true,
-    errorMessage: 'Неверный пароль',
-    inputContainerClassName: 'login__input-container',
-    inputClassName: 'login__input',
-  });
+  const passwordInput = new Input(
+    {
+      name: 'password',
+      placeholder: 'Пароль',
+      type: 'password',
+      required: true,
+      errorMessage: 'Неверный пароль',
+      inputContainerClassName: 'login__input-container',
+      inputClassName: 'login__input',
+      dataType: 'password',
+    },
+    {
+      focus: (event: Event) => {
+        checkValidation({ event });
+      },
+      blur: (event: Event) => {
+        checkValidation({ event });
+      },
+    },
+  );
 
   const button = new Button({
     title: 'Войти',
@@ -48,7 +71,7 @@ const getTemplate = () => {
     },
     {
       submit: (e: CustomEvent) => {
-        window.location = routes.notSelectedChat;
+        checkAllForm(e, '/notSelectedChat');
         const formData = new FormData(e.target);
         console.log({
           login: formData.get('login'),

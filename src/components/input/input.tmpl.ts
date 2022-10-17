@@ -9,6 +9,8 @@ export default
             value="{{value}}" placeholder="{{placeholder}}" 
             required={{required}} 
             {{#if disabledInput }}disabled{{/if}}
+            data-id="{{id}}"
+            data-type="{{dataType}}"
         />
         <div class="error-message hidden">
             {{errorMessage}}

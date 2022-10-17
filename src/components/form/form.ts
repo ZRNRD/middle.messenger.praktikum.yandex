@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as id } from 'uuid';
 import formTemplate from './form.tmpl';
 import { Block } from '../../utils/Block';
 import { TForm } from '../../utils/types';
@@ -8,7 +8,7 @@ export class Form extends Block {
     super('div', {
       context: {
         ...context,
-        id: uuidv4(),
+        id: id(),
       },
       template: formTemplate,
       events,
