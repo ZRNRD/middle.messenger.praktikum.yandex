@@ -6,45 +6,83 @@ import { Block } from '../../../../utils/Block';
 import { routes } from '../../../../utils';
 import { Form } from '../../../../components/form/form';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import './changeProfilePassword.scss';
 
 const getTemplate = () => {
   const template = Handlebars.compile(changeProfilePasswordTemplate);
 
-  const oldPasswordInput = new Input({
-    value: 'PAROL12345',
-    name: 'oldPassword',
-    label: 'Старый пароль',
-    type: 'password',
-    required: true,
-    disabled: false,
-    isProfileInput: true,
-    inputContainerClassName: 'password__input-container',
-    inputClassName: 'password__input',
-  });
-  const newPasswordInput = new Input({
-    value: '',
-    name: 'newPassword',
-    label: 'Новый пароль',
-    type: 'password',
-    required: true,
-    disabled: false,
-    isProfileInput: true,
-    inputContainerClassName: 'password__input-container',
-    inputClassName: 'password__input',
-  });
+  const oldPasswordInput = new Input(
+    {
+      value: 'PAROL12345',
+      name: 'oldPassword',
+      label: 'Старый пароль',
+      type: 'password',
+      required: true,
+      disabled: false,
+      isProfileInput: true,
+      inputContainerClassName: 'password__input-container',
+      inputClassName: 'password__input',
+      errorMessage: 'Введите старый пароль',
+      dataType: 'password',
+    },
+    {
+      focus: (event: Event) => {
+        checkValidation({ event });
+      },
+      blur: (event: Event) => {
+        checkValidation({ event });
+      },
+    },
+  );
 
-  const newPasswordAgainInput = new Input({
-    value: '',
-    name: 'newPasswordAgain',
-    label: 'Повторите новый пароль',
-    type: 'password',
-    required: true,
-    disabled: false,
-    isProfileInput: true,
-    inputContainerClassName: 'password__input-container',
-    inputClassName: 'password__input',
-  });
+  const newPasswordInput = new Input(
+    {
+      value: '',
+      name: 'newPassword',
+      label: 'Новый пароль',
+      type: 'password',
+      required: true,
+      disabled: false,
+      isProfileInput: true,
+      inputContainerClassName: 'password__input-container',
+      inputClassName: 'password__input',
+      errorMessage: 'Недопустимый пароль',
+      dataType: 'password',
+    },
+    {
+      focus: (event: Event) => {
+        checkValidation({ event });
+      },
+      blur: (event: Event) => {
+        checkValidation({ event });
+      },
+    },
+  );
+
+  const newPasswordAgainInput = new Input(
+    {
+      value: '',
+      name: 'newPasswordAgain',
+      label: 'Повторите новый пароль',
+      type: 'password',
+      required: true,
+      disabled: false,
+      isProfileInput: true,
+      inputContainerClassName: 'password__input-container',
+      inputClassName: 'password__input',
+      errorMessage: 'Пароли не совпадают',
+      dataType: 'password',
+    },
+    {
+      focus: (event: Event) => {
+        checkValidation({ event });
+      },
+      blur: (event: Event) => {
+        checkValidation({ event });
+      },
+    },
+  );
 
   const saveChanges = new Button({
     title: 'Сохранить',
@@ -81,7 +119,7 @@ const getTemplate = () => {
     },
     {
       submit: (e: CustomEvent) => {
-        window.location = routes.profile;
+        checkAllForm(e, routes.profile);
         const formData = new FormData(e.target);
         console.log({
           oldPasswordInput: formData.get('oldPassword'),
