@@ -19,7 +19,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: true,
-      errorMessage: 'Неверная почта',
+      errorMessage: 'Недопустимая почта',
       dataType: 'email',
     },
     {
@@ -40,7 +40,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: true,
-      errorMessage: 'Неверный логин',
+      errorMessage: 'Недопустимый логин',
       dataType: 'login',
     },
     {
@@ -61,7 +61,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: false,
-      errorMessage: 'Неверное имя',
+      errorMessage: 'Недопустимое имя',
       dataType: 'name',
     },
     {
@@ -82,7 +82,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: false,
-      errorMessage: 'Неверная фамилия',
+      errorMessage: 'Недопустимая фамилия',
       dataType: 'name',
     },
     {
@@ -103,7 +103,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: false,
-      errorMessage: 'Неверный номер телефона',
+      errorMessage: 'Недопустимый номер телефона',
       dataType: 'phone',
     },
     {
@@ -124,7 +124,7 @@ const getTemplate = () => {
       inputContainerClassName: 'signin__input-container',
       inputClassName: 'signin__input',
       required: true,
-      errorMessage: 'Неверный пароль',
+      errorMessage: 'Недопустимый пароль',
       dataType: 'password',
     },
     {
