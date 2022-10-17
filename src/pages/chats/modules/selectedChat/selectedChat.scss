@@ -1,0 +1,84 @@
+.current-chat__selected {
+    display: flex;
+    width: calc( 100% - 310px);
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.current-chat__header {
+    height: 70px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    align-items: center;
+}
+
+.user-avatar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 72px;
+}
+
+.user-avatar-icon{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+.current-chat-settings__icon,
+.add-file__icon,
+.send-message__icon{
+    width: 28px;
+    height: 28px;
+}
+
+
+.current-chat-title {
+    font-weight: bold;
+    padding: 10px;
+    color: rgb(56, 56, 56);
+    flex-grow: 1;
+}
+
+.current-chat-settings {
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.current-chat__footer {
+    display: flex;
+    height: 50px;
+    border-top: 1px solid #eee;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-file {
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+.message-input{
+    margin-top: 25px;
+}
+.message-input input{
+    background: #eee;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+}
+.send-message {
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+

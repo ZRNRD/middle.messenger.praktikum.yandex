@@ -1,0 +1,56 @@
+.input__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 20px 0;
+}
+
+
+.input {
+    border: 1px solid transparent;
+    width: 100%;
+    outline: none;
+}
+
+
+
+.error-message {
+    color: red;
+    font-size: 10px;
+    line-height: 10px;
+    margin-top: 10px;
+    background: grey;
+}
+
+
+.input__search {
+    width: 290px;
+    height: 32px;
+    background: #eee;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    padding: 5px;
+
+    &::-webkit-input-placeholder {
+        text-align: center;
+    }
+    &::-moz-placeholder {
+        text-align: center;
+    }
+    &:-ms-input-placeholder {  
+        text-align: center; 
+    }
+}
+
+.input__message {
+    background: #eee;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    height: 32px;
+    padding: 10px;
+}
+
+label {
+    float: left;
+    width: 10em;
+}
+
