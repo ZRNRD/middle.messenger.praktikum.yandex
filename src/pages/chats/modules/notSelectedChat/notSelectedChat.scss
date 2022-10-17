@@ -1,0 +1,13 @@
+.empty-chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.empty-chat__title {
+    font-size: 35px;
+    line-height: 12px;
+    text-align: center;
+    color: rgb(58,58,58);
+}
