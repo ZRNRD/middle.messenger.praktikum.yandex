@@ -42,3 +42,10 @@ export type TChatPage = {
   isChatSelected?: boolean;
   content?: string;
 }
+
+export type Options = {
+  method?: METHODS;
+  data?: any;
+  timeout?: number;
+  headers?: Record<string, string>;
+}
