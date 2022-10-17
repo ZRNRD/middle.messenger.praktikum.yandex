@@ -22,6 +22,8 @@ const getTemplate = () => {
       inputClassName: 'message__input',
       name: 'message',
       type: 'text',
+      errorMessage: 'Поле не должно быть пустым',
+      dataType: 'message',
     }).transformToString(),
   };
 

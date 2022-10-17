@@ -33,6 +33,36 @@ const checkPasswordInput = (input: HTMLInputElement): boolean => {
   return isError;
 };
 
+const checkMailInput = (input: HTMLInputElement): boolean => {
+  let isError = false;
+  if (input) {
+    const { value } = input;
+    isError = !value.match(/^[\w\d.-]*@[\w\d.-]*$/);
+    showError(input, isError);
+  }
+  return isError;
+};
+
+const checkNameInput = (input: HTMLInputElement): boolean => {
+  let isError = false;
+  if (input) {
+    const { value } = input;
+    isError = !value.match(/^[А-ЯЁA-Z][А-ЯЁA-Zа-яёa-z-]+$/);
+    showError(input, isError);
+  }
+  return isError;
+};
+
+const checkPhoneInput = (input: HTMLInputElement): boolean => {
+  let isError = false;
+  if (input) {
+    const { value } = input;
+    isError = !value.match(/^((\+7|7|8)+([0-9]){10,15})$/);
+    showError(input, isError);
+  }
+  return isError;
+};
+
 export const checkValidation = (data: {event?: Event | null, input?: HTMLInputElement}): boolean => {
   const input = data.event?.target as HTMLInputElement || data.input;
   const type = input.getAttribute('data-type') || 'text';
@@ -42,6 +72,12 @@ export const checkValidation = (data: {event?: Event | null, input?: HTMLInputEl
       return checkLoginInput(input);
     case 'password':
       return checkPasswordInput(input);
+    case 'email':
+      return checkMailInput(input);
+    case 'name':
+      return checkNameInput(input);
+    case 'phone':
+      return checkPhoneInput(input);
     default:
       return false;
   }

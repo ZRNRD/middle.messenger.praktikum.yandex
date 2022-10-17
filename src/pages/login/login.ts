@@ -71,7 +71,7 @@ const getTemplate = () => {
     },
     {
       submit: (e: CustomEvent) => {
-        checkAllForm(e, '/notSelectedChat');
+        checkAllForm(e, routes.notSelectedChat);
         const formData = new FormData(e.target);
         console.log({
           login: formData.get('login'),
