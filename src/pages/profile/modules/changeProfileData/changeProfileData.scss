@@ -13,7 +13,9 @@
     margin: 15px 0;
     width: 500px;
 }
-.change-profile-data__input-container{
+.profile__input-container{
+    display: flex;
+    flex-direction: column;
     border-bottom: 1px solid #eee;
 }
 .change-profile-data__input{

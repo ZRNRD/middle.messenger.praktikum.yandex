@@ -47,7 +47,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: 'profile__input-container',
       inputClassName: 'profile__input',
-      errorMessage: 'Недопустиый логин',
+      errorMessage: 'Недопустимый логин',
       dataType: 'login',
     },
     {
@@ -120,7 +120,7 @@ const getTemplate = () => {
       inputContainerClassName: 'profile__input-container',
       inputClassName: 'profile__input',
       errorMessage: 'Недопустимый никнейм',
-      dataType: 'name',
+      dataType: 'login',
     },
     {
       focus: (event: Event) => {
