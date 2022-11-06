@@ -1,6 +1,11 @@
+.current-chat-container{
+    width: 100%;
+    display: flex;
+}
+
 .current-chat__selected {
     display: flex;
-    width: calc( 100% - 310px);
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
