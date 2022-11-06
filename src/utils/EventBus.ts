@@ -1,6 +1,6 @@
 export class EventBus {
   listeners: {
-    [event: string]: any[];
+    [event: string]: Array<(...unknown[]) => void>;
   };
 
   constructor() {
