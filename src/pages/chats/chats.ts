@@ -19,7 +19,7 @@ const getTemplate = (isChatSelected?: boolean) => {
     emptyChatTitle: 'Выберите чат чтобы отправить сообщение',
     searchInput: new Input({
       placeholder: 'Поиск',
-      inputClassName: 'search__input',
+      inputClassName: ['search__input'].join(' '),
       name: 'search',
       type: 'text',
     }).transformToString(),

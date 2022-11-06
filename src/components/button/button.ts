@@ -8,7 +8,9 @@ export class Button extends Block {
     super('div', {
       context: {
         ...context,
-        className: `button ${context.className}`,
+        className: [
+          'button',
+          context.className].join(' '),
       },
       template: buttonTemplate,
       events,

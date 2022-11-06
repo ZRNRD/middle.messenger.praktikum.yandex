@@ -17,8 +17,8 @@ const getTemplate = () => {
     required: true,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const loginInput = new Input({
@@ -29,8 +29,8 @@ const getTemplate = () => {
     required: true,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const nameInput = new Input({
@@ -41,8 +41,8 @@ const getTemplate = () => {
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const surnameInput = new Input({
@@ -53,8 +53,8 @@ const getTemplate = () => {
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const nicknameInput = new Input({
@@ -65,8 +65,8 @@ const getTemplate = () => {
     disabled: true,
     required: false,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const phoneInput = new Input({
@@ -77,8 +77,8 @@ const getTemplate = () => {
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const context = {

@@ -19,7 +19,7 @@ const getTemplate = () => {
     chatTitle: 'Выбранный чат',
     message: new Input({
       placeholder: 'Сообщение',
-      inputClassName: 'message__input',
+      inputClassName: ['message__input'].join(' '),
       name: 'message',
       type: 'text',
       errorMessage: 'Поле не должно быть пустым',

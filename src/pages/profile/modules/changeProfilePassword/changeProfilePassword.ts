@@ -21,8 +21,8 @@ const getTemplate = () => {
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Введите старый пароль',
       dataType: 'password',
     },
@@ -45,8 +45,8 @@ const getTemplate = () => {
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Недопустимый пароль',
       dataType: 'password',
     },
@@ -69,8 +69,8 @@ const getTemplate = () => {
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Пароли не совпадают',
       dataType: 'password',
     },
@@ -86,12 +86,12 @@ const getTemplate = () => {
 
   const saveChanges = new Button({
     title: 'Сохранить',
-    className: 'password__save',
+    className: ['password__save'].join(' '),
   });
 
   const returnBtn = new Button({
     title: 'Назад',
-    className: 'password__return',
+    className: ['password__return'].join(' '),
   });
 
   const context = {

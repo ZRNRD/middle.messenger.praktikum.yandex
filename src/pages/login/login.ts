@@ -18,8 +18,8 @@ const getTemplate = () => {
       type: 'text',
       required: true,
       errorMessage: 'Неверный логин',
-      inputContainerClassName: 'login__input-container',
-      inputClassName: 'login__input',
+      inputContainerClassName: ['login__input-container'].join(' '),
+      inputClassName: ['login__input'].join(' '),
       dataType: 'login',
     },
     {
@@ -39,8 +39,8 @@ const getTemplate = () => {
       type: 'password',
       required: true,
       errorMessage: 'Неверный пароль',
-      inputContainerClassName: 'login__input-container',
-      inputClassName: 'login__input',
+      inputContainerClassName: ['login__input-container'].join(' '),
+      inputClassName: ['login__input'].join(' '),
       dataType: 'password',
     },
     {
