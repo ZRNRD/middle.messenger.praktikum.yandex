@@ -1,3 +1,11 @@
+export enum METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE'
+}
+
 export type Dictionary = Record<string, any>;
 
 export type TBlockProps = {
@@ -45,7 +53,7 @@ export type TChatPage = {
 
 export type Options = {
   method?: METHODS;
-  data?: any;
+  data?: unknown;
   timeout?: number;
   headers?: Record<string, string>;
 }

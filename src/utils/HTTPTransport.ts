@@ -1,12 +1,4 @@
-import { Options } from './types';
-
-enum METHODS {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    PATCH = 'PATCH',
-    DELETE = 'DELETE'
-}
+import { Options, METHODS } from './types';
 
 export class HTTPTransport {
   get = (url: string, options: Options = {}) => this.request(url, { ...options, method: METHODS.GET }, options.timeout);

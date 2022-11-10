@@ -1,4 +1,4 @@
-import { ChatPage } from './pages/chats/chats';
+/* import { ChatPage } from './pages/chats/chats';
 import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
 import { Profile } from './pages/profile/profile';
@@ -61,3 +61,12 @@ switch (window.location.pathname) {
     root.innerHTML = content.pageNotFound.transformToString();
     break;
 }
+ */
+
+import './main.scss';
+import { router } from './router/index';
+
+// @ts-ignore
+window.router = router;
+
+router.start();
