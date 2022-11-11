@@ -36,3 +36,12 @@ export interface IPasswordData {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface IAddChatUser {
+  users: string[];
+  chatId: number;
+}
+
+export interface ICreateChat {
+  title: string;
+}
