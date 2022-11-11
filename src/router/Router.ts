@@ -1,17 +1,7 @@
 import { Dictionary } from '../utils/types';
-import { Route, IRoute } from './Route';
+import { Route } from './Route';
 import { routes } from '../utils';
-
-export interface IRouter {
-  use(pathname: string, block: Dictionary, context: Dictionary): IRouter;
-  start(): void;
-  go(pathname?: string): void;
-  getCurrentRoute(): void;
-  back(): void;
-  back(): void;
-  forward(): void;
-  routes(): IRoute[];
-}
+import { IRoute } from '../utils/interfaces';
 
 export class Router {
   routes: IRoute[];

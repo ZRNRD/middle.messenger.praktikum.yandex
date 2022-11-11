@@ -7,13 +7,6 @@ const render = (block: any) => {
   if (root) root.innerHTML = block.transformToString();
 };
 
-export interface IRoute {
-  navigate(pathname: string): void;
-  leave(): void;
-  match(pathname: string): boolean;
-  render(): void;
-}
-
 export class Route {
   _pathname: string;
 
