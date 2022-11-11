@@ -1,22 +1,9 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
+import { ISignUpData, ILoginData } from '../utils/interfaces';
 
 const defaultUrl = '/auth';
 
 const authAPIInstance = new HTTPTransport(defaultUrl);
-
-export interface ISignUpData {
-  first_name: string;
-  second_name: string;
-  login: string;
-  email: string;
-  password: string;
-  phone: string;
-}
-
-export interface ILoginData {
-  login: string;
-  password: string;
-}
 
 export class authApi {
   signUp(data: ISignUpData) {
