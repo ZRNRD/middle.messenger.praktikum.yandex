@@ -53,7 +53,7 @@ export type TChatPage = {
 
 export type Options = {
   method?: METHODS;
-  data?: unknown;
-  timeout?: number;
+  data?: any;
   headers?: Record<string, string>;
+  contentType?: string;
 }
