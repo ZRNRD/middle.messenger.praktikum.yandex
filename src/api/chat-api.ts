@@ -5,7 +5,7 @@ const defaultUrl = '/chats';
 
 const chatAPIInstance = new HTTPTransport(defaultUrl);
 
-export default class ChatApi {
+export class ChatApi {
   get() {
     return chatAPIInstance.get('/');
   }

@@ -5,7 +5,7 @@ const defaultUrl = '/auth';
 
 const authAPIInstance = new HTTPTransport(defaultUrl);
 
-export class authApi {
+export class AuthApi {
   signUp(data: ISignUpData) {
     return authAPIInstance.post('/signup', data);
   }
