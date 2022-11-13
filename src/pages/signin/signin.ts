@@ -1,6 +1,5 @@
 import * as Handlebars from 'handlebars';
 import signinTemplate from './signin.tmpl';
-import { routes } from '../../utils';
 import { Block } from '../../utils/Block';
 import { Form } from '../../components/form/form';
 import { Input } from '../../components/input';
@@ -10,7 +9,7 @@ import { AuthController } from '../../controllers/auth-controller';
 import { router } from '../../router/index';
 import './signin.scss';
 
-const controller = new AuthController();
+const authController = new AuthController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(signinTemplate);
@@ -196,22 +195,8 @@ const getTemplate = () => {
     },
     {
       submit: async (e: CustomEvent) => {
-        const isError = await checkAllForm(e, controller, 'signUp');
-        if (!isError) {
-          router.go('/notSelectedChat');
-        } else {
-          console.warn(isError);
-        }
-        /* const formData = new FormData(e.target);
-        console.log({
-          mailInput: formData.get('email'),
-          loginInput: formData.get('login'),
-          nameInput: formData.get('first_name'),
-          lastNameInput: formData.get('second_name'),
-          phoneInput: formData.get('phone'),
-          passwordInput: formData.get('password'),
-          secondPasswordInput: formData.get('password'),
-        }); */
+        const isError = await checkAllForm(e, authController, 'signUp');
+        if (!isError) { router.go('/notSelectedChat'); }
       },
     },
   );

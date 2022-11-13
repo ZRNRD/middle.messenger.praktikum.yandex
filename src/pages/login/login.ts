@@ -1,12 +1,15 @@
 import * as Handlebars from 'handlebars';
 import loginTemplate from './login.tmpl';
-import { routes } from '../../utils';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
 import { Form } from '../../components/form/form';
+import { AuthController } from '../../controllers/auth-controller';
+import { router } from '../../router/index';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import './login.scss';
+
+const authController = new AuthController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(loginTemplate);
@@ -70,13 +73,14 @@ const getTemplate = () => {
       content: template(context),
     },
     {
-      submit: (e: CustomEvent) => {
-        checkAllForm(e, routes.notSelectedChat);
-        const formData = new FormData(e.target);
-        console.log({
-          login: formData.get('login'),
-          password: formData.get('password'),
-        });
+      submit: async (e: CustomEvent) => {
+        await authController.logOut(); // Выход из системы (УДАЛИТЬ СТРОКУ)
+        const isError = await checkAllForm(e, authController, 'login');
+        if (!isError) {
+          router.go('/notSelectedChat');
+        } else {
+          console.warn(isError);
+        }
       },
     },
   );
