@@ -1,6 +1,6 @@
 import { Dictionary } from '../utils/types';
 
-export class Store {
+class Store {
   private state: Dictionary = {};
 
   public getState() {
@@ -10,6 +10,14 @@ export class Store {
   public setState(newValue: any) {
     Object.assign(this.state, newValue);
   }
+
+  public setStateAndPersist(newValue: Dictionary, withoutStringify?: boolean) {
+    Object.assign(this.state, newValue);
+    const entries = Object.entries(newValue)[0];
+    const key = entries[0];
+    const value = withoutStringify ? entries[1] : JSON.stringify(entries[1]);
+    localStorage.setItem(key.toString(), value);
+  }
 }
 
-export default new Store();
+export const store = new Store();

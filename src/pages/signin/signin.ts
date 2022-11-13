@@ -6,14 +6,18 @@ import { Form } from '../../components/form/form';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
+import { AuthController } from '../../controllers/auth-controller';
+import { router } from '../../router/index';
 import './signin.scss';
+
+const controller = new AuthController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(signinTemplate);
 
   const mailInput = new Input(
     {
-      name: 'signinMail',
+      name: 'email',
       placeholder: 'Почта',
       type: 'text',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -34,7 +38,7 @@ const getTemplate = () => {
 
   const loginInput = new Input(
     {
-      name: 'signinLogin',
+      name: 'login',
       placeholder: 'Логин',
       type: 'text',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -55,7 +59,7 @@ const getTemplate = () => {
 
   const nameInput = new Input(
     {
-      name: 'signinName',
+      name: 'first_name',
       placeholder: 'Имя',
       type: 'text',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -76,7 +80,7 @@ const getTemplate = () => {
 
   const lastNameInput = new Input(
     {
-      name: 'signinLastName',
+      name: 'second_name',
       placeholder: 'Фамилия',
       type: 'text',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -97,7 +101,7 @@ const getTemplate = () => {
 
   const phoneInput = new Input(
     {
-      name: 'signinPhone',
+      name: 'phone',
       placeholder: 'Телефон',
       type: 'text',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -118,7 +122,7 @@ const getTemplate = () => {
 
   const passwordInput = new Input(
     {
-      name: 'signinPassword',
+      name: 'password',
       placeholder: 'Пароль',
       type: 'password',
       inputContainerClassName: ['signin__input-container'].join(' '),
@@ -139,7 +143,7 @@ const getTemplate = () => {
 
   const secondPasswordInput = new Input(
     {
-      name: 'signinSecondPassword',
+      name: 'password',
       placeholder: 'Пароль (ещё раз)',
       type: 'password',
       required: true,
@@ -191,18 +195,23 @@ const getTemplate = () => {
       content: template(context),
     },
     {
-      submit: (e: CustomEvent) => {
-        checkAllForm(e, routes.notSelectedChat);
-        const formData = new FormData(e.target);
+      submit: async (e: CustomEvent) => {
+        const isError = await checkAllForm(e, controller, 'signUp');
+        if (!isError) {
+          router.go('/notSelectedChat');
+        } else {
+          console.warn(isError);
+        }
+        /* const formData = new FormData(e.target);
         console.log({
-          mailInput: formData.get('signinMail'),
-          loginInput: formData.get('signinLogin'),
-          nameInput: formData.get('signinName'),
-          lastNameInput: formData.get('signinLastName'),
-          phoneInput: formData.get('signinPhone'),
-          passwordInput: formData.get('signinPassword'),
-          secondPasswordInput: formData.get('signinSecondPassword'),
-        });
+          mailInput: formData.get('email'),
+          loginInput: formData.get('login'),
+          nameInput: formData.get('first_name'),
+          lastNameInput: formData.get('second_name'),
+          phoneInput: formData.get('phone'),
+          passwordInput: formData.get('password'),
+          secondPasswordInput: formData.get('password'),
+        }); */
       },
     },
   );

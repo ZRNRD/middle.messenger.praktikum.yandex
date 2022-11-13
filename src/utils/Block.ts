@@ -47,7 +47,7 @@ export class Block {
   }
 
   _createResources() {
-    const { tagName, className} = this._meta;
+    const { tagName, className } = this._meta;
     this._element = this._createDocumentElement(tagName, className);
   }
 
@@ -179,5 +179,9 @@ export class Block {
 
   hide() {
     this.element.classList.add('hidden');
+  }
+
+  remove() {
+    this._element.remove();
   }
 }

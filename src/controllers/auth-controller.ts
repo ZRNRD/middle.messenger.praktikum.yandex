@@ -1,6 +1,6 @@
 import { AuthApi } from '../api/auth-api';
 import { ILoginData, ISignUpData } from '../utils/interfaces';
-import store from '../store/store';
+import { store } from '../store/store';
 
 const authInstance = new AuthApi();
 
@@ -39,7 +39,7 @@ export class AuthController {
       res = e.reason;
     }
     if (res !== 'Not found') {
-      store.setState({ user: res });
+      store.setStateAndPersist({ user: res });
     }
     return res;
   }
