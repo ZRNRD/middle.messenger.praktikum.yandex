@@ -120,12 +120,6 @@ const getTemplate = () => {
     {
       submit: (e: CustomEvent) => {
         checkAllForm(e, routes.profile);
-        const formData = new FormData(e.target);
-        console.log({
-          oldPasswordInput: formData.get('oldPassword'),
-          newPasswordInput: formData.get('newPassword'),
-          newPasswordAgainInput: formData.get('newPasswordAgain'),
-        });
       },
     },
   );

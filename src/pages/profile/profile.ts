@@ -1,10 +1,14 @@
 import * as Handlebars from 'handlebars';
 import profileTemplate from './profile.tmpl';
 import { Input } from '../../components/input';
+import { Button } from '../../components/button/button';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
-import { Form } from '../../components/form/form';
 import { Block } from '../../utils/Block';
+import { AuthController } from '../../controllers/auth-controller';
+import { router } from '../../router/index';
 import './profile.scss';
+
+const authController = new AuthController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(profileTemplate);
@@ -81,6 +85,19 @@ const getTemplate = () => {
     inputClassName: ['profile__input'].join(' '),
   });
 
+  const logoutButton = new Button(
+    {
+      title: 'Выйти',
+      className: ['logout-button'].join(' '),
+    },
+    {
+      click: async () => {
+        await authController.logOut();
+        router.go('/');
+      },
+    },
+  );
+
   const context = {
     profileName: 'Name',
     userAvatar,
@@ -94,24 +111,10 @@ const getTemplate = () => {
     ],
     changeData: 'Изменить данные',
     changePassword: 'Изменить пароль',
-    exit: 'Выйти',
+    logout: logoutButton.transformToString(),
   };
 
-  const form = new Form(
-    {
-      inputs: [
-        mailInput,
-        loginInput,
-        nameInput,
-        surnameInput,
-        nicknameInput,
-        phoneInput,
-      ],
-      content: template(context),
-    },
-  );
-
-  return form.transformToString();
+  return template(context);
 };
 
 export class Profile extends Block {

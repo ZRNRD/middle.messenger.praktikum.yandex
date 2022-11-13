@@ -74,13 +74,8 @@ const getTemplate = () => {
     },
     {
       submit: async (e: CustomEvent) => {
-        await authController.logOut(); // Выход из системы (УДАЛИТЬ СТРОКУ)
         const isError = await checkAllForm(e, authController, 'login');
-        if (!isError) {
-          router.go('/notSelectedChat');
-        } else {
-          console.warn(isError);
-        }
+        if (!isError) { router.go('/notSelectedChat'); }
       },
     },
   );
