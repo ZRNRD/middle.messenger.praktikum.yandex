@@ -81,3 +81,36 @@
 .message-input {
     flex-grow: 1;
 }
+
+.current-chat__main {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-form {
+    z-index: 1000;
+    position: absolute;
+    border: 1px solid gray;
+    width: 400px;
+    height: 230px;
+    border-radius: 8px;
+    background: var(--bg-form-chat-color);
+}
+
+.new-chat-button {
+    text-align: center;
+    margin: 10px 14px;
+}
+
+.chat-form-title {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.create-chat-button,
+.back-chat-button {
+    margin: 10px calc(50% - 140px);
+}
+

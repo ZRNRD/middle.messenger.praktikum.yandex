@@ -1,45 +1,146 @@
 import * as Handlebars from 'handlebars';
 import chatsTemplate from './chats.tmpl';
+import newChatTmpl from './new-chat.tmpl';
+import chatElemTmpl from './chat-elem.tmpl';
 import { SelectedChat } from './modules/selectedChat/selectedChat';
 import { NotSelectedChat } from './modules/notSelectedChat/notSelectedChat';
 import { Input } from '../../components/input';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
+import { ChatController } from '../../controllers/chat-controller';
 import { TChatPage } from '../../utils/types';
+import { showModal, closeModal } from '../../utils/helpers';
+import { Button } from '../../components/button/button';
+import { Form } from '../../components/form/form';
+import { router } from '../../router/index';
+import { store } from '../../store/store';
+import { IChatData } from '../../utils/interfaces';
 import './chats.scss';
+
+const chatController = new ChatController();
+
+const createNewChat = async () => {
+  const input = document.querySelector('.new-chat-input') as HTMLInputElement;
+  const title = input.value;
+  await chatController.createChat({ title });
+  closeModal('chat-form', '.new-chat-input');
+  router.go('/notSelectedChat');
+};
 
 const getTemplate = (isChatSelected?: boolean) => {
   const template = Handlebars.compile(chatsTemplate);
+  const newChatTemplate = Handlebars.compile(newChatTmpl);
+  const chatElemTemplate = Handlebars.compile(chatElemTmpl);
 
   const currentChat = isChatSelected ? new SelectedChat().transformToString() : new NotSelectedChat().transformToString();
+
+  const searchInput = new Input({
+    placeholder: 'Поиск',
+    inputClassName: ['search__input'].join(' '),
+    name: 'search',
+    type: 'text',
+  });
+
+  const chatTitleInput = new Input({
+    name: 'title',
+    label: 'Название нового чата',
+    type: 'text',
+    required: true,
+    dataType: 'text',
+    inputClassName: ['new-chat-input'].join(' '),
+    inputContainerClassName: ['input__container'].join(' '),
+  });
+
+  const createChat = new Button({
+    title: 'Создать чат',
+    className: ['create-chat'].join(' '),
+  });
+
+  const backButton = new Button({
+    title: 'Отмена',
+    className: ['cancel'].join(' '),
+  }, {
+    click: () => {
+      closeModal('chat-form', '.new-chat-input');
+    },
+  });
+
+  const newChatContext = {
+    input: chatTitleInput.transformToString(),
+    createChat: createChat.transformToString(),
+    backButton: backButton.transformToString(),
+  };
+
+  const chatForm = new Form({
+    inputs: [chatTitleInput],
+    button: createChat,
+    content: chatElemTemplate(newChatContext),
+  }, {
+    submit: async () => {
+      await createNewChat();
+    },
+  });
+
+  const newChat = new Button({
+    title: 'Новый чат',
+    className: ['new-chat-button'].join(' '),
+  }, {
+    click: async () => {
+      await showModal('chat-form');
+    },
+  });
+
+  const item = localStorage.getItem('chats');
+  let chatsData;
+  if (item) {
+    chatsData = JSON.parse(item);
+    chatsData = chatsData.map((element: IChatData) => {
+      const { content } = element.last_message || {};
+      const elemContext = {
+        ...element,
+        avatar: element.avatar || userAvatar,
+        last_message: content,
+      };
+
+      const openSelectedChat = async () => {
+        const { id } = elemContext;
+        store.setStateAndPersist({ currentChat: id });
+
+        const userData = localStorage.getItem('user');
+        let user;
+        if (userData) {
+          user = JSON.parse(userData);
+        }
+
+        if (user) {
+          await chatController.connectToChat(user.id, id);
+        }
+        router.go('/selectedChat');
+      };
+
+      const elem = new Button({
+        title: 'Новый чат',
+        className: ['new-chat-link'].join(' '),
+        content: newChatTemplate(elemContext),
+      }, {
+        click: async () => {
+          await openSelectedChat();
+        },
+      });
+
+      return elem.transformToString();
+    });
+  }
 
   const context = {
     currentChat,
     profileTitle: 'Профиль',
     emptyChatTitle: 'Выберите чат чтобы отправить сообщение',
-    searchInput: new Input({
-      placeholder: 'Поиск',
-      inputClassName: ['search__input'].join(' '),
-      name: 'search',
-      type: 'text',
-    }).transformToString(),
-    dialogs: [
-      {
-        name: 'Андрей', message: 'Изображение', id: '1', userAvatar,
-      },
-      {
-        name: 'Киноклуб', message: 'Вы: стикер', id: '2', userAvatar,
-      },
-      {
-        name: 'Илья', message: 'Друзья, у меня для вас особенный выпуск новостей!...', id: '3', userAvatar,
-      },
-      {
-        name: 'Вадим', message: 'Вы: Круто!', id: '4', userAvatar,
-      },
-      {
-        name: 'тет-а-теты', message: 'И Human Interface Guidelines и Material Design рекомендуют...', id: '5', userAvatar,
-      },
-    ],
+    searchInput: searchInput.transformToString(),
+    createChat: newChat.transformToString(),
+    chatForm: chatForm.transformToString(),
+    newChatTitle: 'Создание нового чата',
+    dialogs: chatsData || [],
   };
 
   return template(context);

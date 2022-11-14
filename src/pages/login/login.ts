@@ -5,11 +5,13 @@ import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
 import { Form } from '../../components/form/form';
 import { AuthController } from '../../controllers/auth-controller';
+import { ChatController } from '../../controllers/chat-controller';
 import { router } from '../../router/index';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import './login.scss';
 
 const authController = new AuthController();
+const chatController = new ChatController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(loginTemplate);
@@ -75,7 +77,10 @@ const getTemplate = () => {
     {
       submit: async (e: CustomEvent) => {
         const isError = await checkAllForm(e, authController, 'login');
-        if (!isError) { router.go('/notSelectedChat'); }
+        if (!isError) {
+          await chatController.getAllChats();
+          router.go('/notSelectedChat');
+        }
       },
     },
   );

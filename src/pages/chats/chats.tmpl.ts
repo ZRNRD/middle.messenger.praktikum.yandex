@@ -10,6 +10,11 @@ export default
                 <div class="search-input">
                     {{{searchInput}}}
                 </div>
+                {{{createChat}}}
+                <div class="chat-form hidden" id="chat-form">
+                    <div class="chat-form-title">{{newChatTitle}}</div>
+                    {{{chatForm}}}
+                </div>
                 <ul class="chat-list">
                     {{#each dialogs}}
                         <a class="profile__link" href="/selectedChat">

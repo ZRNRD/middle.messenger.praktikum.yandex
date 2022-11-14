@@ -23,6 +23,7 @@ export type TMetaBlock = {
 export type TButton = {
   title: string;
   className?: string;
+  content?: string;
 }
 
 export type TInput = {

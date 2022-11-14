@@ -6,10 +6,12 @@ import { Input } from '../../components/input';
 import { Button } from '../../components/button/button';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import { AuthController } from '../../controllers/auth-controller';
+import { ChatController } from '../../controllers/chat-controller';
 import { router } from '../../router/index';
 import './signin.scss';
 
 const authController = new AuthController();
+const chatController = new ChatController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(signinTemplate);
@@ -196,7 +198,11 @@ const getTemplate = () => {
     {
       submit: async (e: CustomEvent) => {
         const isError = await checkAllForm(e, authController, 'signUp');
-        if (!isError) { router.go('/notSelectedChat'); }
+        if (!isError) {
+          await chatController.getAllChats();
+          router.go('/notSelectedChat');
+        }
+        await chatController.getAllChats();
       },
     },
   );
