@@ -45,3 +45,11 @@ export interface IAddChatUser {
 export interface ICreateChat {
   title: string;
 }
+export interface IChatData {
+  avatar: string;
+  created_by: number;
+  id: number;
+  last_message: Dictionary;
+  title: string;
+  unread_count: number;
+}
