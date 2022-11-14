@@ -7,14 +7,18 @@ import { routes } from '../../../../utils';
 import { Form } from '../../../../components/form/form';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
+import { UserController } from '../../../../controllers/user-controller';
+import { router } from '../../../../router/index';
 import './changeProfilePassword.scss';
 
 const getTemplate = () => {
   const template = Handlebars.compile(changeProfilePasswordTemplate);
 
+  const userController = new UserController();
+
   const oldPasswordInput = new Input(
     {
-      value: 'PAROL12345',
+      value: '',
       name: 'oldPassword',
       label: 'Старый пароль',
       type: 'password',
@@ -95,8 +99,7 @@ const getTemplate = () => {
   });
 
   const context = {
-    profileName: 'Name',
-    userAvatar,
+    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
     inputs: [
       oldPasswordInput.transformToString(),
       newPasswordInput.transformToString(),
@@ -118,8 +121,12 @@ const getTemplate = () => {
       content: template(context),
     },
     {
-      submit: (e: CustomEvent) => {
+      submit: async (e: CustomEvent) => {
         checkAllForm(e, routes.profile);
+        const isError = await checkAllForm(e, userController, 'changeUserPassword');
+        if (!isError) {
+          router.go('/profile');
+        }
       },
     },
   );
