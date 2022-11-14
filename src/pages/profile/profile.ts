@@ -6,6 +6,7 @@ import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
 import { AuthController } from '../../controllers/auth-controller';
 import { router } from '../../router/index';
+import { UserController } from '../../controllers/user-controller';
 import './profile.scss';
 
 const authController = new AuthController();
@@ -13,9 +14,15 @@ const authController = new AuthController();
 const getTemplate = () => {
   const template = Handlebars.compile(profileTemplate);
 
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    user = JSON.parse(item);
+  }
+
   const mailInput = new Input({
-    value: 'mail@yandex.ru',
-    name: 'profileMail',
+    value: user?.email || '',
+    name: 'email',
     label: 'Почта',
     type: 'text',
     required: true,
@@ -26,8 +33,8 @@ const getTemplate = () => {
   });
 
   const loginInput = new Input({
-    value: 'login',
-    name: 'profileLogin',
+    value: user?.login || '',
+    name: 'login',
     label: 'Логин',
     type: 'text',
     required: true,
@@ -38,7 +45,7 @@ const getTemplate = () => {
   });
 
   const nameInput = new Input({
-    value: 'profileName',
+    value: user?.first_name || '',
     name: 'name',
     label: 'Имя',
     type: 'text',
@@ -50,8 +57,8 @@ const getTemplate = () => {
   });
 
   const surnameInput = new Input({
-    value: 'surname',
-    name: 'profileSurname',
+    value: user?.second_name || '',
+    name: 'second_name',
     label: 'Фамилия',
     type: 'text',
     required: false,
@@ -62,8 +69,8 @@ const getTemplate = () => {
   });
 
   const nicknameInput = new Input({
-    value: 'nickname',
-    name: 'profileNickname',
+    value: user?.display_name || '',
+    name: 'display_name',
     label: 'Имя в чате',
     type: 'text',
     disabled: true,
@@ -74,8 +81,8 @@ const getTemplate = () => {
   });
 
   const phoneInput = new Input({
-    value: '8 (800) 555-35-35',
-    name: 'profilePhone',
+    value: user?.phone || '',
+    name: 'phone',
     label: 'Телефон',
     type: 'text',
     required: false,
@@ -99,8 +106,8 @@ const getTemplate = () => {
   );
 
   const context = {
-    profileName: 'Name',
-    userAvatar,
+    profileName: user?.display_name || '',
+    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),

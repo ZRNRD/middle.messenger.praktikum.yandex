@@ -6,16 +6,55 @@ import { Block } from '../../../../utils/Block';
 import { Form } from '../../../../components/form/form';
 import { routes } from '../../../../utils';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { UserController } from '../../../../controllers/user-controller';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
+import { router } from '../../../../router/index';
 import './changeProfileData.scss';
 
 const getTemplate = () => {
   const template = Handlebars.compile(changeProfileDataTemplate);
 
+  const userController = new UserController();
+
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    user = JSON.parse(item);
+  }
+
+  const avatartInput = new Input(
+    {
+      value: '',
+      name: 'avatar',
+      label: '',
+      type: 'file',
+      required: true,
+      disabled: false,
+      isProfileInput: true,
+      inputContainerClassName: ['profile__input-container', 'avatar-input'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
+      errorMessage: 'Ошибка, попробуйте ещё раз',
+      dataType: 'avatar',
+    },
+    {
+      change: async (e: CustomEvent) => {
+        const input = e.target as HTMLInputElement;
+
+        if (input) {
+          const image = document.getElementById('avatar') as HTMLImageElement;
+          const file = input.files[0];
+          if (file && image) {
+            await userController.changeUserAvatar(file, image);
+          }
+        }
+      }
+    },
+  );
+
   const mailInput = new Input(
     {
-      value: 'mail@yandex.ru',
-      name: 'profileMail',
+      value: user?.email || '',
+      name: 'email',
       label: 'Почта',
       type: 'text',
       required: true,
@@ -38,8 +77,8 @@ const getTemplate = () => {
 
   const loginInput = new Input(
     {
-      value: 'login123',
-      name: 'profileLogin',
+      value: user?.login || '',
+      name: 'login',
       label: 'Логин',
       type: 'text',
       required: true,
@@ -62,8 +101,8 @@ const getTemplate = () => {
 
   const nameInput = new Input(
     {
-      value: 'ProfileName',
-      name: 'profileName',
+      value: user?.first_name || '',
+      name: 'first_name',
       label: 'Имя',
       type: 'text',
       required: false,
@@ -86,8 +125,8 @@ const getTemplate = () => {
 
   const surnameInput = new Input(
     {
-      value: 'Surname',
-      name: 'profileSurname',
+      value: user?.second_name || '',
+      name: 'second_name',
       label: 'Фамилия',
       type: 'text',
       required: false,
@@ -110,8 +149,8 @@ const getTemplate = () => {
 
   const nicknameInput = new Input(
     {
-      value: 'Nickname',
-      name: 'profileNickname',
+      value: user?.display_name || '',
+      name: 'display_name',
       label: 'Имя в чате',
       type: 'text',
       disabled: false,
@@ -134,8 +173,8 @@ const getTemplate = () => {
 
   const phoneInput = new Input(
     {
-      value: '88005553535',
-      name: 'profilePhone',
+      value: user?.phone || '',
+      name: 'phone',
       label: 'Телефон',
       type: 'text',
       required: false,
@@ -168,7 +207,8 @@ const getTemplate = () => {
 
   const context = {
     profileName: 'Name',
-    userAvatar,
+    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
+    avatartInput: avatartInput.transformToString(),
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),
@@ -180,10 +220,10 @@ const getTemplate = () => {
     saveChanges: saveChanges.transformToString(),
     return: returnBtn.transformToString(),
   };
-
   const form = new Form(
     {
       inputs: [
+        avatartInput,
         mailInput,
         loginInput,
         nameInput,
@@ -196,17 +236,12 @@ const getTemplate = () => {
       content: template(context),
     },
     {
-      submit: (e: CustomEvent) => {
+      submit: async (e: CustomEvent) => {
         checkAllForm(e, routes.profile);
-        const formData = new FormData(e.target);
-        console.log({
-          mailInput: formData.get('profileMail'),
-          loginInput: formData.get('profileLogin'),
-          nameInput: formData.get('profileName'),
-          surnameInput: formData.get('profileSurname'),
-          nicknameInput: formData.get('profileNickname'),
-          phoneInput: formData.get('profilePhone'),
-        });
+        const isError = await checkAllForm(e, userController, 'changeUserProfile');
+        if (!isError) {
+          router.go('/profile');
+        }
       },
     },
   );
