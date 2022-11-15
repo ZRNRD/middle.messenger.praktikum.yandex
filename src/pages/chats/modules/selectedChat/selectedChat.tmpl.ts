@@ -7,6 +7,11 @@ export default
             <div class="current-chat-title">{{chatTitle}}</div>
             <div class="current-chat-settings">
                 <img class="current-chat-settings__icon" src="{{chatSettingsIcon}}" alt="settings-icon">
+                {{{showMenu}}}
+            </div>
+            <div class="current-chat-settings__menu hidden">
+                {{{addNewUser}}}
+                {{{deleteUser}}}
             </div>
         </header>
         <div class="current-chat__main"></div>
@@ -21,4 +26,5 @@ export default
                 <img class="send-message__icon" src="{{sendMessageIcon}}" alt="send-message-icon">
             </div>
         </footer>
+        
     </div>`;

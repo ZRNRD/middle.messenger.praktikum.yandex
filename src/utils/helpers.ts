@@ -13,3 +13,8 @@ export const closeModal = (formId: string, inputClassName: string) => {
   }
   form?.classList.add('hidden');
 };
+
+export const toggleModal = async (selector: string) => {
+  const form = document.querySelector(selector);
+  form?.classList.toggle('hidden');
+};
