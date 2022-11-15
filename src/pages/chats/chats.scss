@@ -89,13 +89,23 @@
 }
 
 .chat-form {
-    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
     position: absolute;
     border: 1px solid gray;
     width: 400px;
     height: 230px;
+    margin: 0 auto;
     border-radius: 8px;
-    background: var(--bg-form-chat-color);
+    background: #eee;
+    top: calc(20%);
+    left: calc(50% + 500px);
+
+    & button{
+        margin: 5px;
+    }
 }
 
 .new-chat-button {
@@ -114,3 +124,10 @@
     margin: 10px calc(50% - 140px);
 }
 
+.new-chat-link{
+    background: white;
+    height: 80px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+}

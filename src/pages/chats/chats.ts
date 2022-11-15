@@ -43,7 +43,7 @@ const getTemplate = (isChatSelected?: boolean) => {
 
   const chatTitleInput = new Input({
     name: 'title',
-    label: 'Название нового чата',
+    placeholder: 'Название нового чата',
     type: 'text',
     required: true,
     dataType: 'text',
@@ -74,7 +74,7 @@ const getTemplate = (isChatSelected?: boolean) => {
   const chatForm = new Form({
     inputs: [chatTitleInput],
     button: createChat,
-    content: chatElemTemplate(newChatContext),
+    content: newChatTemplate(newChatContext),
   }, {
     submit: async () => {
       await createNewChat();
@@ -119,9 +119,9 @@ const getTemplate = (isChatSelected?: boolean) => {
       };
 
       const elem = new Button({
-        title: 'Новый чат',
+        isLink: true,
         className: ['new-chat-link'].join(' '),
-        content: newChatTemplate(elemContext),
+        content: chatElemTemplate(elemContext),
       }, {
         click: async () => {
           await openSelectedChat();

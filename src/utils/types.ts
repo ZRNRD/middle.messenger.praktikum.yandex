@@ -21,7 +21,8 @@ export type TMetaBlock = {
 }
 
 export type TButton = {
-  title: string;
+  title?: string;
+  isLink?: boolean;
   className?: string;
   content?: string;
 }

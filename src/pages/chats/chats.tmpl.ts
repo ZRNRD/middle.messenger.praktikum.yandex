@@ -15,19 +15,10 @@ export default
                     <div class="chat-form-title">{{newChatTitle}}</div>
                     {{{chatForm}}}
                 </div>
+                
                 <ul class="chat-list">
                     {{#each dialogs}}
-                        <a class="profile__link" href="/selectedChat">
-                            <li class="chat-list__item">
-                                <div class="chat-list__item-image">
-                                    <img src="{{userAvatar}}" class="chat-list__item-icon">
-                                </div>
-                                <div class="chat-list__item-data">
-                                    <div class="chat-list__item-name">{{this.name}}</div>
-                                    <div class="chat-list__item-message">{{this.message}}</div>
-                                </div>
-                            </li>
-                        </a>
+                        {{{this}}}
                     {{/each}}
                 </ul>
             </div>
