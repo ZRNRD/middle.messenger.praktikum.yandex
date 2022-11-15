@@ -12,8 +12,12 @@ export default
             <div class="current-chat-settings__menu hidden">
                 {{{addNewUser}}}
                 {{{deleteUser}}}
+                {{{deleteChat}}}
             </div>
         </header>
+        <div class="add-user-form hidden" id="add-user-form">
+            {{{addUserForm}}}
+        </div>
         <div class="current-chat__main"></div>
         <footer class="current-chat__footer">
             <div class="add-file">
