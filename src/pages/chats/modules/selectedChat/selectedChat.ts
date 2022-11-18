@@ -14,6 +14,7 @@ import { Block } from '../../../../utils/Block';
 import { showModal, closeModal, toggleModal } from '../../../../utils/helpers';
 import { store } from '../../../../store/store';
 import './selectedChat.scss';
+import { router } from '../../../../router';
 
 const chatController = new ChatController();
 
@@ -56,7 +57,7 @@ const deleteUsersFromChat = async (chatId: string) => {
 };
 
 const deleteChat = async (chatId: string) => {
-  await chatController.deleteChat(parseInt(chatId, 10));
+  await chatController.deleteChat({ chatId: parseInt(chatId, 10) });
   store.setStateAndPersist({ chatId: parseInt(chatId, 10) });
 
   closeModal('delete-chat-form', '');
@@ -224,6 +225,7 @@ const getTemplate = () => {
   }, {
     submit: async () => {
       await deleteChat(currentChatId || '');
+      router.go('/notSelectedChat');
     },
   });
 

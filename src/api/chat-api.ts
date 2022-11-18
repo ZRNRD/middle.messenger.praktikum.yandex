@@ -22,8 +22,8 @@ export class ChatApi {
     return chatAPIInstance.delete('/users', data);
   }
 
-  deleteChat(chatId: number) {
-    return chatAPIInstance.delete('/', chatId);
+  deleteChat(data: IAddChatUser) {
+    return chatAPIInstance.delete('/', data);
   }
 
   getChatUsers(chatId: number = 0) {

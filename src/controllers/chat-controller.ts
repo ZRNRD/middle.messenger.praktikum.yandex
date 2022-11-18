@@ -54,9 +54,10 @@ export class ChatController {
     }
   }
 
-  public async deleteChat(id: number) {
+  public async deleteChat(data: IAddChatUser) {
     try {
-      await chatAPIInstance.deleteChat(id);
+      await chatAPIInstance.deleteChat(data);
+      await this.getAllChats();
     } catch (e) {
       return e.reason;
     }
