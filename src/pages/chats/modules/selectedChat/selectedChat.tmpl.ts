@@ -14,9 +14,20 @@ export default
                 {{{deleteUser}}}
                 {{{deleteChat}}}
             </div>
+            
         </header>
+        <div class="users-list">
+                {{#each users}}
+                    <div class="user-item">
+                        {{{this}}}
+                    </div>
+                {{/each}}
+            </div>
         <div class="add-user-form hidden" id="add-user-form">
             {{{addUserForm}}}
+        </div>
+        <div class="delete-user-form hidden" id="delete-user-form">
+            {{{deleteUserForm}}}
         </div>
         <div class="current-chat__main"></div>
         <footer class="current-chat__footer">

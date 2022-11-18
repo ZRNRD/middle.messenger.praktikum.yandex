@@ -1,6 +1,6 @@
 import * as Handlebars from 'handlebars';
 import selectedTemplate from './selectedChat.tmpl';
-import addUserTmpl from './add-user.tmpl';
+import chatFormTmpl from './chat-form.tmpl';
 import { Input } from '../../../../components/input/input';
 import { Button } from '../../../../components/button/button';
 import { Form } from '../../../../components/form/form';
@@ -45,9 +45,19 @@ const addUsersToChat = async (chatId: string) => {
   closeModal('add-user-form', '.new-user-input');
 };
 
+const deleteUsersFromChat = async (chatId: string) => {
+  const input = document.querySelector('.delete-user-input') as HTMLInputElement;
+  const users = input.value.split(',');
+
+  await chatController.deleteUser({ users, chatId: parseInt(chatId, 10) });
+  store.setStateAndPersist({ usersInChats: [{ id: chatId, users }] });
+
+  closeModal('delete-user-form', '.delete-user-input');
+};
+
 const getTemplate = () => {
   const template = Handlebars.compile(selectedTemplate);
-  const addNewUserTmpl = Handlebars.compile(addUserTmpl);
+  const userFormTmpl = Handlebars.compile(chatFormTmpl);
 
   const currentChatId = localStorage.getItem('currentChat');
 
@@ -69,6 +79,7 @@ const getTemplate = () => {
     },
   });
 
+  // Добавление пользователя в чат
   const addUser = new Button({
     title: 'Добавить пользователя',
     className: 'add-user-button',
@@ -105,28 +116,68 @@ const getTemplate = () => {
 
   const newUserContext = {
     input: chatUserInput.transformToString(),
-    createUser: createUser.transformToString(),
+    userButton: createUser.transformToString(),
     backButton: addUserFormClose.transformToString(),
   };
 
-  const addUserForm = new Form(
-    {
-      inputs: [chatUserInput],
-      button: addUser,
-      content: addNewUserTmpl(newUserContext),
-    }, {
-      submit: async () => {
-        await addUsersToChat(currentChatId || '');
-      },
+  const addUserForm = new Form({
+    inputs: [chatUserInput],
+    button: addUser,
+    content: userFormTmpl(newUserContext),
+  }, {
+    submit: async () => {
+      await addUsersToChat(currentChatId || '');
     },
-  );
+  });
+
+  // Удаление пользователя из чата
+  const deleteUserInput = new Input({
+    name: 'title',
+    placeholder: 'Введите имя пользователя',
+    type: 'text',
+    required: true,
+    dataType: 'text',
+    inputClassName: 'delete-user-input',
+    inputContainerClassName: 'input__container',
+  });
 
   const deleteUser = new Button({
     title: 'Удалить пользователя',
     className: 'delete-user-button',
   }, {
     click: async () => {
-      await showModal('user-form');
+      await showModal('delete-user-form');
+      toggleModal('.current-chat-settings__menu');
+    },
+  });
+
+  const deleteUserConfirm = new Button({
+    title: 'Удалить пользователя',
+    className: 'delete-user-button',
+  });
+
+  const deleteUserFormClose = new Button({
+    title: 'Отмена',
+    className: 'back-chat-button',
+  }, {
+    click: () => {
+      closeModal('delete-user-form', '.delete-user-input');
+    },
+  });
+
+  const deleteUserContext = {
+    input: deleteUserInput.transformToString(),
+    userButton: deleteUserConfirm.transformToString(),
+    backButton: deleteUserFormClose.transformToString(),
+  };
+
+  const deleteUserForm = new Form({
+    inputs: [deleteUserInput],
+    button: deleteUser,
+    content: userFormTmpl(deleteUserContext),
+  }, {
+    submit: async () => {
+      await deleteUsersFromChat(currentChatId || '');
     },
   });
 
@@ -147,10 +198,12 @@ const getTemplate = () => {
     showMenu: showMenu.transformToString(),
     addNewUser: addUser.transformToString(),
     addUserForm: addUserForm.transformToString(),
+    deleteUserForm: deleteUserForm.transformToString(),
     deleteUser: deleteUser.transformToString(),
     deleteChat: deleteChat.transformToString(),
     chatTitle: getChatData(currentChatId || '', 'chats', 'title'),
     message: messageInput.transformToString(),
+    users: getChatData(currentChatId || '', 'usersInChats', 'users'),
   };
 
   return template(context);

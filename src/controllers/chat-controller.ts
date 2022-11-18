@@ -46,6 +46,14 @@ export class ChatController {
     }
   }
 
+  public async deleteUser(data: IAddChatUser) {
+    try {
+      await chatAPIInstance.deleteUser(data);
+    } catch (e) {
+      return e.reason;
+    }
+  }
+
   public async getChatToken(id?: number) {
     let res;
     try {

@@ -18,6 +18,10 @@ export class ChatApi {
     return chatAPIInstance.put('/users', data);
   }
 
+  deleteUser(data: IAddChatUser) {
+    return chatAPIInstance.delete('/users', data);
+  }
+
   getChatUsers(chatId: number = 0) {
     return chatAPIInstance.post(`/token/${chatId}`);
   }

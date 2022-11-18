@@ -1,6 +1,6 @@
 export default
 `<div >
     {{{input}}}
-    {{{createUser}}}
+    {{{userButton}}}
     {{{backButton}}}
     </div>`;
