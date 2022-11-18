@@ -55,6 +55,13 @@ const deleteUsersFromChat = async (chatId: string) => {
   closeModal('delete-user-form', '.delete-user-input');
 };
 
+const deleteChat = async (chatId: string) => {
+  await chatController.deleteChat(parseInt(chatId, 10));
+  store.setStateAndPersist({ chatId: parseInt(chatId, 10) });
+
+  closeModal('delete-chat-form', '');
+};
+
 const getTemplate = () => {
   const template = Handlebars.compile(selectedTemplate);
   const userFormTmpl = Handlebars.compile(chatFormTmpl);
@@ -181,12 +188,42 @@ const getTemplate = () => {
     },
   });
 
-  const deleteChat = new Button({
+  // Удаление чата
+  const deleteChatButton = new Button({
     title: 'Удалить чат',
     className: 'delete-chat-button',
   }, {
     click: async () => {
-      await showModal('user-form');
+      await showModal('delete-chat-form');
+      toggleModal('.current-chat-settings__menu');
+    },
+  });
+
+  const deleteChatConfirm = new Button({
+    title: 'Удалить чат',
+    className: 'delete-chat-button',
+  });
+
+  const deleteChatFormClose = new Button({
+    title: 'Отмена',
+    className: 'back-chat-button',
+  }, {
+    click: () => {
+      closeModal('delete-chat-form');
+    },
+  });
+
+  const deleteChatContext = {
+    userButton: deleteChatConfirm.transformToString(),
+    backButton: deleteChatFormClose.transformToString(),
+  };
+
+  const deleteChatForm = new Form({
+    button: deleteChatButton,
+    content: userFormTmpl(deleteChatContext),
+  }, {
+    submit: async () => {
+      await deleteChat(currentChatId || '');
     },
   });
 
@@ -198,9 +235,10 @@ const getTemplate = () => {
     showMenu: showMenu.transformToString(),
     addNewUser: addUser.transformToString(),
     addUserForm: addUserForm.transformToString(),
-    deleteUserForm: deleteUserForm.transformToString(),
     deleteUser: deleteUser.transformToString(),
-    deleteChat: deleteChat.transformToString(),
+    deleteUserForm: deleteUserForm.transformToString(),
+    deleteChatButton: deleteChatButton.transformToString(),
+    deleteChatForm: deleteChatForm.transformToString(),
     chatTitle: getChatData(currentChatId || '', 'chats', 'title'),
     message: messageInput.transformToString(),
     users: getChatData(currentChatId || '', 'usersInChats', 'users'),

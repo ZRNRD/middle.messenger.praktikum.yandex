@@ -12,7 +12,7 @@ export default
             <div class="current-chat-settings__menu hidden">
                 {{{addNewUser}}}
                 {{{deleteUser}}}
-                {{{deleteChat}}}
+                {{{deleteChatButton}}}
             </div>
             
         </header>
@@ -28,6 +28,9 @@ export default
         </div>
         <div class="delete-user-form hidden" id="delete-user-form">
             {{{deleteUserForm}}}
+        </div>
+        <div class="delete-chat-form hidden" id="delete-chat-form">
+            {{{deleteChatForm}}}
         </div>
         <div class="current-chat__main"></div>
         <footer class="current-chat__footer">

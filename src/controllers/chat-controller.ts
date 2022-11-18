@@ -54,6 +54,14 @@ export class ChatController {
     }
   }
 
+  public async deleteChat(id: number) {
+    try {
+      await chatAPIInstance.deleteChat(id);
+    } catch (e) {
+      return e.reason;
+    }
+  }
+
   public async getChatToken(id?: number) {
     let res;
     try {

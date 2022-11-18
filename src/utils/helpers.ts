@@ -5,9 +5,12 @@ export const showModal = async (formId: string) => {
   }
 };
 
-export const closeModal = (formId: string, inputClassName: string) => {
-  const input = document.querySelector(inputClassName) as HTMLInputElement;
+export const closeModal = (formId: string, inputClassName?: string) => {
+  let input = null;
   const form = document.getElementById(formId);
+  if (inputClassName) {
+    input = document.querySelector(inputClassName) as HTMLInputElement;
+  }
   if (input) {
     input.value = '';
   }
