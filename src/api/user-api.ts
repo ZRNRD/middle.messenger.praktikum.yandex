@@ -17,4 +17,8 @@ export class UserApi {
   changeUserPassword(data: IPasswordData) {
     return userAPIInstance.put('/password', data);
   }
+
+  getUserByLogin(data: IAddChatUser) {
+    return userAPIInstance.post('/search', data);
+  }
 }

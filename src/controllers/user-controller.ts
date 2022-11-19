@@ -48,4 +48,13 @@ export class UserController {
       return e.reason;
     }
   }
+
+  public async getUserByLogin(data: ISignUpData) {
+    try {
+      const user = await userInstance.getUserByLogin(data);
+      return user;
+    } catch (e) {
+      return e.reason;
+    }
+  }
 }

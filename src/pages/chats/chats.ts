@@ -19,6 +19,12 @@ import './chats.scss';
 
 const chatController = new ChatController();
 
+const getChats = async () => {
+  await chatController.getAllChats();
+};
+
+getChats();
+
 const createNewChat = async () => {
   const input = document.querySelector('.new-chat-input') as HTMLInputElement;
   const title = input.value;

@@ -9,6 +9,7 @@ import sendMessageIcon from '../../../../../static/assets/icons/send-message.png
 import addFileIcon from '../../../../../static/assets/icons/add-file.png';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { ChatController } from '../../../../controllers/chat-controller';
+import { UserController } from '../../../../controllers/user-controller';
 import { IChatData } from '../../../../utils/interfaces';
 import { Block } from '../../../../utils/Block';
 import { showModal, closeModal, toggleModal } from '../../../../utils/helpers';
@@ -17,6 +18,7 @@ import './selectedChat.scss';
 import { router } from '../../../../router';
 
 const chatController = new ChatController();
+const userController = new UserController();
 
 const getChatData = (currentChatId: string, localStorageKey: string, valueKey: string) => {
   let value: string | string[] = valueKey === 'users' ? [] : '';
@@ -35,13 +37,20 @@ const getChatData = (currentChatId: string, localStorageKey: string, valueKey: s
 
   return value;
 };
+const getUserByLogin = async (login: string) => {
+  const user = await userController.getUserByLogin({ login: login });
+  return user;
+};
 
 const addUsersToChat = async (chatId: string) => {
   const input = document.querySelector('.new-user-input') as HTMLInputElement;
-  const users = input.value.split(',');
+  const user = await getUserByLogin(input.value);
+  const userId = user[0].id;
 
-  await chatController.addUser({ users, chatId: parseInt(chatId, 10) });
-  store.setStateAndPersist({ usersInChats: [{ id: chatId, users }] });
+  console.log(userId);
+
+  await chatController.addUser({ users: [userId], chatId: parseInt(chatId, 10) });
+  store.setStateAndPersist({ usersInChats: [{ id: chatId, users: [user[0].login] }] });
 
   closeModal('add-user-form', '.new-user-input');
 };
