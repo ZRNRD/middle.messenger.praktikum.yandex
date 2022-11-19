@@ -33,6 +33,7 @@ export default
             {{{deleteChatForm}}}
         </div>
         <div class="current-chat__main"></div>
+        <div class="messages__container"></div>
         <footer class="current-chat__footer">
             <div class="add-file">
                 <img class="add-file__icon" src="{{addFileIcon}}" alt="add-file-icon">
@@ -42,6 +43,7 @@ export default
             </div>
             <div class="send-message">
                 <img class="send-message__icon" src="{{sendMessageIcon}}" alt="send-message-icon">
+                {{{sendMessageButton}}}
             </div>
         </footer>
         

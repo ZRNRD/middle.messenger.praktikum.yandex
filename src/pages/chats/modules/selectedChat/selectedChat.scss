@@ -49,7 +49,8 @@
     flex-grow: 1;
 }
 
-.current-chat-settings {
+.current-chat-settings,
+.send-message {
     position: relative;
     padding: 10px;
 
@@ -68,7 +69,8 @@
     }
 }
 
-.current-chat-settings__menu{
+.current-chat-settings__menu,
+.send-message-button{
     position: absolute;
     right: 0;
     top: 50px;

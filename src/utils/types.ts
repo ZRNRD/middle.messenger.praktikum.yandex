@@ -59,3 +59,9 @@ export type Options = {
   headers?: Record<string, string>;
   contentType?: string;
 }
+
+export type TWebSocketParams = {
+  userId: number,
+  chatId: number,
+  token: string,
+};

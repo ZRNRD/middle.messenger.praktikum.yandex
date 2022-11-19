@@ -11,10 +11,12 @@ import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { ChatController } from '../../../../controllers/chat-controller';
 import { UserController } from '../../../../controllers/user-controller';
 import { IChatData } from '../../../../utils/interfaces';
+import { Dictionary } from '../../../../utils/types';
 import { Block } from '../../../../utils/Block';
 import { showModal, closeModal, toggleModal } from '../../../../utils/helpers';
 import { store } from '../../../../store/store';
 import './selectedChat.scss';
+import { createWebSocket } from '../../../../utils/websocket';
 import { router } from '../../../../router';
 
 const chatController = new ChatController();
@@ -57,10 +59,13 @@ const addUsersToChat = async (chatId: string) => {
 
 const deleteUsersFromChat = async (chatId: string) => {
   const input = document.querySelector('.delete-user-input') as HTMLInputElement;
-  const users = input.value.split(',');
+  const user = await getUserByLogin(input.value);
+  const userId = user[0].id;
 
-  await chatController.deleteUser({ users, chatId: parseInt(chatId, 10) });
-  store.setStateAndPersist({ usersInChats: [{ id: chatId, users }] });
+  console.log(userId);
+
+  await chatController.deleteUser({ users: [userId], chatId: parseInt(chatId, 10) });
+  store.setStateAndPersist({ usersInChats: [{ id: chatId, users: [] }] });
 
   closeModal('delete-user-form', '.delete-user-input');
 };
@@ -71,10 +76,56 @@ const deleteChat = async (chatId: string) => {
 
   closeModal('delete-chat-form', '');
 };
+// WEBSOCKET
+const sendMessage = (socket: WebSocket) => {
+  const messageInput = document.querySelector('.message__input') as HTMLInputElement;
+  const message = {
+    content: messageInput.value,
+    type: 'message',
+  };
+  socket.send(JSON.stringify(message));
+  messageInput.value = '';
+};
+
+const getOldMessages = (socket: WebSocket) => {
+  socket.addEventListener('open', () => {
+    socket.send(JSON.stringify({
+      content: '0',
+      type: 'get old',
+    }));
+  });
+};
+
+const handleMessages = (message: Dictionary | Dictionary []) => {
+  const addMessage = (elem: Dictionary) => {
+    if (elem?.content) {
+      const messagesContainer = document.querySelector('.messages__container');
+      const node = document.createElement('div');
+      node.className = 'message';
+      node.textContent = elem.content;
+      messagesContainer.appendChild(node);
+    }
+  };
+
+  if (message instanceof Array) {
+    message.map((el: Dictionary) => addMessage(el));
+  } else {
+    addMessage(message);
+  }
+};
 
 const getTemplate = () => {
   const template = Handlebars.compile(selectedTemplate);
   const userFormTmpl = Handlebars.compile(chatFormTmpl);
+
+  const wsParamsString = localStorage.getItem('wsParams');
+  let wsParams;
+  if (wsParamsString) {
+    wsParams = JSON.parse(wsParamsString);
+  }
+
+  const socket = createWebSocket(wsParams, handleMessages);
+  getOldMessages(socket);
 
   const currentChatId = localStorage.getItem('currentChat');
 
@@ -96,7 +147,6 @@ const getTemplate = () => {
     },
   });
 
-  // Добавление пользователя в чат
   const addUser = new Button({
     title: 'Добавить пользователя',
     className: 'add-user-button',
@@ -147,7 +197,6 @@ const getTemplate = () => {
     },
   });
 
-  // Удаление пользователя из чата
   const deleteUserInput = new Input({
     name: 'title',
     placeholder: 'Введите имя пользователя',
@@ -198,7 +247,6 @@ const getTemplate = () => {
     },
   });
 
-  // Удаление чата
   const deleteChatButton = new Button({
     title: 'Удалить чат',
     className: 'delete-chat-button',
@@ -238,11 +286,21 @@ const getTemplate = () => {
     },
   });
 
+  const sendMessageButton = new Button({
+    isLink: true,
+    className: 'send-message-button',
+  }, {
+    click: () => {
+      sendMessage(socket);
+    },
+  });
+
   const context = {
     userAvatar,
     sendMessageIcon,
     chatSettingsIcon,
     addFileIcon,
+    sendMessageButton: sendMessageButton.transformToString(),
     showMenu: showMenu.transformToString(),
     addNewUser: addUser.transformToString(),
     addUserForm: addUserForm.transformToString(),
