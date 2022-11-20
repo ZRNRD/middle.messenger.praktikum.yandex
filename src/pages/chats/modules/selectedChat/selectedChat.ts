@@ -76,7 +76,7 @@ const deleteChat = async (chatId: string) => {
 
   closeModal('delete-chat-form', '');
 };
-// WEBSOCKET
+
 const sendMessage = (socket: WebSocket) => {
   const messageInput = document.querySelector('.message__input') as HTMLInputElement;
   const message = {
