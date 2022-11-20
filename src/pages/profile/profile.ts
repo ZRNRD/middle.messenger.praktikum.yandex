@@ -94,7 +94,7 @@ const getTemplate = () => {
 
   const logoutButton = new Button(
     {
-      title: 'Выйти',
+      title: 'Выйти из аккаунта',
       className: ['logout-button'].join(' '),
     },
     {

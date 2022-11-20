@@ -13,6 +13,15 @@ import './login.scss';
 const authController = new AuthController();
 const chatController = new ChatController();
 
+const autoLogin = async () => {
+  const user = await authController.getUser();
+  if (user.login) {
+    router.go('/notSelectedChat');
+  }
+};
+
+autoLogin();
+
 const getTemplate = () => {
   const template = Handlebars.compile(loginTemplate);
 
