@@ -3,11 +3,13 @@
 
 Ссылка на пример макета: https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1
 
-Ссылка на pull request: https://github.com/ZRNRD/middle.messenger.praktikum.yandex/pull/2
+Ссылка на pull request: https://github.com/ZRNRD/middle.messenger.praktikum.yandex/pull/3
 
 Запуск проекта: npm start
 
 Сборка проекта: npm run build
+
+Запуск тестов: npm run test
 
 Запуск в режиме разработки: npm run dev
 
