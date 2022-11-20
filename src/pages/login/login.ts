@@ -15,7 +15,8 @@ const chatController = new ChatController();
 
 const autoLogin = async () => {
   const user = await authController.getUser();
-  if (user.login) {
+  const currentPathname = await router.getCurrentPathname();
+  if (user.login && (currentPathname === '/login' || currentPathname === '/')) {
     router.go('/notSelectedChat');
   }
 };

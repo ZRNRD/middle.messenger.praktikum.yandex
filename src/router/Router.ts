@@ -93,6 +93,10 @@ export class Router {
     return this._currentRoute;
   }
 
+  getCurrentPathname() {
+    return this.getCurrentRoute()._pathname;
+  }
+
   back() {
     this.history.back();
   }
