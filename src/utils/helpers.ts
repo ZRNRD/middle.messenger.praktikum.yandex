@@ -21,3 +21,8 @@ export const toggleModal = async (selector: string) => {
   const form = document.querySelector(selector);
   form?.classList.toggle('hidden');
 };
+
+export const getAvatar = (url: string):string => {
+  const result = `https://ya-praktikum.tech/api/v2/resources${url}`;
+  return result;
+};

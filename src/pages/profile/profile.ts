@@ -6,6 +6,7 @@ import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
 import { AuthController } from '../../controllers/auth-controller';
 import { router } from '../../router/index';
+import { getAvatar } from '../../utils/helpers';
 import './profile.scss';
 
 const authController = new AuthController();
@@ -106,7 +107,7 @@ const getTemplate = () => {
 
   const context = {
     profileName: user?.display_name || '',
-    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),
