@@ -9,7 +9,7 @@ import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
 import { ChatController } from '../../controllers/chat-controller';
 import { TChatPage } from '../../utils/types';
-import { showModal, closeModal } from '../../utils/helpers';
+import { showModal, closeModal, getAvatar } from '../../utils/helpers';
 import { Button } from '../../components/button/button';
 import { Form } from '../../components/form/form';
 import { router } from '../../router/index';
@@ -104,7 +104,7 @@ const getTemplate = (isChatSelected?: boolean) => {
       const { content } = element.last_message || {};
       const elemContext = {
         ...element,
-        avatar: element.avatar || userAvatar,
+        avatar: getAvatar(element.avatar) || userAvatar,
         last_message: content,
       };
 

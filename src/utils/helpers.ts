@@ -23,6 +23,5 @@ export const toggleModal = async (selector: string) => {
 };
 
 export const getAvatar = (url: string):string => {
-  const result = `https://ya-praktikum.tech/api/v2/resources${url}`;
-  return result;
+  return url ? `https://ya-praktikum.tech/api/v2/resources${url}` : url;
 };
