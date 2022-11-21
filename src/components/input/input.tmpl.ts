@@ -7,7 +7,9 @@ export default
         <input class="{{inputClassName}}" 
             type="{{type}}" name="{{name}}" 
             value="{{value}}" placeholder="{{placeholder}}" 
-            required={{required}} 
+            {{#if required}}
+                required={{required}}
+            {{/if}}
             {{#if disabledInput }}disabled{{/if}}
             data-id="{{id}}"
             data-type="{{dataType}}"

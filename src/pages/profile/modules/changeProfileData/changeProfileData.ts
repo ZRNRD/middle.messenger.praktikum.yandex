@@ -24,11 +24,11 @@ const getTemplate = () => {
 
   const avatartInput = new Input(
     {
-      value: '',
+      value: user?.avatar || '',
       name: 'avatar',
       label: '',
       type: 'file',
-      required: true,
+      required: false,
       disabled: false,
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container', 'avatar-input'].join(' '),

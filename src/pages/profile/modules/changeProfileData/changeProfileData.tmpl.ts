@@ -1,7 +1,7 @@
 export default
 `<div class="change-profile-data-container">
         <div class="user-avatar">
-            <img src="{{userAvatar}}" class="user-avatar__icon" id="avatar">
+            <img src="{{userAvatar}}" class="user-avatar__icon" id="avatar" alt="user-avatar">
             {{{avatartInput}}}
         </div>
 
