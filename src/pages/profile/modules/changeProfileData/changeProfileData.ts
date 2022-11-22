@@ -1,5 +1,6 @@
 import * as Handlebars from 'handlebars';
-import changeProfileDataTemplate from './changeProfileData.tmpl';
+import changeProfileDataFormTemplate from './changeProfileDataForm.tmpl';
+import changeProfileTmpl from '../../changeProfile.tmpl';
 import { Input } from '../../../../components/input';
 import { Button } from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
@@ -12,7 +13,8 @@ import { router } from '../../../../router/index';
 import './changeProfileData.scss';
 
 const getTemplate = () => {
-  const template = Handlebars.compile(changeProfileDataTemplate);
+  const template = Handlebars.compile(changeProfileTmpl);
+  const formTemplate = Handlebars.compile(changeProfileDataFormTemplate);
 
   const userController = new UserController();
 
@@ -200,12 +202,7 @@ const getTemplate = () => {
     className: ['change-profile-data__save'].join(' '),
   });
 
-  const returnBtn = new Button({
-    title: 'Назад',
-    className: ['change-profile-data__return'].join(' '),
-  });
-
-  const context = {
+  const formContext = {
     profileName: 'Name',
     userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
     avatartInput: avatartInput.transformToString(),
@@ -218,7 +215,6 @@ const getTemplate = () => {
       phoneInput.transformToString(),
     ],
     saveChanges: saveChanges.transformToString(),
-    return: returnBtn.transformToString(),
   };
   const form = new Form(
     {
@@ -232,8 +228,7 @@ const getTemplate = () => {
         phoneInput,
       ],
       saveChanges,
-      returnBtn,
-      content: template(context),
+      content: formTemplate(formContext),
     },
     {
       submit: async (e: CustomEvent) => {
@@ -246,7 +241,24 @@ const getTemplate = () => {
     },
   );
 
-  return form.transformToString();
+  const returnButton = new Button(
+    {
+      title: 'Назад',
+      className: ['change-profile-data__return'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/profile');
+      },
+    },
+  );
+
+  const context = {
+    form: form.transformToString(),
+    returnButton: returnButton.transformToString(),
+  };
+
+  return template(context);
 };
 
 export class ChangeProfileData extends Block {

@@ -1,4 +1,5 @@
-.profile-container{
+.profile-container,
+.change-profile-form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,6 +7,12 @@
     height: 100vh;
 }
 
+.user-avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .user-avatar__icon{
     width: 180px;
     height: 180px;
@@ -35,7 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 100%;
 }
 
