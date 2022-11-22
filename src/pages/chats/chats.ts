@@ -99,7 +99,11 @@ const getTemplate = (isChatSelected?: boolean) => {
   const item = localStorage.getItem('chats');
   let chatsData;
   if (item) {
-    chatsData = JSON.parse(item);
+    try {
+      chatsData = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
     chatsData = chatsData.map((element: IChatData) => {
       const { content } = element.last_message || {};
       const elemContext = {
@@ -115,7 +119,11 @@ const getTemplate = (isChatSelected?: boolean) => {
         const userData = localStorage.getItem('user');
         let user;
         if (userData) {
-          user = JSON.parse(userData);
+          try {
+            user = JSON.parse(userData);
+          } catch (e) {
+            return e.reason;
+          }
         }
 
         if (user) {

@@ -22,7 +22,11 @@ const getTemplate = () => {
   const item = localStorage.getItem('user');
   let user;
   if (item) {
-    user = JSON.parse(item);
+    try {
+      user = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
   }
 
   const avatartInput = new Input(

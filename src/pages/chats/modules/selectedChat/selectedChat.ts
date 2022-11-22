@@ -28,7 +28,11 @@ const getChatData = (currentChatId: string, localStorageKey: string, valueKey: s
   const item = localStorage.getItem(localStorageKey);
   let chats;
   if (item) {
-    chats = JSON.parse(item);
+    try {
+      chats = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
   }
 
   if (currentChatId && chats) {
@@ -128,7 +132,11 @@ const getTemplate = () => {
   const wsParamsString = localStorage.getItem('wsParams');
   let wsParams;
   if (wsParamsString) {
-    wsParams = JSON.parse(wsParamsString);
+    try {
+      wsParams = JSON.parse(wsParamsString);
+    } catch (e) {
+      return e.reason;
+    }
   }
 
   const socket = createWebSocket(wsParams, handleMessages);

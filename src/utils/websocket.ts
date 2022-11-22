@@ -29,7 +29,11 @@ export function createWebSocket(params: TWebSocketParams, onMessageFunc?: (data:
     const { data } = event;
 
     if (onMessageFunc && data) {
-      onMessageFunc(JSON.parse(data));
+      try {
+        onMessageFunc(JSON.parse(data));
+      } catch (e) {
+        return e.reason;
+      }
     }
   });
 
