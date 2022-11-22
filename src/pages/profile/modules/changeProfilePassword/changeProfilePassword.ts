@@ -1,5 +1,6 @@
 import * as Handlebars from 'handlebars';
-import changeProfilePasswordTemplate from './changeProfilePassword.tmpl';
+import changeProfilePasswordFormTemplate from './changeProfilePasswordForm.tmpl';
+import changeProfileTmpl from '../../changeProfile.tmpl';
 import { Input } from '../../../../components/input';
 import { Button } from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
@@ -12,7 +13,8 @@ import { router } from '../../../../router/index';
 import './changeProfilePassword.scss';
 
 const getTemplate = () => {
-  const template = Handlebars.compile(changeProfilePasswordTemplate);
+  const template = Handlebars.compile(changeProfileTmpl);
+  const formTemplate = Handlebars.compile(changeProfilePasswordFormTemplate);
 
   const userController = new UserController();
 
@@ -93,12 +95,7 @@ const getTemplate = () => {
     className: ['password__save'].join(' '),
   });
 
-  const returnBtn = new Button({
-    title: 'Назад',
-    className: ['password__return'].join(' '),
-  });
-
-  const context = {
+  const formContext = {
     userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
     inputs: [
       oldPasswordInput.transformToString(),
@@ -106,7 +103,6 @@ const getTemplate = () => {
       newPasswordAgainInput.transformToString(),
     ],
     saveChanges: saveChanges.transformToString(),
-    return: returnBtn.transformToString(),
   };
 
   const form = new Form(
@@ -117,8 +113,7 @@ const getTemplate = () => {
         newPasswordAgainInput,
       ],
       saveChanges,
-      returnBtn,
-      content: template(context),
+      content: formTemplate(formContext),
     },
     {
       submit: async (e: CustomEvent) => {
@@ -131,7 +126,24 @@ const getTemplate = () => {
     },
   );
 
-  return form.transformToString();
+  const returnButton = new Button(
+    {
+      title: 'Назад',
+      className: ['change-profile-password__return'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/profile');
+      },
+    },
+  );
+
+  const context = {
+    form: form.transformToString(),
+    returnButton: returnButton.transformToString(),
+  };
+
+  return template(context);
 };
 
 export class ChangeProfilePassword extends Block {
