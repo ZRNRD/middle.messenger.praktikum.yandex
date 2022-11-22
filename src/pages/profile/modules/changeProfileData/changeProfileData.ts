@@ -10,6 +10,7 @@ import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { UserController } from '../../../../controllers/user-controller';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import { router } from '../../../../router/index';
+import { getAvatar } from '../../../../utils/helpers';
 import './changeProfileData.scss';
 
 const getTemplate = () => {
@@ -204,7 +205,7 @@ const getTemplate = () => {
 
   const formContext = {
     profileName: 'Name',
-    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
     avatartInput: avatartInput.transformToString(),
     inputs: [
       mailInput.transformToString(),

@@ -10,6 +10,7 @@ import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import { UserController } from '../../../../controllers/user-controller';
 import { router } from '../../../../router/index';
+import { getAvatar } from '../../../../utils/helpers';
 import './changeProfilePassword.scss';
 
 const getTemplate = () => {
@@ -17,6 +18,12 @@ const getTemplate = () => {
   const formTemplate = Handlebars.compile(changeProfilePasswordFormTemplate);
 
   const userController = new UserController();
+
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    user = JSON.parse(item);
+  }
 
   const oldPasswordInput = new Input(
     {
@@ -96,7 +103,7 @@ const getTemplate = () => {
   });
 
   const formContext = {
-    userAvatar: localStorage.getItem('avatarIcon') || userAvatar,
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
     inputs: [
       oldPasswordInput.transformToString(),
       newPasswordInput.transformToString(),
