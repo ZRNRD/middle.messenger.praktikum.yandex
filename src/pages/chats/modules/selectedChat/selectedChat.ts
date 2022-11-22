@@ -99,16 +99,21 @@ const getOldMessages = (socket: WebSocket) => {
 const handleMessages = (message: Dictionary | Dictionary []) => {
   const addMessage = (elem: Dictionary) => {
     if (elem?.content) {
+      const userId = store.getState().user?.id;
       const messagesContainer = document.querySelector('.messages__container');
       const node = document.createElement('div');
-      node.className = 'message';
+      if (userId === elem.user_id) {
+        node.className = 'message message_right';
+      } else {
+        node.className = 'message';
+      }
       node.textContent = elem.content;
       messagesContainer.appendChild(node);
     }
   };
 
   if (message instanceof Array) {
-    message.map((el: Dictionary) => addMessage(el));
+    message.reduceRight((_, elem) => addMessage(elem), null);
   } else {
     addMessage(message);
   }
