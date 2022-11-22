@@ -45,6 +45,7 @@ export type TInput = {
 export type TForm = {
   inputs?: Dictionary[],
   button?: Dictionary,
+  className?: string;
   content?: string,
 }
 

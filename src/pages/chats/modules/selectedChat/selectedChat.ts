@@ -1,6 +1,7 @@
 import * as Handlebars from 'handlebars';
 import selectedTemplate from './selectedChat.tmpl';
 import chatFormTmpl from './chat-form.tmpl';
+import sendMessageFormTmpl from './sendMessageForm.tmpl';
 import { Input } from '../../../../components/input/input';
 import { Button } from '../../../../components/button/button';
 import { Form } from '../../../../components/form/form';
@@ -122,6 +123,7 @@ const handleMessages = (message: Dictionary | Dictionary []) => {
 const getTemplate = () => {
   const template = Handlebars.compile(selectedTemplate);
   const userFormTmpl = Handlebars.compile(chatFormTmpl);
+  const sendMessageFormTmplate = Handlebars.compile(sendMessageFormTmpl);
 
   const wsParamsString = localStorage.getItem('wsParams');
   let wsParams;
@@ -294,18 +296,29 @@ const getTemplate = () => {
   const sendMessageButton = new Button({
     isLink: true,
     className: 'send-message-button',
+  });
+
+  const sendMessageFormContext = {
+    addFileIcon,
+    sendMessageIcon,
+    messageInput: messageInput.transformToString(),
+    sendMessageButton: sendMessageButton.transformToString(),
+  };
+  const sendMessageForm = new Form({
+    messageInput,
+    sendMessageButton,
+    className: ['send-message-form'].join(''),
+    content: sendMessageFormTmplate(sendMessageFormContext),
   }, {
-    click: () => {
+    submit: () => {
       sendMessage(socket);
     },
   });
 
   const context = {
     userAvatar,
-    sendMessageIcon,
     chatSettingsIcon,
-    addFileIcon,
-    sendMessageButton: sendMessageButton.transformToString(),
+    sendMessageForm: sendMessageForm.transformToString(),
     showMenu: showMenu.transformToString(),
     addNewUser: addUser.transformToString(),
     addUserForm: addUserForm.transformToString(),
@@ -314,7 +327,6 @@ const getTemplate = () => {
     deleteChatButton: deleteChatButton.transformToString(),
     deleteChatForm: deleteChatForm.transformToString(),
     chatTitle: getChatData(currentChatId || '', 'chats', 'title'),
-    message: messageInput.transformToString(),
     users: getChatData(currentChatId || '', 'usersInChats', 'users'),
   };
 
