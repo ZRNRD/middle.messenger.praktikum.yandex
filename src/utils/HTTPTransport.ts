@@ -1,4 +1,5 @@
 import { Options, METHODS } from './types';
+import { queryStringify } from './helpers';
 
 export class HTTPTransport {
   static DEFAULT_URL = 'https://ya-praktikum.tech/api/v2';
@@ -10,9 +11,10 @@ export class HTTPTransport {
   }
 
   public get<Response>(path = '/', data?: unknown, headers?: Record<string, string>): Promise<Response> {
+    const query = queryStringify(data);
     return this.request<Response>(this.url + path, {
       method: METHODS.GET,
-      data,
+      data: query,
       headers,
     });
   }

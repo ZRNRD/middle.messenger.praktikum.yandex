@@ -25,3 +25,10 @@ export const toggleModal = async (selector: string) => {
 export const getAvatar = (url: string):string => {
   return url ? `https://ya-praktikum.tech/api/v2/resources${url}` : url;
 };
+
+export function queryStringify(data: TRequestData) {
+  if (!data) return '';
+  return Object.entries(data).reduce((acc, [key, value], index, arr) => {
+    return `${acc}${key}=${value}${index < arr.length - 1 ? '&' : ''}`;
+  }, '?');
+}
