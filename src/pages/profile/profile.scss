@@ -31,7 +31,7 @@
     width: 500px;
 }
 .profile__input-container{
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--gray-color);
 }
 .profile__input{
     text-align: right;
@@ -56,10 +56,10 @@
 .profile__change-data span,
 .profile__change-password span
 {
-    color: blue;
+    color: var(--dark-blue-color);
 }
 .profile__exit span{
-    color: red;
+    color: var(--red-color);
 }
 
 

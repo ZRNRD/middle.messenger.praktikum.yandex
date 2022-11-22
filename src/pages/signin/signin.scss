@@ -21,7 +21,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 300px;
-    border: 2px solid #eee;
+    border: 2px solid var(--gray-color);
     border-radius: 15px;
     padding: 30px;
     height: 70%;
@@ -34,7 +34,7 @@
 .signin__input-container{
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgb(109, 167, 255);
+    border-bottom: 1px solid var(--blue-color);
 }
 
 
@@ -58,7 +58,7 @@
 }
 
 .signin__login-link-title {
-    color: blue;
+    color: var(--dark-blue-color);
     font-size: 11px;
     line-height: 11px;
 }

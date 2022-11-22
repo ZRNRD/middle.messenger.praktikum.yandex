@@ -10,7 +10,7 @@
 .profile__input-container{
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--gray-color);
 }
 .change-profile-data__input{
     text-align: right;
