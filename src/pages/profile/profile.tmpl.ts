@@ -17,6 +17,7 @@ export default
                 <a class="profile__change-password" href="/changeProfilePassword">
                     <span>{{changePassword}}</span>
                 </a>
+                {{{returnButton}}}
                 {{{logout}}} 
             </div>
         </div>

@@ -92,6 +92,18 @@ const getTemplate = () => {
     inputClassName: ['profile__input'].join(' '),
   });
 
+  const returnButton = new Button(
+    {
+      title: 'Назад к чатам',
+      className: ['return-to-chats'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/notSelectedChat');
+      },
+    },
+  );
+
   const logoutButton = new Button(
     {
       title: 'Выйти из аккаунта',
@@ -118,6 +130,7 @@ const getTemplate = () => {
     ],
     changeData: 'Изменить данные',
     changePassword: 'Изменить пароль',
+    returnButton: returnButton.transformToString(),
     logout: logoutButton.transformToString(),
   };
 
