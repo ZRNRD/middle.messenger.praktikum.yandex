@@ -1,7 +1,7 @@
 import * as Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { Dictionary, TBlockProps, TMetaBlock } from './types';
-
+// protected _template: Handlebars.TemplateDelegate<any>;
 export class Block {
   static EVENTS = {
     INIT: 'init',
@@ -90,6 +90,7 @@ export class Block {
 
   _render() {
     const { context } = this.props;
+    this._removeEventListeners();
     this._elementId = context && context.id;
     const block = this.render();
     if (block) {
@@ -148,21 +149,23 @@ export class Block {
 
   _addEventListeners() {
     const { events = {} } = this.props;
-    Object.keys(events).forEach((event) => {
-      const root = document.querySelector('#root') as HTMLElement;
-      root.addEventListener(event, (e: Event) => {
-        this._triggerEvent(e, events[event]);
-      }, true);
+    const root = document.querySelector('#root') as HTMLElement;
+
+    Object.keys(events).forEach((eventName) => {
+      let func = events[eventName];
+      events[eventName] = (e: Event) => {
+        this._triggerEvent(e, func);
+      };
+
+      root.addEventListener(eventName, events[eventName]);
     });
   }
 
   _removeEventListeners() {
     const { events = {} } = this.props;
-    Object.keys(events).forEach((event) => {
-      const root = document.querySelector('#root') as HTMLElement;
-      root.removeEventListener(event, (e: Event) => {
-        this._triggerEvent(e, events[event]);
-      });
+    const root = document.querySelector('#root') as HTMLElement;
+    Object.keys(events).forEach((eventName) => {
+      root.removeEventListener(eventName, events[eventName]);
     });
   }
 
