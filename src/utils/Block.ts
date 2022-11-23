@@ -155,7 +155,6 @@ export class Block {
       let func = events[eventName];
       events[eventName] = (e: Event) => {
         this._triggerEvent(e, func);
-        console.log(e);
       };
 
       root.addEventListener(eventName, events[eventName]);
