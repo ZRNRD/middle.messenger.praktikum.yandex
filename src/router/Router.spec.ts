@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import 'mocha';
-import { JSDOM } from 'jsdom';
 import { router } from './index';
 
 declare global {
@@ -12,15 +11,6 @@ declare global {
         }
     }
 }
-
-const dom = new JSDOM('<!DOCTYPE html><div class="app"></div>', {
-  url: 'http://localhost:3000',
-});
-
-global.document = dom.window.document;
-global.window = global.document.defaultView;
-// @ts-ignore
-global.window.router = router;
 
 describe('Проверка переходов по роутам', () => {
   it('Проверка что все роуты добавлены', () => {

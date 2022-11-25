@@ -18,7 +18,7 @@ export class UserApi {
     return userAPIInstance.put('/password', data);
   }
 
-  getUserByLogin(data: IAddChatUser) {
+  getUserByLogin(data: {login: string}) {
     return userAPIInstance.post('/search', data);
   }
 }

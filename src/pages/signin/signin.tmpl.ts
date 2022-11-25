@@ -10,7 +10,7 @@ export default
                 {{/each}}
             </div>
             <div class="signin__buttons">
-                    {{{button}}}
+                    {{{buttons.button}}}
                 <a class="signin__login-link" href="/login">
                     <span class="signin__login-link-title">{{linkTitle}}</span>
                 </a>

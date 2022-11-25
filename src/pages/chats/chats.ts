@@ -4,14 +4,14 @@ import newChatTmpl from './new-chat.tmpl';
 import chatElemTmpl from './chat-elem.tmpl';
 import { SelectedChat } from './modules/selectedChat/selectedChat';
 import { NotSelectedChat } from './modules/notSelectedChat/notSelectedChat';
-import { Input } from '../../components/input';
+import Input from '../../components/input/input';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
 import { ChatController } from '../../controllers/chat-controller';
 import { TChatPage } from '../../utils/types';
 import { showModal, closeModal, getAvatar } from '../../utils/helpers';
-import { Button } from '../../components/button/button';
-import { Form } from '../../components/form/form';
+import Button from '../../components/button/button';
+import Form from '../../components/form/form';
 import { router } from '../../router/index';
 import { store } from '../../store/store';
 import { IChatData } from '../../utils/interfaces';
@@ -78,8 +78,6 @@ const getTemplate = (isChatSelected?: boolean) => {
   };
 
   const chatForm = new Form({
-    inputs: [chatTitleInput],
-    button: createChat,
     content: newChatTemplate(newChatContext),
   }, {
     submit: async () => {

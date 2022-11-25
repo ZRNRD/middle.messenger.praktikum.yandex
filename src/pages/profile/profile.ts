@@ -1,7 +1,7 @@
 import * as Handlebars from 'handlebars';
 import profileTemplate from './profile.tmpl';
-import { Input } from '../../components/input';
-import { Button } from '../../components/button/button';
+import Input from '../../components/input/input';
+import Button from '../../components/button/button';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
 import { Block } from '../../utils/Block';
 import { AuthController } from '../../controllers/auth-controller';
