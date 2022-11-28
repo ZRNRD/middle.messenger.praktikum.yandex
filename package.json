@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "start": "parcel index.html --port 3000 --open",
-    "dev": "parcel index.html --port 3000 --no-cache --open",
-    "build": "parcel build index.html",
-    "eslint": "eslint ./ --ext=.jsx,.js,.tsx,.ts"
+    "clear": "rm -rf dist .cache",
+    "test": "mocha -r ts-node/register -r jsdom-global/register --require ignore-styles src/**/*.spec.ts",
+    "start": "npm run clear && webpack",
+    "server": "node server.js",
+    "dev": "webpack server",
+    "build": "webpack",
+    "linter": "node_modules/.bin/eslint . --ext js,jsx,ts,tsx",
+    "linter:fix": "node_modules/.bin/eslint . --ext js,jsx,ts,tsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test linter"
+    }
   },
   "directories": {
     "src": "./src",
@@ -28,26 +36,39 @@
     "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "5.40.0",
     "@typescript-eslint/parser": "5.40.0",
+    "@webpack-cli/generators": "3.0.0",
     "chai": "4.3.7",
+    "clean-webpack-plugin": "4.0.0",
+    "copy-webpack-plugin": "11.0.0",
+    "css-loader": "6.7.2",
     "eslint": "8.25.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-standard-with-typescript": "23.0.0",
     "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-n": "15.3.0",
     "eslint-plugin-promise": "6.1.0",
+    "eslint-plugin-react": "7.31.11",
     "express": "4.18.1",
+    "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.2",
     "ignore-styles": "5.0.1",
-    "jsdom": "14.1.0",
+    "jsdom": "20.0.3",
     "jsdom-global": "3.0.2",
     "mocha": "10.1.0",
-    "parcel-bundler": "1.12.5",
     "sass": "1.55.0",
+    "sass-loader": "13.2.0",
+    "style-loader": "3.3.1",
     "stylelint": "14.13.0",
     "stylelint-config-standard": "28.0.0",
     "stylelint-config-standard-scss": "5.0.0",
     "stylelint-scss": "4.3.0",
+    "ts-loader": "9.4.1",
     "ts-node": "10.9.1",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.0",
+    "webpack-dev-server": "4.11.1"
   },
   "engines": {
     "node": ">=16.2.0"

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Button } from './button';
+import Button from './button';
 import { TButton } from '../../utils/types';
 
 describe('Проверяем компоненту Button', () => {

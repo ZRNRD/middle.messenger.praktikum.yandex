@@ -5,6 +5,7 @@ export interface IRoute {
     leave(): void;
     match(pathname: string): boolean;
     render(): void;
+    _pathname?: string;
   }
 
 export interface IRouter {
@@ -44,6 +45,9 @@ export interface IAddChatUser {
 
 export interface ICreateChat {
   title: string;
+}
+export interface IDeleteChat {
+  chatId: number;
 }
 export interface IChatData {
   avatar: string;

@@ -1,5 +1,5 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
-import { IAddChatUser, ICreateChat } from '../utils/interfaces';
+import { IAddChatUser, ICreateChat, IDeleteChat } from '../utils/interfaces';
 
 const defaultUrl = '/chats';
 
@@ -22,7 +22,7 @@ export class ChatApi {
     return chatAPIInstance.delete('/users', data);
   }
 
-  deleteChat(data: IAddChatUser) {
+  deleteChat(data: IDeleteChat) {
     return chatAPIInstance.delete('/', data);
   }
 

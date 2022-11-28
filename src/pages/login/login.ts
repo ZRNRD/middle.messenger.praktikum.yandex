@@ -1,9 +1,9 @@
 import * as Handlebars from 'handlebars';
 import loginTemplate from './login.tmpl';
-import { Input } from '../../components/input/input';
-import { Button } from '../../components/button/button';
+import Input from '../../components/input/input';
+import Button from '../../components/button/button';
 import { Block } from '../../utils/Block';
-import { Form } from '../../components/form/form';
+import Form from '../../components/form/form';
 import { AuthController } from '../../controllers/auth-controller';
 import { ChatController } from '../../controllers/chat-controller';
 import { router } from '../../router/index';
@@ -82,7 +82,7 @@ const getTemplate = () => {
   const form = new Form(
     {
       inputs: [loginInput, passwordInput],
-      button,
+      buttons: { button },
       content: template(context),
     },
     {

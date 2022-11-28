@@ -1,3 +1,5 @@
+import { TRequestData } from './types';
+
 export const showModal = async (formId: string) => {
   const form = document.getElementById(formId);
   if (form?.classList.contains('hidden')) {

@@ -32,7 +32,7 @@ export class UserController {
     const reader = new FileReader();
 
     reader.onload = async (ev) => {
-      const base64 = ev.target.result;
+      const base64 = ev!.target!.result;
       image.src = base64 as string;
       store.setStateAndPersist({ avatarIcon: base64 }, true);
     };
@@ -49,7 +49,7 @@ export class UserController {
     }
   }
 
-  public async getUserByLogin(data: ISignUpData) {
+  public async getUserByLogin(data: {login: string}) {
     try {
       const user = await userInstance.getUserByLogin(data);
       return user;

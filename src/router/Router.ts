@@ -94,7 +94,7 @@ export class Router {
   }
 
   getCurrentPathname() {
-    return this.getCurrentRoute()._pathname;
+    return this.getCurrentRoute()?._pathname;
   }
 
   back() {

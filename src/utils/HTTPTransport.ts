@@ -1,4 +1,4 @@
-import { Options, METHODS } from './types';
+import { Options, METHODS, TRequestData } from './types';
 import { queryStringify } from './helpers';
 
 export class HTTPTransport {
@@ -10,7 +10,7 @@ export class HTTPTransport {
     this.url = `${HTTPTransport.DEFAULT_URL}${path}`;
   }
 
-  public get<Response>(path = '/', data?: unknown, headers?: Record<string, string>): Promise<Response> {
+  public get<Response>(path = '/', data?: TRequestData, headers?: Record<string, string>): Promise<Response> {
     const query = queryStringify(data);
     return this.request<Response>(this.url + path, {
       method: METHODS.GET,
