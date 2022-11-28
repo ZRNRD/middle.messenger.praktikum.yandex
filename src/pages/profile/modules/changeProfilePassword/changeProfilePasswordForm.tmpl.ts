@@ -8,7 +8,7 @@ export default
             {{{this}}}
         {{/each}}
         <div class="password__buttons">
-            {{{buttons.saveChanges}}}
+            {{{saveChanges}}}
         </div>
     </div>
 `;

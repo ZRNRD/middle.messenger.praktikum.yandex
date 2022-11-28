@@ -10,6 +10,6 @@ export default
             {{{this}}}
         {{/each}}
         <div class="change-profile-data__buttons">
-            {{{buttons.saveChanges}}}
+            {{{saveChanges}}}
         </div>
     </div>`;

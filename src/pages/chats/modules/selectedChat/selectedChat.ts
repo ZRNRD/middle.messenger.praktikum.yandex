@@ -308,7 +308,7 @@ const getTemplate = () => {
     sendMessageButton: sendMessageButton.transformToString(),
   };
   const sendMessageForm = new Form({
-    inputs: [messageInput],
+    inputs: messageInput,
     buttons: { sendMessageButton },
     className: ['send-message-form'].join(''),
     content: sendMessageFormTmplate(sendMessageFormContext),

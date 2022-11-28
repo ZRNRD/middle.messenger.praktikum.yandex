@@ -4,12 +4,10 @@ export default
     {{{addFileButton}}}
   </div>
   <div class="message-input">
-    {{#each inputs}}
-      {{{this}}}
-    {{/each}}
+      {{{messageInput}}}
   </div>
   <div class="send-message">
     <img class="send-message__icon" src="{{sendMessageIcon}}" alt="send-message-icon">
-    {{{buttons.sendMessageButton}}}
+    {{{sendMessageButton}}}
   </div>
 </div>`;
