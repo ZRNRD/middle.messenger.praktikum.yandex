@@ -5,7 +5,7 @@ import chatElemTmpl from './chat-elem.tmpl';
 import { SelectedChat } from './modules/selectedChat/selectedChat';
 import { NotSelectedChat } from './modules/notSelectedChat/notSelectedChat';
 import Input from '../../components/input/input';
-import userAvatar from '../../../static/assets/icons/user-avatar.png';
+import { userAvatar } from '../../utils/user-avatar';
 import { Block } from '../../utils/Block';
 import { ChatController } from '../../controllers/chat-controller';
 import { TChatPage } from '../../utils/types';

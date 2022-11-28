@@ -6,7 +6,7 @@ import Button from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
 import Form from '../../../../components/form/form';
 import { routes } from '../../../../utils';
-import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { userAvatar } from '../../../../utils/user-avatar';
 import { UserController } from '../../../../controllers/user-controller';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import { router } from '../../../../router/index';

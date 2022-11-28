@@ -6,7 +6,6 @@ export default
             </div>
             <div class="current-chat-title">{{chatTitle}}</div>
             <div class="current-chat-settings">
-                <img class="current-chat-settings__icon" src="{{chatSettingsIcon}}" alt="settings-icon">
                 {{{showMenu}}}
             </div>
             <div class="current-chat-settings__menu hidden">

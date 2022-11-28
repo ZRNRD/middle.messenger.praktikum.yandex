@@ -5,10 +5,7 @@ import sendMessageFormTmpl from './sendMessageForm.tmpl';
 import Input from '../../../../components/input/input';
 import Button from '../../../../components/button/button';
 import Form from '../../../../components/form/form';
-import chatSettingsIcon from '../../../../../static/assets/icons/chat-settings.png';
-import sendMessageIcon from '../../../../../static/assets/icons/send-message.png';
-import addFileIcon from '../../../../../static/assets/icons/add-file.png';
-import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { userAvatar } from '../../../../utils/user-avatar';
 import { ChatController } from '../../../../controllers/chat-controller';
 import { UserController } from '../../../../controllers/user-controller';
 import { IChatData } from '../../../../utils/interfaces';
@@ -302,8 +299,6 @@ const getTemplate = () => {
   });
 
   const sendMessageFormContext = {
-    addFileIcon,
-    sendMessageIcon,
     messageInput: messageInput.transformToString(),
     sendMessageButton: sendMessageButton.transformToString(),
   };
@@ -320,7 +315,6 @@ const getTemplate = () => {
 
   const context = {
     userAvatar,
-    chatSettingsIcon,
     sendMessageForm: sendMessageForm.transformToString(),
     showMenu: showMenu.transformToString(),
     addNewUser: addUser.transformToString(),

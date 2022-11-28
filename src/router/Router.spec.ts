@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
+import { JSDOM } from 'jsdom';
 import { router } from './index';
 
 declare global {
@@ -12,9 +13,19 @@ declare global {
     }
 }
 
+const dom = new JSDOM('<!DOCTYPE html><div class="app"></div>', {
+  url: 'http://localhost:3000',
+});
+
+global.document = dom.window.document;
+// @ts-ignore
+global.window = global.document.defaultView;
+// @ts-ignore
+global.window.router = router;
+
 describe('Проверка переходов по роутам', () => {
   it('Проверка что все роуты добавлены', () => {
-    expect(router.routes.length).to.eq(13);
+    expect(router.routes.length).to.eq(10);
   });
 
   it('Проверяем, что текущего роута нет до первого перехода', () => {
@@ -24,8 +35,8 @@ describe('Проверка переходов по роутам', () => {
   it('Проверяем, что происходят переходы по роутам', () => {
     expect(window.history.length).to.eq(1);
 
-    window.history.pushState({}, '', '/sign-in');
-    expect(window.location.pathname).to.eq('/sign-in');
+    window.history.pushState({}, '', '/notSelectedChat');
+    expect(window.location.pathname).to.eq('/notSelectedChat');
 
     expect(window.history.length).to.eq(2);
   });
