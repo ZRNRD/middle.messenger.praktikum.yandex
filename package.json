@@ -10,7 +10,13 @@
     "server": "node server.js",
     "dev": "webpack server",
     "build": "webpack",
-    "eslint": "eslint ./ --ext=.jsx,.js,.tsx,.ts"
+    "linter": "node_modules/.bin/eslint . --ext js,jsx,ts,tsx",
+    "linter:fix": "node_modules/.bin/eslint . --ext js,jsx,ts,tsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test linter"
+    }
   },
   "directories": {
     "src": "./src",
@@ -45,6 +51,7 @@
     "eslint-plugin-react": "7.31.11",
     "express": "4.18.1",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.2",
     "ignore-styles": "5.0.1",
     "jsdom": "20.0.3",
     "jsdom-global": "3.0.2",
