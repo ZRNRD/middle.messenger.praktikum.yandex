@@ -1,16 +1,39 @@
 
-Ссылка на Netlify: https://luminous-cobbler-00e054.netlify.app/
+# Online messenger
 
-Ссылка на пример макета: https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1
+* Ссылка на Netlify: https://luminous-cobbler-00e054.netlify.app/
 
-Ссылка на pull request: https://github.com/ZRNRD/middle.messenger.praktikum.yandex/pull/3
+* Ссылка на пример макета: https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1
 
-Запуск проекта: npm start
+* Ссылка на pull request: https://github.com/ZRNRD/middle.messenger.praktikum.yandex/pull/3
 
-Сборка проекта: npm run build
+## Краткое описание
 
-Запуск тестов: npm run test
+Данный проект является практической работой, выполняемой в рамках курса [Мидл фронтенд-разработчик](https://praktikum.yandex.ru/middle-frontend/) от [Яндекс.Практикум](https://praktikum.yandex.ru).
 
-Запуск в режиме разработки: npm run dev
+## Установка и запуск
 
+### Установка
+
+```bash
+npm install
+```
+
+### Запуск проекта:
+
+```bash
+npm start
+```
+
+### Запуск сервера: 
+
+```bash
+npm run server
+```
+
+### Запуск тестов: npm run test
+
+```bash
+npm run test
+```
 
