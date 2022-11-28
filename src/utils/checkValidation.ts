@@ -1,4 +1,4 @@
-import { Dictionary } from "./types";
+import { Dictionary } from './types';
 
 const showError = (input: HTMLInputElement, isError: boolean) => {
   const parent = input.parentNode || input.parentElement;
@@ -83,11 +83,11 @@ export const checkValidation = (data: {event?: Event | null, input?: HTMLInputEl
   }
 };
 
-const getFormModel = (form: HTMLFormElement) => {
+const getFormModel = (form: HTMLFormElement): Dictionary => {
   const inputs = form.querySelectorAll('input');
 
   if (!inputs || inputs?.length === 0) {
-    return;
+    return {};
   }
 
   const data: Dictionary = [...inputs].reduce((model: Dictionary, input: HTMLInputElement) => {
@@ -97,6 +97,7 @@ const getFormModel = (form: HTMLFormElement) => {
   }, {});
 
   console.log(data);
+  return data;
 };
 
 const checkAllInputs = (form: HTMLFormElement) => {
@@ -104,10 +105,13 @@ const checkAllInputs = (form: HTMLFormElement) => {
   return [...inputs].map((input) => checkValidation({ input })).every((isError) => isError === false);
 };
 
-export const checkAllForm = (event: Event, nextRoute: string) => {
+export const checkAllForm = async (event: Event, controller?: any, method?: string) => {
   const form = event.target as HTMLFormElement;
   if (form && checkAllInputs(form)) {
-    getFormModel(form);
-    if (nextRoute) window.location.href = nextRoute;
+    const data = getFormModel(form);
+    if (method) {
+      const isError = await controller[method](data);
+      return isError;
+    }
   }
 };

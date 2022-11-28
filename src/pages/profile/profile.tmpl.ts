@@ -1,7 +1,7 @@
 export default
 `<div class="profile-container">
         <div class="user-avatar">
-            <img src="{{userAvatar}}" class="user-avatar__icon">
+            <img src="{{userAvatar}}" class="user-avatar__icon" alt="user-avatar">
         </div>
 
         <div class="profile__name">{{profileName}}</div>
@@ -16,10 +16,9 @@ export default
                 </a> 
                 <a class="profile__change-password" href="/changeProfilePassword">
                     <span>{{changePassword}}</span>
-                </a> 
-                <a class="profile__exit" href="/login">
-                    <span>{{exit}}</span>
-                </a> 
+                </a>
+                {{{returnButton}}}
+                {{{logout}}} 
             </div>
         </div>
         

@@ -1,89 +1,129 @@
 import * as Handlebars from 'handlebars';
 import profileTemplate from './profile.tmpl';
 import { Input } from '../../components/input';
+import { Button } from '../../components/button/button';
 import userAvatar from '../../../static/assets/icons/user-avatar.png';
-import { Form } from '../../components/form/form';
 import { Block } from '../../utils/Block';
+import { AuthController } from '../../controllers/auth-controller';
+import { router } from '../../router/index';
+import { getAvatar } from '../../utils/helpers';
 import './profile.scss';
+
+const authController = new AuthController();
 
 const getTemplate = () => {
   const template = Handlebars.compile(profileTemplate);
 
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    try {
+      user = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
+  }
+
   const mailInput = new Input({
-    value: 'mail@yandex.ru',
-    name: 'profileMail',
+    value: user?.email || '',
+    name: 'email',
     label: 'Почта',
     type: 'text',
     required: true,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const loginInput = new Input({
-    value: 'login',
-    name: 'profileLogin',
+    value: user?.login || '',
+    name: 'login',
     label: 'Логин',
     type: 'text',
     required: true,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const nameInput = new Input({
-    value: 'profileName',
+    value: user?.first_name || '',
     name: 'name',
     label: 'Имя',
     type: 'text',
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const surnameInput = new Input({
-    value: 'surname',
-    name: 'profileSurname',
+    value: user?.second_name || '',
+    name: 'second_name',
     label: 'Фамилия',
     type: 'text',
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const nicknameInput = new Input({
-    value: 'nickname',
-    name: 'profileNickname',
+    value: user?.display_name || '',
+    name: 'display_name',
     label: 'Имя в чате',
     type: 'text',
     disabled: true,
     required: false,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
   const phoneInput = new Input({
-    value: '8 (800) 555-35-35',
-    name: 'profilePhone',
+    value: user?.phone || '',
+    name: 'phone',
     label: 'Телефон',
     type: 'text',
     required: false,
     disabled: true,
     isProfileInput: true,
-    inputContainerClassName: 'profile__input-container',
-    inputClassName: 'profile__input',
+    inputContainerClassName: ['profile__input-container'].join(' '),
+    inputClassName: ['profile__input'].join(' '),
   });
 
+  const returnButton = new Button(
+    {
+      title: 'Назад к чатам',
+      className: ['return-to-chats'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/notSelectedChat');
+      },
+    },
+  );
+
+  const logoutButton = new Button(
+    {
+      title: 'Выйти из аккаунта',
+      className: ['logout-button'].join(' '),
+    },
+    {
+      click: async () => {
+        await authController.logOut();
+        router.go('/');
+      },
+    },
+  );
+
   const context = {
-    profileName: 'Name',
-    userAvatar,
+    profileName: user?.display_name || '',
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),
@@ -94,24 +134,11 @@ const getTemplate = () => {
     ],
     changeData: 'Изменить данные',
     changePassword: 'Изменить пароль',
-    exit: 'Выйти',
+    returnButton: returnButton.transformToString(),
+    logout: logoutButton.transformToString(),
   };
 
-  const form = new Form(
-    {
-      inputs: [
-        mailInput,
-        loginInput,
-        nameInput,
-        surnameInput,
-        nicknameInput,
-        phoneInput,
-      ],
-      content: template(context),
-    },
-  );
-
-  return form.transformToString();
+  return template(context);
 };
 
 export class Profile extends Block {

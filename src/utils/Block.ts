@@ -1,7 +1,7 @@
 import * as Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { Dictionary, TBlockProps, TMetaBlock } from './types';
-
+// protected _template: Handlebars.TemplateDelegate<any>;
 export class Block {
   static EVENTS = {
     INIT: 'init',
@@ -47,7 +47,7 @@ export class Block {
   }
 
   _createResources() {
-    const { tagName, className} = this._meta;
+    const { tagName, className } = this._meta;
     this._element = this._createDocumentElement(tagName, className);
   }
 
@@ -90,6 +90,7 @@ export class Block {
 
   _render() {
     const { context } = this.props;
+    this._removeEventListeners();
     this._elementId = context && context.id;
     const block = this.render();
     if (block) {
@@ -140,7 +141,6 @@ export class Block {
   _triggerEvent(event: Event, func: Function) {
     const target = event.target as HTMLElement;
     const id = target.getAttribute('data-id');
-
     if (target && (this._elementId === id)) {
       event.preventDefault();
       func.call(this, event);
@@ -149,21 +149,23 @@ export class Block {
 
   _addEventListeners() {
     const { events = {} } = this.props;
-    Object.keys(events).forEach((event) => {
-      const root = document.querySelector('#root') as HTMLElement;
-      root.addEventListener(event, (e: Event) => {
-        this._triggerEvent(e, events[event]);
-      }, true);
+    const root = document.querySelector('#root') as HTMLElement;
+
+    Object.keys(events).forEach((eventName) => {
+      let func = events[eventName];
+      events[eventName] = (e: Event) => {
+        this._triggerEvent(e, func);
+      };
+
+      root.addEventListener(eventName, events[eventName]);
     });
   }
 
   _removeEventListeners() {
     const { events = {} } = this.props;
-    Object.keys(events).forEach((event) => {
-      const root = document.querySelector('#root') as HTMLElement;
-      root.removeEventListener(event, (e: Event) => {
-        this._triggerEvent(e, events[event]);
-      });
+    const root = document.querySelector('#root') as HTMLElement;
+    Object.keys(events).forEach((eventName) => {
+      root.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -179,5 +181,9 @@ export class Block {
 
   hide() {
     this.element.classList.add('hidden');
+  }
+
+  remove() {
+    this._element.remove();
   }
 }

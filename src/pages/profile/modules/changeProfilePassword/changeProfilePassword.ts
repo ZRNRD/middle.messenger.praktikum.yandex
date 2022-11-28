@@ -1,5 +1,6 @@
 import * as Handlebars from 'handlebars';
-import changeProfilePasswordTemplate from './changeProfilePassword.tmpl';
+import changeProfilePasswordFormTemplate from './changeProfilePasswordForm.tmpl';
+import changeProfileTmpl from '../../changeProfile.tmpl';
 import { Input } from '../../../../components/input';
 import { Button } from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
@@ -7,22 +8,38 @@ import { routes } from '../../../../utils';
 import { Form } from '../../../../components/form/form';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
+import { UserController } from '../../../../controllers/user-controller';
+import { router } from '../../../../router/index';
+import { getAvatar } from '../../../../utils/helpers';
 import './changeProfilePassword.scss';
 
 const getTemplate = () => {
-  const template = Handlebars.compile(changeProfilePasswordTemplate);
+  const template = Handlebars.compile(changeProfileTmpl);
+  const formTemplate = Handlebars.compile(changeProfilePasswordFormTemplate);
+
+  const userController = new UserController();
+
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    try {
+      user = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
+  }
 
   const oldPasswordInput = new Input(
     {
-      value: 'PAROL12345',
+      value: '',
       name: 'oldPassword',
       label: 'Старый пароль',
       type: 'password',
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Введите старый пароль',
       dataType: 'password',
     },
@@ -45,8 +62,8 @@ const getTemplate = () => {
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Недопустимый пароль',
       dataType: 'password',
     },
@@ -69,8 +86,8 @@ const getTemplate = () => {
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'password__input-container',
-      inputClassName: 'password__input',
+      inputContainerClassName: ['password__input-container'].join(' '),
+      inputClassName: ['password__input'].join(' '),
       errorMessage: 'Пароли не совпадают',
       dataType: 'password',
     },
@@ -86,24 +103,17 @@ const getTemplate = () => {
 
   const saveChanges = new Button({
     title: 'Сохранить',
-    className: 'password__save',
+    className: ['password__save'].join(' '),
   });
 
-  const returnBtn = new Button({
-    title: 'Назад',
-    className: 'password__return',
-  });
-
-  const context = {
-    profileName: 'Name',
-    userAvatar,
+  const formContext = {
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
     inputs: [
       oldPasswordInput.transformToString(),
       newPasswordInput.transformToString(),
       newPasswordAgainInput.transformToString(),
     ],
     saveChanges: saveChanges.transformToString(),
-    return: returnBtn.transformToString(),
   };
 
   const form = new Form(
@@ -114,23 +124,37 @@ const getTemplate = () => {
         newPasswordAgainInput,
       ],
       saveChanges,
-      returnBtn,
-      content: template(context),
+      content: formTemplate(formContext),
     },
     {
-      submit: (e: CustomEvent) => {
+      submit: async (e: CustomEvent) => {
         checkAllForm(e, routes.profile);
-        const formData = new FormData(e.target);
-        console.log({
-          oldPasswordInput: formData.get('oldPassword'),
-          newPasswordInput: formData.get('newPassword'),
-          newPasswordAgainInput: formData.get('newPasswordAgain'),
-        });
+        const isError = await checkAllForm(e, userController, 'changeUserPassword');
+        if (!isError) {
+          router.go('/profile');
+        }
       },
     },
   );
 
-  return form.transformToString();
+  const returnButton = new Button(
+    {
+      title: 'Назад',
+      className: ['change-profile-password__return'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/profile');
+      },
+    },
+  );
+
+  const context = {
+    form: form.transformToString(),
+    returnButton: returnButton.transformToString(),
+  };
+
+  return template(context);
 };
 
 export class ChangeProfilePassword extends Block {

@@ -1,4 +1,4 @@
 export default
-`<form class="form" data-id="{{id}}">
+`<form class="{{{className}}}" data-id="{{id}}">
   {{{ content }}}
 </form>`;

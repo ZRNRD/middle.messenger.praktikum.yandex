@@ -1,9 +1,22 @@
-.profile-container{
+.profile-container,
+.change-profile-form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.user-avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-avatar__icon{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
 }
 
 .profile__name{
@@ -18,7 +31,7 @@
     width: 500px;
 }
 .profile__input-container{
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--gray-color);
 }
 .profile__input{
     text-align: right;
@@ -29,7 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -43,10 +56,10 @@
 .profile__change-data span,
 .profile__change-password span
 {
-    color: blue;
+    color: var(--dark-blue-color);
 }
 .profile__exit span{
-    color: red;
+    color: var(--red-color);
 }
 
 

@@ -1,12 +1,28 @@
 import * as Handlebars from 'handlebars';
 import loginTemplate from './login.tmpl';
-import { routes } from '../../utils';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { Block } from '../../utils/Block';
 import { Form } from '../../components/form/form';
+import { AuthController } from '../../controllers/auth-controller';
+import { ChatController } from '../../controllers/chat-controller';
+import { router } from '../../router/index';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import './login.scss';
+
+const authController = new AuthController();
+const chatController = new ChatController();
+
+const autoLogin = async () => {
+  const user = await authController.getUser();
+  const currentPathname = await router.getCurrentPathname();
+  if (user.login && (currentPathname === '/login' || currentPathname === '/')) {
+    await chatController.getAllChats();
+    router.go('/notSelectedChat');
+  }
+};
+
+autoLogin();
 
 const getTemplate = () => {
   const template = Handlebars.compile(loginTemplate);
@@ -18,8 +34,8 @@ const getTemplate = () => {
       type: 'text',
       required: true,
       errorMessage: 'Неверный логин',
-      inputContainerClassName: 'login__input-container',
-      inputClassName: 'login__input',
+      inputContainerClassName: ['login__input-container'].join(' '),
+      inputClassName: ['login__input'].join(' '),
       dataType: 'login',
     },
     {
@@ -39,8 +55,8 @@ const getTemplate = () => {
       type: 'password',
       required: true,
       errorMessage: 'Неверный пароль',
-      inputContainerClassName: 'login__input-container',
-      inputClassName: 'login__input',
+      inputContainerClassName: ['login__input-container'].join(' '),
+      inputClassName: ['login__input'].join(' '),
       dataType: 'password',
     },
     {
@@ -70,13 +86,12 @@ const getTemplate = () => {
       content: template(context),
     },
     {
-      submit: (e: CustomEvent) => {
-        checkAllForm(e, routes.notSelectedChat);
-        const formData = new FormData(e.target);
-        console.log({
-          login: formData.get('login'),
-          password: formData.get('password'),
-        });
+      submit: async (e: CustomEvent) => {
+        const isError = await checkAllForm(e, authController, 'login');
+        if (!isError) {
+          await chatController.getAllChats();
+          router.go('/notSelectedChat');
+        }
       },
     },
   );

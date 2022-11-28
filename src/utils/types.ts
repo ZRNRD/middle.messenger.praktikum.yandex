@@ -1,3 +1,11 @@
+export enum METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE'
+}
+
 export type Dictionary = Record<string, any>;
 
 export type TBlockProps = {
@@ -13,8 +21,10 @@ export type TMetaBlock = {
 }
 
 export type TButton = {
-  title: string;
+  title?: string;
+  isLink?: boolean;
   className?: string;
+  content?: string;
 }
 
 export type TInput = {
@@ -35,6 +45,7 @@ export type TInput = {
 export type TForm = {
   inputs?: Dictionary[],
   button?: Dictionary,
+  className?: string;
   content?: string,
 }
 
@@ -46,6 +57,12 @@ export type TChatPage = {
 export type Options = {
   method?: METHODS;
   data?: any;
-  timeout?: number;
   headers?: Record<string, string>;
+  contentType?: string;
 }
+
+export type TWebSocketParams = {
+  userId: number,
+  chatId: number,
+  token: string,
+};

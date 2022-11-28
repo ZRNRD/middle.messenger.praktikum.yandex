@@ -1,28 +1,74 @@
 import * as Handlebars from 'handlebars';
-import changeProfileDataTemplate from './changeProfileData.tmpl';
+import changeProfileDataFormTemplate from './changeProfileDataForm.tmpl';
+import changeProfileTmpl from '../../changeProfile.tmpl';
 import { Input } from '../../../../components/input';
 import { Button } from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
 import { Form } from '../../../../components/form/form';
 import { routes } from '../../../../utils';
 import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { UserController } from '../../../../controllers/user-controller';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
+import { router } from '../../../../router/index';
+import { getAvatar } from '../../../../utils/helpers';
 import './changeProfileData.scss';
 
 const getTemplate = () => {
-  const template = Handlebars.compile(changeProfileDataTemplate);
+  const template = Handlebars.compile(changeProfileTmpl);
+  const formTemplate = Handlebars.compile(changeProfileDataFormTemplate);
+
+  const userController = new UserController();
+
+  const item = localStorage.getItem('user');
+  let user;
+  if (item) {
+    try {
+      user = JSON.parse(item);
+    } catch (e) {
+      return e.reason;
+    }
+  }
+
+  const avatartInput = new Input(
+    {
+      value: user?.avatar || '',
+      name: 'avatar',
+      label: '',
+      type: 'file',
+      required: false,
+      disabled: false,
+      isProfileInput: true,
+      inputContainerClassName: ['profile__input-container', 'avatar-input'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
+      errorMessage: 'Ошибка, попробуйте ещё раз',
+      dataType: 'avatar',
+    },
+    {
+      change: async (e: CustomEvent) => {
+        const input = e.target as HTMLInputElement;
+
+        if (input) {
+          const image = document.getElementById('avatar') as HTMLImageElement;
+          const file = input.files[0];
+          if (file && image) {
+            await userController.changeUserAvatar(file, image);
+          }
+        }
+      }
+    },
+  );
 
   const mailInput = new Input(
     {
-      value: 'mail@yandex.ru',
-      name: 'profileMail',
+      value: user?.email || '',
+      name: 'email',
       label: 'Почта',
       type: 'text',
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимая почта',
       dataType: 'email',
     },
@@ -38,15 +84,15 @@ const getTemplate = () => {
 
   const loginInput = new Input(
     {
-      value: 'login123',
-      name: 'profileLogin',
+      value: user?.login || '',
+      name: 'login',
       label: 'Логин',
       type: 'text',
       required: true,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимый логин',
       dataType: 'login',
     },
@@ -62,15 +108,15 @@ const getTemplate = () => {
 
   const nameInput = new Input(
     {
-      value: 'ProfileName',
-      name: 'profileName',
+      value: user?.first_name || '',
+      name: 'first_name',
       label: 'Имя',
       type: 'text',
       required: false,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимое имя',
       dataType: 'name',
     },
@@ -86,15 +132,15 @@ const getTemplate = () => {
 
   const surnameInput = new Input(
     {
-      value: 'Surname',
-      name: 'profileSurname',
+      value: user?.second_name || '',
+      name: 'second_name',
       label: 'Фамилия',
       type: 'text',
       required: false,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимая фамилия',
       dataType: 'name',
     },
@@ -110,15 +156,15 @@ const getTemplate = () => {
 
   const nicknameInput = new Input(
     {
-      value: 'Nickname',
-      name: 'profileNickname',
+      value: user?.display_name || '',
+      name: 'display_name',
       label: 'Имя в чате',
       type: 'text',
       disabled: false,
       required: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимый никнейм',
       dataType: 'login',
     },
@@ -134,15 +180,15 @@ const getTemplate = () => {
 
   const phoneInput = new Input(
     {
-      value: '88005553535',
-      name: 'profilePhone',
+      value: user?.phone || '',
+      name: 'phone',
       label: 'Телефон',
       type: 'text',
       required: false,
       disabled: false,
       isProfileInput: true,
-      inputContainerClassName: 'profile__input-container',
-      inputClassName: 'profile__input',
+      inputContainerClassName: ['profile__input-container'].join(' '),
+      inputClassName: ['profile__input'].join(' '),
       errorMessage: 'Недопустимый номер телефона',
       dataType: 'phone',
     },
@@ -158,17 +204,13 @@ const getTemplate = () => {
 
   const saveChanges = new Button({
     title: 'Сохранить',
-    className: 'change-profile-data__save',
+    className: ['change-profile-data__save'].join(' '),
   });
 
-  const returnBtn = new Button({
-    title: 'Назад',
-    className: 'change-profile-data__return',
-  });
-
-  const context = {
+  const formContext = {
     profileName: 'Name',
-    userAvatar,
+    userAvatar: getAvatar(user?.avatar) || userAvatar,
+    avatartInput: avatartInput.transformToString(),
     inputs: [
       mailInput.transformToString(),
       loginInput.transformToString(),
@@ -178,12 +220,11 @@ const getTemplate = () => {
       phoneInput.transformToString(),
     ],
     saveChanges: saveChanges.transformToString(),
-    return: returnBtn.transformToString(),
   };
-
   const form = new Form(
     {
       inputs: [
+        avatartInput,
         mailInput,
         loginInput,
         nameInput,
@@ -192,26 +233,37 @@ const getTemplate = () => {
         phoneInput,
       ],
       saveChanges,
-      returnBtn,
-      content: template(context),
+      content: formTemplate(formContext),
     },
     {
-      submit: (e: CustomEvent) => {
+      submit: async (e: CustomEvent) => {
         checkAllForm(e, routes.profile);
-        const formData = new FormData(e.target);
-        console.log({
-          mailInput: formData.get('profileMail'),
-          loginInput: formData.get('profileLogin'),
-          nameInput: formData.get('profileName'),
-          surnameInput: formData.get('profileSurname'),
-          nicknameInput: formData.get('profileNickname'),
-          phoneInput: formData.get('profilePhone'),
-        });
+        const isError = await checkAllForm(e, userController, 'changeUserProfile');
+        if (!isError) {
+          router.go('/profile');
+        }
       },
     },
   );
 
-  return form.transformToString();
+  const returnButton = new Button(
+    {
+      title: 'Назад',
+      className: ['change-profile-data__return'].join(' '),
+    },
+    {
+      click: () => {
+        router.go('/profile');
+      },
+    },
+  );
+
+  const context = {
+    form: form.transformToString(),
+    returnButton: returnButton.transformToString(),
+  };
+
+  return template(context);
 };
 
 export class ChangeProfileData extends Block {

@@ -8,6 +8,9 @@ export class Form extends Block {
     super('div', {
       context: {
         ...context,
+        className: [
+          'form',
+          context.className].join(' '),
         id: id(),
       },
       template: formTemplate,
