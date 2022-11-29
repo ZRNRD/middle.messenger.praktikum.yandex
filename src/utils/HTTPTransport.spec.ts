@@ -2,19 +2,9 @@ import 'mocha';
 import { HTTPTransport } from './HTTPTransport';
 
 describe('Проверяем HTTPTransport', () => {
-  const http = new HTTPTransport('/chats');
+  const http = new HTTPTransport('https://jsonplaceholder.typicode.com/comments');
 
-  it('Проверка GET-запроса', (done) => {
-    http
-      .get('/')
-      .then((response: string) => {
-        const { reason } = JSON.parse(response);
-        if (reason === 'Cookie is not valid') {
-          done();
-        } else {
-          done(new Error('Ошибка GET-запроса'));
-        }
-      })
-      .catch(done);
+  it('Проверка GET-запроса', async () => {
+    await http.get();
   });
 });

@@ -1,7 +1,7 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
 import { ISignUpData, ILoginData } from '../utils/interfaces';
 
-const defaultUrl = '/auth';
+const defaultUrl = 'https://ya-praktikum.tech/api/v2/auth';
 
 const authAPIInstance = new HTTPTransport(defaultUrl);
 

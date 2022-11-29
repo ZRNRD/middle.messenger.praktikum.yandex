@@ -2,12 +2,10 @@ import { Options, METHODS, TRequestData } from './types';
 import { queryStringify } from './helpers';
 
 export class HTTPTransport {
-  static DEFAULT_URL = 'https://ya-praktikum.tech/api/v2';
-
   protected url: string;
 
   constructor(path: string) {
-    this.url = `${HTTPTransport.DEFAULT_URL}${path}`;
+    this.url = `${path}`;
   }
 
   public get<Response>(path = '/', data?: TRequestData, headers?: Record<string, string>): Promise<Response> {
