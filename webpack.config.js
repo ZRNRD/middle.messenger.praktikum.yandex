@@ -6,7 +6,6 @@ module.exports = {
   mode: 'development',
   entry: './src/index.ts',
   devtool: 'source-map',
-  watch: true,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.bundle.js',
@@ -22,7 +21,6 @@ module.exports = {
     compress: true,
     port: 3000,
     hot: true,
-    open: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
