@@ -31,7 +31,7 @@ npm start
 npm run server
 ```
 
-### Запуск тестов: npm run test
+### Запуск тестов:
 
 ```bash
 npm run test
