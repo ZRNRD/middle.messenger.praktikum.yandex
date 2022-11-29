@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 300px;
-    border: 2px solid #eee;
+    border: 2px solid var(--gray-color);
     border-radius: 15px;
     padding: 30px;
     height: 50%;
@@ -28,8 +28,10 @@
     flex-direction: column;
 }
 
-.lognin__input-container{
-    border-bottom: 1px solid rgb(109, 167, 255);
+.login__input-container{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--blue-color);
 }
 
 
@@ -53,7 +55,7 @@
 }
 
 .signin-link__title {
-    color: blue;
+    color: var(--dark-blue-color);
     font-size: 11px;
     line-height: 11px;
 }

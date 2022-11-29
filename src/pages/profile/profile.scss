@@ -1,9 +1,22 @@
-.profile-container{
+.profile-container,
+.change-profile-form-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.user-avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-avatar__icon{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
 }
 
 .profile__name{
@@ -12,17 +25,13 @@
 }
 
 .profile__form {
-    //display: flex;
-    //flex-direction: column;
-   // align-items: center;
-   // justify-content: space-between;
     font-size: 15px;
     line-height: 15px;
     margin: 15px 0;
     width: 500px;
 }
 .profile__input-container{
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--gray-color);
 }
 .profile__input{
     text-align: right;
@@ -33,24 +42,24 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 15px;
+    margin-top: 10px;
     width: 100%;
 }
 
 
 .profile__change-data,
 .profile__change-password,
-.profile__back{ 
+.profile__exit{ 
     margin: 5px 0;
 }
 
 .profile__change-data span,
 .profile__change-password span
 {
-    color: blue;
+    color: var(--dark-blue-color);
 }
-.profile__back span{
-    color: red;
+.profile__exit span{
+    color: var(--red-color);
 }
 
 
