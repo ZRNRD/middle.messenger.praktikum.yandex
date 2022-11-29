@@ -1,7 +1,7 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
 import { IAddChatUser, ICreateChat, IDeleteChat } from '../utils/interfaces';
 
-const defaultUrl = '/chats';
+const defaultUrl = 'https://ya-praktikum.tech/api/v2/chats';
 
 const chatAPIInstance = new HTTPTransport(defaultUrl);
 

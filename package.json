@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf dist .cache",
     "test": "mocha -r ts-node/register -r jsdom-global/register --require ignore-styles src/**/*.spec.ts",
-    "start": "npm run clear && webpack",
+    "start": "npm run clear && webpack && npm run server",
     "server": "node server.js",
     "dev": "webpack server",
     "build": "webpack",

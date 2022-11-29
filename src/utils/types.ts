@@ -67,4 +67,4 @@ export type TWebSocketParams = {
   token: string,
 };
 
-export type TRequestData = Record<string, string | number> | undefined;
+export type TRequestData = Record<string, string | number | Dictionary> | undefined;
