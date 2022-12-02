@@ -1,7 +1,7 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
-import { IAddChatUser, ICreateChat } from '../utils/interfaces';
+import { IAddChatUser, ICreateChat, IDeleteChat } from '../utils/interfaces';
 
-const defaultUrl = '/chats';
+const defaultUrl = 'https://ya-praktikum.tech/api/v2/chats';
 
 const chatAPIInstance = new HTTPTransport(defaultUrl);
 
@@ -22,7 +22,7 @@ export class ChatApi {
     return chatAPIInstance.delete('/users', data);
   }
 
-  deleteChat(data: IAddChatUser) {
+  deleteChat(data: IDeleteChat) {
     return chatAPIInstance.delete('/', data);
   }
 

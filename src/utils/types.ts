@@ -43,8 +43,8 @@ export type TInput = {
 }
 
 export type TForm = {
-  inputs?: Dictionary[],
-  button?: Dictionary,
+  inputs?: Dictionary | Dictionary[],
+  buttons?: Dictionary | Dictionary[],
   className?: string;
   content?: string,
 }
@@ -66,3 +66,5 @@ export type TWebSocketParams = {
   chatId: number,
   token: string,
 };
+
+export type TRequestData = Record<string, string | number | Dictionary> | undefined;

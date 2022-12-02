@@ -1,12 +1,12 @@
 import * as Handlebars from 'handlebars';
 import changeProfilePasswordFormTemplate from './changeProfilePasswordForm.tmpl';
 import changeProfileTmpl from '../../changeProfile.tmpl';
-import { Input } from '../../../../components/input';
-import { Button } from '../../../../components/button/button';
+import Input from '../../../../components/input/input';
+import Button from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
 import { routes } from '../../../../utils';
-import { Form } from '../../../../components/form/form';
-import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import Form from '../../../../components/form/form';
+import { userAvatar } from '../../../../utils/user-avatar';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import { UserController } from '../../../../controllers/user-controller';
 import { router } from '../../../../router/index';
@@ -123,7 +123,7 @@ const getTemplate = () => {
         newPasswordInput,
         newPasswordAgainInput,
       ],
-      saveChanges,
+      buttons: { saveChanges },
       content: formTemplate(formContext),
     },
     {

@@ -1,9 +1,9 @@
 import * as Handlebars from 'handlebars';
 import signinTemplate from './signin.tmpl';
 import { Block } from '../../utils/Block';
-import { Form } from '../../components/form/form';
-import { Input } from '../../components/input';
-import { Button } from '../../components/button/button';
+import Form from '../../components/form/form';
+import Input from '../../components/input/input';
+import Button from '../../components/button/button';
 import { checkValidation, checkAllForm } from '../../utils/checkValidation';
 import { AuthController } from '../../controllers/auth-controller';
 import { ChatController } from '../../controllers/chat-controller';
@@ -192,7 +192,7 @@ const getTemplate = () => {
         passwordInput,
         secondPasswordInput,
       ],
-      button,
+      buttons: { button },
       content: template(context),
     },
     {

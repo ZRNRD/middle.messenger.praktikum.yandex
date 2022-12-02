@@ -1,11 +1,10 @@
-import Handlebars from 'handlebars';
 import { v4 as id } from 'uuid';
 import inputTemplate from './input.tmpl';
 import { Block } from '../../utils/Block';
 import { TInput } from '../../utils/types';
 import './input.scss';
 
-export class Input extends Block {
+export default class Input extends Block {
   constructor(context: TInput, events = {}) {
     super('div', {
       context: {

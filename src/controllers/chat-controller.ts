@@ -1,5 +1,5 @@
 import { ChatApi } from '../api/chat-api';
-import { IAddChatUser, ICreateChat, IChatData } from '../utils/interfaces';
+import { IAddChatUser, ICreateChat, IChatData, IDeleteChat} from '../utils/interfaces';
 import { store } from '../store/store';
 
 const chatAPIInstance = new ChatApi();
@@ -54,7 +54,7 @@ export class ChatController {
     }
   }
 
-  public async deleteChat(data: IAddChatUser) {
+  public async deleteChat(data: IDeleteChat) {
     try {
       await chatAPIInstance.deleteChat(data);
       await this.getAllChats();

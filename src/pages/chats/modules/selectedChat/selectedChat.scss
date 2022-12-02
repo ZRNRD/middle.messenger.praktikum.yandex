@@ -34,11 +34,11 @@
 .current-chat__header{
     position: relative;
 }
-.current-chat-settings__icon,
-.add-file__icon,
-.send-message__icon{
-    width: 28px;
-    height: 28px;
+.add-file{
+    background-image: url('/static/assets/icons/add-file.svg');
+}
+.current-chat-settings{
+    background-image: url('/static/assets/icons/chat-settings.svg');
 }
 
 
@@ -50,9 +50,13 @@
 }
 
 .current-chat-settings,
-.send-message {
+.send-message,
+.add-file{
     position: relative;
     padding: 10px;
+    width: 40px;
+    height: 40px;
+    background-size: 100%;
 
     &:hover {
         cursor: pointer;
@@ -66,7 +70,14 @@
         height: 100%;
         background: none;
         border: none;
+        
     }
+}
+
+.send-message{
+    width: 40px;
+    height: 40px;
+    background-image: url('/static/assets/icons/send-message.svg');
 }
 
 .current-chat-settings__menu,
@@ -75,9 +86,10 @@
     right: 0;
     top: 50px;
     transition: all .3s ease;
-
+    
     & button{
         margin: 2px;
+        
     }
 }
 

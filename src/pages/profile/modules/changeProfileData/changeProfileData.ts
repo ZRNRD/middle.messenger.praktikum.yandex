@@ -1,12 +1,12 @@
 import * as Handlebars from 'handlebars';
 import changeProfileDataFormTemplate from './changeProfileDataForm.tmpl';
 import changeProfileTmpl from '../../changeProfile.tmpl';
-import { Input } from '../../../../components/input';
-import { Button } from '../../../../components/button/button';
+import Input from '../../../../components/input/input';
+import Button from '../../../../components/button/button';
 import { Block } from '../../../../utils/Block';
-import { Form } from '../../../../components/form/form';
+import Form from '../../../../components/form/form';
 import { routes } from '../../../../utils';
-import userAvatar from '../../../../../static/assets/icons/user-avatar.png';
+import { userAvatar } from '../../../../utils/user-avatar';
 import { UserController } from '../../../../controllers/user-controller';
 import { checkValidation, checkAllForm } from '../../../../utils/checkValidation';
 import { router } from '../../../../router/index';
@@ -49,7 +49,7 @@ const getTemplate = () => {
 
         if (input) {
           const image = document.getElementById('avatar') as HTMLImageElement;
-          const file = input.files[0];
+          const file = input.files?.[0];
           if (file && image) {
             await userController.changeUserAvatar(file, image);
           }
@@ -232,7 +232,7 @@ const getTemplate = () => {
         nicknameInput,
         phoneInput,
       ],
-      saveChanges,
+      buttons: { saveChanges },
       content: formTemplate(formContext),
     },
     {

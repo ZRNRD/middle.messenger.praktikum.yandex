@@ -1,7 +1,7 @@
 import { HTTPTransport } from '../utils/HTTPTransport';
 import { ISignUpData, IPasswordData } from '../utils/interfaces';
 
-const defaultUrl = '/user';
+const defaultUrl = 'https://ya-praktikum.tech/api/v2/user';
 
 const userAPIInstance = new HTTPTransport(defaultUrl);
 
@@ -18,7 +18,7 @@ export class UserApi {
     return userAPIInstance.put('/password', data);
   }
 
-  getUserByLogin(data: IAddChatUser) {
+  getUserByLogin(data: {login: string}) {
     return userAPIInstance.post('/search', data);
   }
 }
