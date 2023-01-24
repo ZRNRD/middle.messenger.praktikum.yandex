@@ -14,7 +14,7 @@ export default
             data-id="{{id}}"
             data-type="{{dataType}}"
         />
-        <div class="error-message hidden">
+        <div class="error-message hidden-error">
             {{errorMessage}}
         </div>
     </div>`;

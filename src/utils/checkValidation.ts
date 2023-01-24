@@ -6,9 +6,9 @@ const showError = (input: HTMLInputElement, isError: boolean) => {
 
   if (messageElement) {
     if (isError) {
-      messageElement.classList.remove('hidden');
+      messageElement.classList.remove('hidden-error');
     } else {
-      messageElement.classList.add('hidden');
+      messageElement.classList.add('hidden-error');
     }
   }
 };

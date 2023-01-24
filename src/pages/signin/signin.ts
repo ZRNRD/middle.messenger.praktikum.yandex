@@ -24,7 +24,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: true,
-      errorMessage: 'Недопустимая почта',
+      errorMessage: 'Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы',
       dataType: 'email',
     },
     {
@@ -45,7 +45,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: true,
-      errorMessage: 'Недопустимый логин',
+      errorMessage: 'от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание).',
       dataType: 'login',
     },
     {
@@ -66,7 +66,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: false,
-      errorMessage: 'Недопустимое имя',
+      errorMessage: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис).',
       dataType: 'name',
     },
     {
@@ -87,7 +87,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: false,
-      errorMessage: 'Недопустимая фамилия',
+      errorMessage: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис).',
       dataType: 'name',
     },
     {
@@ -108,7 +108,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: false,
-      errorMessage: 'Недопустимый номер телефона',
+      errorMessage: 'От 10 до 15 символов, состоит из цифр, ',
       dataType: 'phone',
     },
     {
@@ -129,7 +129,7 @@ const getTemplate = () => {
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
       required: true,
-      errorMessage: 'Недопустимый пароль',
+      errorMessage: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
       dataType: 'password',
     },
     {
