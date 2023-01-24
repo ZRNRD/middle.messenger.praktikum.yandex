@@ -157,7 +157,7 @@ export class Block {
         this._triggerEvent(e, func);
       };
 
-      root.addEventListener(eventName, events[eventName]);
+      root.addEventListener(eventName, events[eventName], true);
     });
   }
 
