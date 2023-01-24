@@ -69,7 +69,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимая почта',
+      errorMessage: 'Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы',
       dataType: 'email',
     },
     {
@@ -93,7 +93,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимый логин',
+      errorMessage: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)',
       dataType: 'login',
     },
     {
@@ -117,7 +117,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимое имя',
+      errorMessage: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
       dataType: 'name',
     },
     {
@@ -141,7 +141,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимая фамилия',
+      errorMessage: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
       dataType: 'name',
     },
     {
@@ -165,7 +165,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимый никнейм',
+      errorMessage: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)',
       dataType: 'login',
     },
     {
@@ -189,7 +189,7 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['profile__input-container'].join(' '),
       inputClassName: ['profile__input'].join(' '),
-      errorMessage: 'Недопустимый номер телефона',
+      errorMessage: 'От 10 до 15 символов, состоит из цифр',
       dataType: 'phone',
     },
     {
