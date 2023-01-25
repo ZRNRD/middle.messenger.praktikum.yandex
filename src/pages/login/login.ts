@@ -89,8 +89,11 @@ const getTemplate = () => {
       submit: async (e: CustomEvent) => {
         const isError = await checkAllForm(e, authController, 'login');
         if (!isError) {
-          await chatController.getAllChats();
-          router.go('/notSelectedChat');
+          const response = await chatController.getAllChats();
+          console.log(response);
+          if (response !== 'Cookie is not valid') {
+            router.go('/notSelectedChat');
+          }
         }
       },
     },
