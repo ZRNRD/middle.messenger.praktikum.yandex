@@ -23,22 +23,16 @@ const checkLoginInput = (input: HTMLInputElement): boolean => {
   return isError;
 };
 
-const checkPasswordInput = (input: HTMLInputElement): boolean => {
+const checkPasswordInput = (input: HTMLInputElement, className?: string): boolean => {
   let isError = false;
   if (input) {
     const { value } = input;
-    isError = !value.match(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/);
-    showError(input, isError);
-  }
-  return isError;
-};
-
-const checkSecondPasswordInput = (input: HTMLInputElement, className: string | any): boolean => {
-  let isError = false;
-  if (input) {
-    const { value } = input;
-    const firstPasswordInput = document.querySelector(`.${className}`) as HTMLInputElement;
-    isError = !(firstPasswordInput.value === value);
+    if (className) {
+      const firstPasswordInput = document.querySelector(`.${className}`) as HTMLInputElement;
+      isError = !(firstPasswordInput.value === value);
+    } else {
+      isError = !value.match(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/);
+    }
     showError(input, isError);
   }
   return isError;
@@ -82,9 +76,7 @@ export const checkValidation = (data: {event?: Event | null, input?: HTMLInputEl
     case 'login':
       return checkLoginInput(input);
     case 'password':
-      return checkPasswordInput(input);
-    case 'secondPassword':
-      return checkSecondPasswordInput(input, className);
+      return checkPasswordInput(input, className);
     case 'email':
       return checkMailInput(input);
     case 'name':
@@ -115,7 +107,10 @@ const getFormModel = (form: HTMLFormElement): Dictionary => {
 
 const checkAllInputs = (form: HTMLFormElement) => {
   const inputs = form.querySelectorAll('input');
-  return [...inputs].map((input) => checkValidation({ input })).every((isError) => isError === false);
+  return [...inputs].map((input) => {
+    const type = input.getAttribute('data-type') || 'text';
+    return type !== 'secondPassword' ? checkValidation({ input }) : null;
+  }).every((isError) => isError === false);
 };
 
 export const checkAllForm = async (event: Event, controller?: any, method?: string) => {

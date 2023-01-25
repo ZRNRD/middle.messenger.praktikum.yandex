@@ -89,7 +89,7 @@ const getTemplate = () => {
       inputContainerClassName: ['password__input-container'].join(' '),
       inputClassName: ['password__input'].join(' '),
       errorMessage: 'Пароли должны совпадать',
-      dataType: 'secondPassword',
+      dataType: 'password',
     },
     {
       focus: (event: Event) => {
