@@ -33,6 +33,17 @@ const checkPasswordInput = (input: HTMLInputElement): boolean => {
   return isError;
 };
 
+const checkSecondPasswordInput = (input: HTMLInputElement, className: string | any): boolean => {
+  let isError = false;
+  if (input) {
+    const { value } = input;
+    const firstPasswordInput = document.querySelector(`.${className}`) as HTMLInputElement;
+    isError = !(firstPasswordInput.value === value);
+    showError(input, isError);
+  }
+  return isError;
+};
+
 const checkMailInput = (input: HTMLInputElement): boolean => {
   let isError = false;
   if (input) {
@@ -63,7 +74,7 @@ const checkPhoneInput = (input: HTMLInputElement): boolean => {
   return isError;
 };
 
-export const checkValidation = (data: {event?: Event | null, input?: HTMLInputElement}): boolean => {
+export const checkValidation = (data: {event?: Event | null, input?: HTMLInputElement}, className?:string): boolean => {
   const input = data.event?.target as HTMLInputElement || data.input;
   const type = input.getAttribute('data-type') || 'text';
 
@@ -72,6 +83,8 @@ export const checkValidation = (data: {event?: Event | null, input?: HTMLInputEl
       return checkLoginInput(input);
     case 'password':
       return checkPasswordInput(input);
+    case 'secondPassword':
+      return checkSecondPasswordInput(input, className);
     case 'email':
       return checkMailInput(input);
     case 'name':

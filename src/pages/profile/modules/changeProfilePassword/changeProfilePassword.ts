@@ -63,7 +63,7 @@ const getTemplate = () => {
       disabled: false,
       isProfileInput: true,
       inputContainerClassName: ['password__input-container'].join(' '),
-      inputClassName: ['password__input'].join(' '),
+      inputClassName: ['password__input', 'profile__password'].join(' '),
       errorMessage: 'Недопустимый пароль',
       dataType: 'password',
     },
@@ -88,15 +88,15 @@ const getTemplate = () => {
       isProfileInput: true,
       inputContainerClassName: ['password__input-container'].join(' '),
       inputClassName: ['password__input'].join(' '),
-      errorMessage: 'Пароли не совпадают',
-      dataType: 'password',
+      errorMessage: 'Пароли должны совпадать',
+      dataType: 'secondPassword',
     },
     {
       focus: (event: Event) => {
-        checkValidation({ event });
+        checkValidation({ event }, 'profile__password');
       },
       blur: (event: Event) => {
-        checkValidation({ event });
+        checkValidation({ event }, 'profile__password');
       },
     },
   );

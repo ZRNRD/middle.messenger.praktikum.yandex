@@ -127,7 +127,7 @@ const getTemplate = () => {
       placeholder: 'Пароль',
       type: 'password',
       inputContainerClassName: ['signin__input-container'].join(' '),
-      inputClassName: ['signin__input'].join(' '),
+      inputClassName: ['signin__input', 'signin__password'].join(' '),
       required: true,
       errorMessage: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
       dataType: 'password',
@@ -150,15 +150,15 @@ const getTemplate = () => {
       required: true,
       inputContainerClassName: ['signin__input-container'].join(' '),
       inputClassName: ['signin__input'].join(' '),
-      errorMessage: 'Пароли не совпадают',
-      dataType: 'password',
+      errorMessage: 'Пароли должны совпадать',
+      dataType: 'secondPassword',
     },
     {
       focus: (event: Event) => {
-        checkValidation({ event });
+        checkValidation({ event }, 'signin__password');
       },
       blur: (event: Event) => {
-        checkValidation({ event });
+        checkValidation({ event }, 'signin__password');
       },
     },
   );
